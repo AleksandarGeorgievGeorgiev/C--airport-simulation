@@ -48,10 +48,10 @@
   <ItemGroup>
     <Compile Include="Contracts\IChainNode.cs" />
     <Compile Include="Contracts\ICheckIn.cs" />
-    <Compile Include="Contracts\IConveyor.cs" />
+    <Compile Include="Contracts\IConveyorOneToOne.cs" />
     <Compile Include="Contracts\IDispatcher.cs" />
     <Compile Include="Contracts\IDropOff.cs" />
-    <Compile Include="Contracts\IMainSecurity.cs" />
+    <Compile Include="Contracts\IAutomatedSecurity.cs" />
     <Compile Include="Contracts\IMda.cs" />
     <Compile Include="Contracts\IProcessingNode.cs" />
     <Compile Include="Contracts\IStartStop.cs" />
@@ -63,9 +63,15 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Node\ChainNode.cs" />
-    <Compile Include="Node\ProcessingNode.cs" />
-    <Compile Include="Node\TransportingNode.cs" />
+    <Compile Include="Abstractions\ChainNode.cs" />
+    <Compile Include="Node\AutomatedSecurity.cs" />
+    <Compile Include="Node\CheckInDesk.cs" />
+    <Compile Include="Abstractions\ProcessingNode.cs" />
+    <Compile Include="Abstractions\TransportingNode.cs" />
+    <Compile Include="Node\ConveyorOneToOne.cs" />
+    <Compile Include="Node\Dispatcher.cs" />
+    <Compile Include="Node\DropOff.cs" />
+    <Compile Include="Node\Mda.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
@@ -93,13 +99,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Node\CheckIn\" />
-    <Folder Include="Node\Conveyor Belt\" />
-    <Folder Include="Node\Dispatcher\" />
-    <Folder Include="Node\DropOff\" />
-    <Folder Include="Node\Mda\" />
-    <Folder Include="Node\Security\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

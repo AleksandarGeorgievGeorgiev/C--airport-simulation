@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProCP.Contracts
 {
-    interface IConveyor: ITransportingNode
+    public interface IAutomatedSecurity
     {
     }
 }

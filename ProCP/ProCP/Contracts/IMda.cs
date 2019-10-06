@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProCP.Contracts
 {
-    interface IMda: IChainNode
+    public interface IMda: IChainNode
     {
         void AddNextNode(IChainNode node);  
     }

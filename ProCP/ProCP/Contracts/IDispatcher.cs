@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProCP.Contracts
 {
-    interface IDispatcher: IChainNode
+    public interface IDispatcher: IChainNode
     {
         void AddNextNode(IChainNode node);
     }

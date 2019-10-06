@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProCP.Node
+namespace ProCP.Contracts
 {
-    class TransportingNode
+    public interface IConveyorOneToOne: ITransportingNode
     {
     }
 }

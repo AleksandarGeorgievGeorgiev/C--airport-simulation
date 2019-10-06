@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace ProCP.Contracts
 {
-    interface ICheckIn
+    public interface ICheckIn : IProcessingNode
     {
+
     }
 }
