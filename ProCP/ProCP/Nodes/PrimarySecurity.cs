@@ -6,16 +6,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 
 namespace ProCP.Nodes
 {
-    public class AutomatedSecurity : ProcessingNode, IAutomatedSecurity
+    public class PrimarySecurity : ProcessingNode, IPrimarySecurity
     {
-        public AutomatedSecurity(string nodeId) : base(nodeId)
+        public PrimarySecurity(string nodeId, Timer timer) : base(nodeId, timer)
         {
         }
 
-        public override string Destination { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public override string Destination { get; set; }
 
 
         public override void Process(IBaggage b)
