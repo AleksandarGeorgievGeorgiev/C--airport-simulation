@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CuttingEdge.Conditions, Version=1.2.0.11174, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
+      <HintPath>..\packages\CuttingEdge.Conditions.1.2.0.0\lib\NET35\CuttingEdge.Conditions.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -51,14 +54,16 @@
     <Compile Include="Contracts\IConveyorOneToOne.cs" />
     <Compile Include="Contracts\IDispatcher.cs" />
     <Compile Include="Contracts\IDropOff.cs" />
-    <Compile Include="Contracts\IAutomatedSecurity.cs" />
+    <Compile Include="Contracts\IPrimarySecurity.cs" />
     <Compile Include="Contracts\IMda.cs" />
     <Compile Include="Contracts\IProcessingNode.cs" />
     <Compile Include="Contracts\IStartStop.cs" />
     <Compile Include="Contracts\ITransportingNode.cs" />
     <Compile Include="FlightAndBaggage\Baggage.cs" />
     <Compile Include="FlightAndBaggage\BaggageEventLog.cs" />
+    <Compile Include="FlightAndBaggage\Flight.cs" />
     <Compile Include="FlightAndBaggage\IBaggage.cs" />
+    <Compile Include="FlightAndBaggage\IFlight.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -66,7 +71,7 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Abstractions\ChainNode.cs" />
-    <Compile Include="Nodes\AutomatedSecurity.cs" />
+    <Compile Include="Nodes\PrimarySecurity.cs" />
     <Compile Include="Nodes\CheckInDesk.cs" />
     <Compile Include="Abstractions\ProcessingNode.cs" />
     <Compile Include="Abstractions\TransportingNode.cs" />
@@ -88,6 +93,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -12,10 +12,10 @@ namespace ProCP.Nodes
     {
         public int Capacity { get; set; }
         public int Workers { get; set; }
-        public string Destination { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string NodeId { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public Action OnStatusChangedToFree { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public Status NodeStatus { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public string Destination { get; set; }
+        public string NodeId { get; set; }
+        public Action OnStatusChangedToFree { get; set; }
+        public Status NodeStatus { get; set; }
 
         public void PassBaggage(IBaggage b)
         {

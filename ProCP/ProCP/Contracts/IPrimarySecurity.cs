@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProCP.Contracts
 {
-    public interface IAutomatedSecurity
+    public interface IPrimarySecurity
     {
     }
 }

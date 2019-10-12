@@ -6,12 +6,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 
 namespace ProCP.Nodes
 {
     public class CheckInDesk : ProcessingNode, ICheckIn
     {
-        public CheckInDesk(string nodeId) : base(nodeId)
+        public CheckInDesk(string nodeId, Timer timer) : base(nodeId, timer)
         {
         }
 
