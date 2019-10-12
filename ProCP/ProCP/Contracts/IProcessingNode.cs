@@ -9,6 +9,6 @@ namespace ProCP.Contracts
 {
     public interface IProcessingNode
     {
-        void Process(Baggage b);
+        void Process(IBaggage b);
     }
 }

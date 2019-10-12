@@ -13,9 +13,10 @@ namespace ProCP.Contracts
     }
     public interface IChainNode
     {
-        int NodeId { get; set; }
+        string Destination { get; set; }
+        string NodeId { get; set; }
         Action OnStatusChangedToFree { get; set; }
         Status NodeStatus { get; set; }
-        void PassBaggage(Baggage b);
+        void PassBaggage(IBaggage b);
     }
 }

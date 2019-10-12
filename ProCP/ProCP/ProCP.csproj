@@ -57,6 +57,8 @@
     <Compile Include="Contracts\IStartStop.cs" />
     <Compile Include="Contracts\ITransportingNode.cs" />
     <Compile Include="FlightAndBaggage\Baggage.cs" />
+    <Compile Include="FlightAndBaggage\BaggageEventLog.cs" />
+    <Compile Include="FlightAndBaggage\IBaggage.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -64,14 +66,14 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Abstractions\ChainNode.cs" />
-    <Compile Include="Node\AutomatedSecurity.cs" />
-    <Compile Include="Node\CheckInDesk.cs" />
+    <Compile Include="Nodes\AutomatedSecurity.cs" />
+    <Compile Include="Nodes\CheckInDesk.cs" />
     <Compile Include="Abstractions\ProcessingNode.cs" />
     <Compile Include="Abstractions\TransportingNode.cs" />
-    <Compile Include="Node\ConveyorOneToOne.cs" />
-    <Compile Include="Node\Dispatcher.cs" />
-    <Compile Include="Node\DropOff.cs" />
-    <Compile Include="Node\Mda.cs" />
+    <Compile Include="Nodes\ConveyorOneToOne.cs" />
+    <Compile Include="Nodes\Dispatcher.cs" />
+    <Compile Include="Nodes\DropOff.cs" />
+    <Compile Include="Nodes\Mda.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">

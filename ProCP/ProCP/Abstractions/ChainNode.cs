@@ -12,7 +12,7 @@ namespace ProCP.Abstractions
     public abstract class ChainNode : IChainNode
     {
         private Status _status;
-        public int NodeId { get; set; }
+        public string NodeId { get; set; }
         public Action OnStatusChangedToFree { get; set; }
         public virtual Status NodeStatus
         {
@@ -30,10 +30,13 @@ namespace ProCP.Abstractions
             }
         }
         public ChainNode NextNode { get; set; }
-        public ChainNode()
-        {
+        public abstract string Destination { get; set; }
 
+        public ChainNode(string nodeId)
+        {
+            _status = Status.Free;
+            NodeId = nodeId;
         }
-        public abstract void PassBaggage(Baggage b);
+        public abstract void PassBaggage(IBaggage b);
     }
 }

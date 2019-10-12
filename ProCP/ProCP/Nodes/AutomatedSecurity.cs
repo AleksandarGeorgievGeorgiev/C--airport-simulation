@@ -7,11 +7,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProCP.Node
+namespace ProCP.Nodes
 {
     public class AutomatedSecurity : ProcessingNode, IAutomatedSecurity
     {
-        public override void PassBaggage(Baggage b)
+        public AutomatedSecurity(string nodeId) : base(nodeId)
+        {
+        }
+
+        public override string Destination { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
+
+        public override void Process(IBaggage b)
         {
             throw new NotImplementedException();
         }

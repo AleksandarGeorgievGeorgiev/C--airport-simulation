@@ -6,19 +6,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProCP.Node
+namespace ProCP.Nodes
 {
-    public class Mda : IMda
+    class Dispatcher : IDispatcher
     {
-        public int NodeId { get; set; }
+        public string NodeId { get; set; }
         public Action OnStatusChangedToFree { get; set; }
         public Status NodeStatus { get; set; }
+        public string Destination { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
         public void AddNextNode(IChainNode node)
         {
             throw new NotImplementedException();
         }
 
-        public void PassBaggage(Baggage b)
+        public void PassBaggage(IBaggage b)
         {
             throw new NotImplementedException();
         }

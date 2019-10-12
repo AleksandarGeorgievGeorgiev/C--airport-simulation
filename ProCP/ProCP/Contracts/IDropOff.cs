@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProCP.Contracts
 {
-    public interface IDropOff
+    public interface IDropOff : IChainNode
     {
         int Capacity { get; set; }
         int Workers { get; set; }

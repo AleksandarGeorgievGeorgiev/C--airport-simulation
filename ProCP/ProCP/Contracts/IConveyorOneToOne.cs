@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProCP.Contracts
 {
-    public interface IConveyorOneToOne: ITransportingNode
+    public interface IConveyorOneToOne : ITransportingNode
     {
     }
 }

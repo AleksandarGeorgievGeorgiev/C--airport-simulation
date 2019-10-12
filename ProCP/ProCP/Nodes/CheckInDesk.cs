@@ -7,16 +7,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProCP.Node
+namespace ProCP.Nodes
 {
     public class CheckInDesk : ProcessingNode, ICheckIn
     {
-        public override void PassBaggage(Baggage b)
+        public CheckInDesk(string nodeId) : base(nodeId)
         {
-            throw new NotImplementedException();
         }
 
-        public void Process(Baggage b)
+        public override string Destination { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
+        public override void Process(IBaggage b)
         {
             throw new NotImplementedException();
         }

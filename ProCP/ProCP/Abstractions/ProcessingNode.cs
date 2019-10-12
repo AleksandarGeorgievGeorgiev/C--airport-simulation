@@ -10,9 +10,20 @@ namespace ProCP.Abstractions
 {
     public abstract class ProcessingNode : ChainNode, IProcessingNode
     {
-        public void Process(Baggage b)
+        public ProcessingNode(string nodeId) : base(nodeId)
+        {
+        }
+
+        public abstract void Process(IBaggage b);
+
+        public override void PassBaggage(IBaggage b)
         {
             throw new NotImplementedException();
+        }
+
+        public void ProcessInternal()
+        {
+
         }
     }
 }

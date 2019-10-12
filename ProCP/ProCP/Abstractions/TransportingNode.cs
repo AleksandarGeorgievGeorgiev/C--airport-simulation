@@ -9,7 +9,11 @@ namespace ProCP.Abstractions
 {
     public abstract class TransportingNode : ChainNode
     {
-        public override void PassBaggage(Baggage b)
+        public TransportingNode(string nodeId) : base(nodeId)
+        {
+        }
+
+        public override void PassBaggage(IBaggage b)
         {
             throw new NotImplementedException();
         }
