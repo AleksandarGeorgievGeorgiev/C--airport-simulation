@@ -7,10 +7,11 @@ using System.Timers;
 using ProCP.Contracts;
 using ProCP.FlightAndBaggage;
 using System.Diagnostics;
+using CuttingEdge.Conditions;
 
 namespace ProCP.Abstractions
 {
-    public abstract class TransportingNode : ChainNode, ITransportingNode
+    public abstract class TransportingNode : ChainNode, ITransportingNode, IStartStop
     {
         protected readonly int _length;
         protected IBaggage[] _conveyorBelt;
@@ -28,6 +29,8 @@ namespace ProCP.Abstractions
         protected bool HasLastItem => LastBaggage != null;
         public int Length { get; set; }
         public int MovingSpeed { get; set; }
+
+        
 
         public void SetNextNode(IChainNode node)
         {
@@ -55,9 +58,27 @@ namespace ProCP.Abstractions
             return _conveyorBelt[index] == null;
         }
 
-        public void Add()
+        public void Add(IBaggage bag, int index = 0)
         {
-            
+            Condition.Requires(CanAdd(), "conveyor").IsEqualTo(true, "Trying to add to a full conveyor");
+            _conveyorBelt[index] = bag;
+        }
+
+        public void Start()
+        {
+            TimerService.Interval = MovingSpeed;
+            if (!TimerService.Enabled)
+            {
+                TimerService.Start();
+            }
+        }
+
+        public void Stop()
+        {
+            if (TimerService.Enabled)
+            {
+                TimerService.Stop();
+            }
         }
     }
 }
