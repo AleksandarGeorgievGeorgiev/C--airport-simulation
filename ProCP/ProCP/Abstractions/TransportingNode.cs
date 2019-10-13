@@ -7,11 +7,18 @@ using System.Timers;
 using ProCP.Contracts;
 using ProCP.FlightAndBaggage;
 using System.Diagnostics;
+<<<<<<< HEAD
+
+namespace ProCP.Abstractions
+{
+    public abstract class TransportingNode : ChainNode, ITransportingNode
+=======
 using CuttingEdge.Conditions;
 
 namespace ProCP.Abstractions
 {
     public abstract class TransportingNode : ChainNode, ITransportingNode, IStartStop
+>>>>>>> aleksandar
     {
         protected readonly int _length;
         protected IBaggage[] _conveyorBelt;
@@ -30,8 +37,11 @@ namespace ProCP.Abstractions
         public int Length { get; set; }
         public int MovingSpeed { get; set; }
 
+<<<<<<< HEAD
+=======
         
 
+>>>>>>> aleksandar
         public void SetNextNode(IChainNode node)
         {
             NextNode = node;
@@ -54,6 +64,15 @@ namespace ProCP.Abstractions
         }
 
         public bool CanAdd(int index = 0)
+<<<<<<< HEAD
+        {
+            return _conveyorBelt[index] == null;
+        }
+
+        public void Add()
+        {
+            
+=======
         {
             return _conveyorBelt[index] == null;
         }
@@ -79,6 +98,7 @@ namespace ProCP.Abstractions
             {
                 TimerService.Stop();
             }
+>>>>>>> aleksandar
         }
     }
 }

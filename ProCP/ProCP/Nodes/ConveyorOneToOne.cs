@@ -20,6 +20,9 @@ namespace ProCP.Nodes
 
         public override void Move()
         {
+<<<<<<< HEAD
+            throw new NotImplementedException();
+=======
             TimerService.Stop();
 
             if (CanMove())
@@ -44,13 +47,18 @@ namespace ProCP.Nodes
             {
                 NextNode.OnStatusChangedToFree += Move;
             }
+>>>>>>> aleksandar
         }
 
         public override void PassBaggage(IBaggage b)
         {
+<<<<<<< HEAD
+            throw new NotImplementedException();
+=======
             NodeStatus = Status.Busy;
             b.TransporterId = NodeId;
             Add(b);
+>>>>>>> aleksandar
         }
     }
 }
