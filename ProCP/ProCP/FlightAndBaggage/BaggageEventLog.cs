@@ -10,5 +10,6 @@ namespace ProCP.FlightAndBaggage
     {
         public string Description { get; set; }
         public TimeSpan LogCreated { get; set; }
+        public TimeSpan TimeElapsed { get; set; }
     }
 }

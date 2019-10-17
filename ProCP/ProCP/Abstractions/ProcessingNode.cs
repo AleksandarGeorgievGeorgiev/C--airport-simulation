@@ -11,21 +11,49 @@ namespace ProCP.Abstractions
 {
     public abstract class ProcessingNode : ChainNode, IProcessingNode
     {
+        public List<IChainNode> nextNodes;
+        public IBaggage currentBag;
+
         public ProcessingNode(string nodeId, Timer timer) : base(nodeId, timer)
         {
+            nextNodes = new List<IChainNode>();
+            timer = new Timer();
+            timer.Elapsed += (sender, args) => Process(currentBag);
+        }
 
+
+        public void AddNextNode(IChainNode node)
+        {
+            nextNodes.Add(node);
         }
 
         public abstract void Process(IBaggage b);
 
         public override void PassBaggage(IBaggage b)
         {
-            throw new NotImplementedException();
+            NodeNodeStatus = NodeStatus.Busy;
+            currentBag = b;
+            ProcessInternal(b);
         }
 
-        public void ProcessInternal()
+        public void ProcessInternal(IBaggage b)
         {
+            Process(b);
+            Move();
+        }
 
+        private void Move()
+        {
+            if (NextNode.NodeNodeStatus == NodeStatus.Free && currentBag != null)
+            {
+                NextNode.OnNodeStatusChangedToFree -= Move;
+                NextNode.PassBaggage(currentBag);
+                NodeNodeStatus = NodeStatus.Free;
+            }
+            else if (NextNode.NodeNodeStatus == NodeStatus.Busy)
+            {
+                NextNode.OnNodeStatusChangedToFree += Move;
+            }
         }
     }
 }

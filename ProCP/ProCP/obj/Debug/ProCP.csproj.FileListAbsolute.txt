@@ -11,3 +11,6 @@ E:\Alexander\ProcpSecond\procp-airportsimulation\ProCP\ProCP\obj\Debug\ProCP.csp
 E:\Alexander\ProcpSecond\procp-airportsimulation\ProCP\ProCP\obj\Debug\ProCP.csproj.CopyComplete
 E:\Alexander\ProcpSecond\procp-airportsimulation\ProCP\ProCP\obj\Debug\ProCP.exe
 E:\Alexander\ProcpSecond\procp-airportsimulation\ProCP\ProCP\obj\Debug\ProCP.pdb
+E:\Alexander\ProcpSecond\procp-airportsimulation\ProCP\ProCP\bin\Debug\LiveCharts.dll
+E:\Alexander\ProcpSecond\procp-airportsimulation\ProCP\ProCP\bin\Debug\LiveCharts.pdb
+E:\Alexander\ProcpSecond\procp-airportsimulation\ProCP\ProCP\bin\Debug\LiveCharts.xml

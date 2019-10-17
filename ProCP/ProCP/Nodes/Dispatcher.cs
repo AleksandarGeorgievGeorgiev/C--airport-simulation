@@ -11,13 +11,22 @@ namespace ProCP.Nodes
     class Dispatcher : IDispatcher
     {
         public string NodeId { get; set; }
-        public Action OnStatusChangedToFree { get; set; }
-        public Status NodeStatus { get; set; }
-        public string Destination { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public Action OnNodeStatusChangedToFree { get; set; }
+        public NodeStatus NodeNodeStatus { get; set; }
+        public string Destination { get; set; }
+
+        public List<ICheckIn> checkins;
+        public List<Queue<Baggage>> checkinQueues;
+
+        public Dispatcher()
+        {
+            checkins = new List<ICheckIn>();
+            checkinQueues = new List<Queue<Baggage>>();
+        }
 
         public void AddNextNode(IChainNode node)
         {
-            throw new NotImplementedException();
+            checkins.Add((ICheckIn)node);
         }
 
         public void PassBaggage(IBaggage b)

@@ -14,13 +14,15 @@ namespace ProCP.Nodes
     {
         public CheckInDesk(string nodeId, Timer timer) : base(nodeId, timer)
         {
+
         }
 
-        public override string Destination { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public override string Destination => this.GetType().Name;
 
         public override void Process(IBaggage b)
         {
-            throw new NotImplementedException();
+            //replace the new TimeSpan with real calculation for the time spent int this unit
+            //b.AddLog(new TimeSpan(), "Checkin processing");
         }
     }
 }

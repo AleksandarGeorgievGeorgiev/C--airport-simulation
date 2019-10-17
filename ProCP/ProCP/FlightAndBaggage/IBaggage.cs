@@ -9,10 +9,13 @@ namespace ProCP.FlightAndBaggage
     public interface IBaggage
     {
         BaggageType Type { get; set; }
-        string FlightNumber { get; set; }
+        IFlight Flight { get; set; }
         string Description { get; set; }
+        string Destination { get; set; }
         List<BaggageEventLog> Logs { get; set; }
+        long TransportationStartTime { get; set; }
+        //Node id
         string TransporterId { get; set; }
-        void AddLog(TimeSpan logCreation, string description);
+        void AddLog(TimeSpan logCreation, TimeSpan timeElapsed, string description);
     }
 }

@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace ProCP.Contracts
 {
-    public interface IPrimarySecurity
+    public enum NodeStatus
     {
-
+        Busy, Free
     }
 }

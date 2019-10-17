@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProCP.FlightAndBaggage;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,10 @@ namespace ProCP.Contracts
 {
     public interface IDropOff : IChainNode
     {
+        int DropOffNumber { get; }
+        string Destination { get; }
+        Action OnNodeStatusChangedToFree { get; set; }
+        void PassBaggage(IBaggage baggage);
         int Capacity { get; set; }
         int Workers { get; set; }
     }
