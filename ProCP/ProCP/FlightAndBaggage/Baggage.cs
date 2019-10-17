@@ -26,7 +26,7 @@ namespace ProCP.FlightAndBaggage
         public List<BaggageEventLog> Logs { get; set; }
         public string TransporterId { get; set; }
         public long TransportationStartTime { get; set; }
-        public string Destination { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public string Destination { get; set; }
 
         public void AddLog(TimeSpan logCreation, TimeSpan timeElapsed, string description)
         {
