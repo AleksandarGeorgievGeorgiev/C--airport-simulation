@@ -24,3 +24,12 @@ C:\Users\nidhi\Documents\Semester 4\procp-airportsimulation\ProCP\ProCP\obj\Debu
 C:\Users\nidhi\Documents\Semester 4\procp-airportsimulation\ProCP\ProCP\obj\Debug\ProCP.csproj.CopyComplete
 C:\Users\nidhi\Documents\Semester 4\procp-airportsimulation\ProCP\ProCP\obj\Debug\ProCP.exe
 C:\Users\nidhi\Documents\Semester 4\procp-airportsimulation\ProCP\ProCP\obj\Debug\ProCP.pdb
+C:\Users\nidhi\Documents\Semester 4\procp-airportsimulation\ProCP\ProCP\bin\Debug\LiveCharts.dll
+C:\Users\nidhi\Documents\Semester 4\procp-airportsimulation\ProCP\ProCP\bin\Debug\LiveCharts.WinForms.dll
+C:\Users\nidhi\Documents\Semester 4\procp-airportsimulation\ProCP\ProCP\bin\Debug\LiveCharts.Wpf.dll
+C:\Users\nidhi\Documents\Semester 4\procp-airportsimulation\ProCP\ProCP\bin\Debug\LiveCharts.pdb
+C:\Users\nidhi\Documents\Semester 4\procp-airportsimulation\ProCP\ProCP\bin\Debug\LiveCharts.xml
+C:\Users\nidhi\Documents\Semester 4\procp-airportsimulation\ProCP\ProCP\bin\Debug\LiveCharts.WinForms.pdb
+C:\Users\nidhi\Documents\Semester 4\procp-airportsimulation\ProCP\ProCP\bin\Debug\LiveCharts.WinForms.xml
+C:\Users\nidhi\Documents\Semester 4\procp-airportsimulation\ProCP\ProCP\bin\Debug\LiveCharts.Wpf.pdb
+C:\Users\nidhi\Documents\Semester 4\procp-airportsimulation\ProCP\ProCP\bin\Debug\LiveCharts.Wpf.xml
