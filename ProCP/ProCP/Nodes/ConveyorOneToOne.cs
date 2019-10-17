@@ -16,7 +16,7 @@ namespace ProCP.Nodes
         {
         }
 
-        public override string Destination { get; set; }
+        public override string Destination { get; }
 
         public override void Move()
         {
@@ -36,19 +36,19 @@ namespace ProCP.Nodes
                     _conveyorBelt[i - 1] = null;
                 }
 
-                NextNode.OnStatusChangedToFree -= Move;
-                NodeStatus = Status.Free;
+                NextNode.OnNodeStatusChangedToFree -= Move;
+                NodeNodeStatus = NodeStatus.Free;
                 TimerService.Start();
             }
             else
             {
-                NextNode.OnStatusChangedToFree += Move;
+                NextNode.OnNodeStatusChangedToFree += Move;
             }
         }
 
         public override void PassBaggage(IBaggage b)
         {
-            NodeStatus = Status.Busy;
+            NodeNodeStatus = NodeStatus.Busy;
             b.TransporterId = NodeId;
             Add(b);
         }

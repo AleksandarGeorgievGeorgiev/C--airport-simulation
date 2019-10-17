@@ -12,18 +12,29 @@ namespace ProCP.FlightAndBaggage
     }
     public class Baggage : IBaggage
     {
+        public static List<Baggage> AllBaggage = new List<Baggage>();
+
+        public Baggage()
+        {
+            Logs = new List<BaggageEventLog>();
+            AllBaggage.Add(this);
+        }
+
         public BaggageType Type { get; set; }
-        public string FlightNumber { get; set; }
+        public IFlight Flight { get; set; }
         public string Description { get; set; }
         public List<BaggageEventLog> Logs { get; set; }
         public string TransporterId { get; set; }
+        public long TransportationStartTime { get; set; }
+        public string Destination { get; set; }
 
-        public void AddLog(TimeSpan logCreation, string description)
+        public void AddLog(TimeSpan logCreation, TimeSpan timeElapsed, string description)
         {
             Logs.Add(new BaggageEventLog
             {
                 LogCreated = logCreation,
-                Description = description
+                Description = description,
+                TimeElapsed = timeElapsed
             });
         }
     }

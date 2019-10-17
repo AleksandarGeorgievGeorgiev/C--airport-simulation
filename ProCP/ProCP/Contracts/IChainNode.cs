@@ -7,16 +7,12 @@ using ProCP.FlightAndBaggage;
 
 namespace ProCP.Contracts
 {
-    public enum Status
-    {
-        Busy, Free
-    }
     public interface IChainNode
     {
-        string Destination { get; set; }
+        string Destination { get; }
         string NodeId { get; set; }
-        Action OnStatusChangedToFree { get; set; }
-        Status NodeStatus { get; set; }
+        Action OnNodeStatusChangedToFree { get; set; }
+        NodeStatus NodeNodeStatus { get; set; }
         void PassBaggage(IBaggage b);
     }
 }

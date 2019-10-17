@@ -12,32 +12,32 @@ namespace ProCP.Abstractions
 {
     public abstract class ChainNode : IChainNode
     {
-        private Status _status;
+        private NodeStatus _NodeStatus;
         public string NodeId { get; set; }
-        public Action OnStatusChangedToFree { get; set; }
+        public Action OnNodeStatusChangedToFree { get; set; }
         public Timer TimerService { get; set; }
-        public virtual Status NodeStatus
+        public virtual NodeStatus NodeNodeStatus
         {
             get
             {
-                return _status;
+                return _NodeStatus;
             }
             set
             {
-                _status = value;
-                if (value == Status.Free)
+                _NodeStatus = value;
+                if (value == NodeStatus.Free)
                 {
-                    OnStatusChangedToFree?.Invoke();
+                    OnNodeStatusChangedToFree?.Invoke();
                 }
             }
         }
         public IChainNode NextNode { get; set; }
-        public abstract string Destination { get; set; }
+        public abstract string Destination { get; }
 
         public ChainNode(string nodeId, Timer timer)
         {
             TimerService = timer;
-            _status = Status.Free;
+            _NodeStatus = NodeStatus.Free;
             NodeId = nodeId;
         }
         public abstract void PassBaggage(IBaggage b);

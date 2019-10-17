@@ -11,8 +11,8 @@ namespace ProCP.Nodes
     public class Mda : IMda
     {
         public string NodeId { get; set; }
-        public Action OnStatusChangedToFree { get; set; }
-        public Status NodeStatus { get; set; }
+        public Action OnNodeStatusChangedToFree { get; set; }
+        public NodeStatus NodeNodeStatus { get; set; }
         public string Destination { get; set; }
 
         public void AddNextNode(IChainNode node)

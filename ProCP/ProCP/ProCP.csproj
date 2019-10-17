@@ -39,6 +39,7 @@
     <Reference Include="LiveCharts, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
       <HintPath>..\packages\LiveCharts.0.9.7\lib\net45\LiveCharts.dll</HintPath>
     </Reference>
+<<<<<<< HEAD
     <Reference Include="LiveCharts.WinForms, Version=0.9.7.1, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
       <HintPath>..\packages\LiveCharts.WinForms.0.9.7.1\lib\net45\LiveCharts.WinForms.dll</HintPath>
     </Reference>
@@ -47,6 +48,8 @@
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+=======
+>>>>>>> 1ed9eb1ef245734ca5feb7c2b23882de4b05990d
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xaml" />
@@ -73,6 +76,7 @@
     <Compile Include="Contracts\IProcessingNode.cs" />
     <Compile Include="Contracts\IStartStop.cs" />
     <Compile Include="Contracts\ITransportingNode.cs" />
+    <Compile Include="Contracts\NodeStatus.cs" />
     <Compile Include="FlightAndBaggage\Baggage.cs" />
     <Compile Include="FlightAndBaggage\BaggageEventLog.cs" />
     <Compile Include="FlightAndBaggage\Flight.cs" />
@@ -85,6 +89,7 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Abstractions\ChainNode.cs" />
+    <Compile Include="Contracts\ISimulationSettings.cs" />
     <Compile Include="Nodes\PrimarySecurity.cs" />
     <Compile Include="Nodes\CheckInDesk.cs" />
     <Compile Include="Abstractions\ProcessingNode.cs" />
@@ -95,6 +100,7 @@
     <Compile Include="Nodes\Mda.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SimulationSettings.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
