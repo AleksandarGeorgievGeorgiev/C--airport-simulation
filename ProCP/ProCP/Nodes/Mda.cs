@@ -10,19 +10,41 @@ namespace ProCP.Nodes
 {
     public class Mda : IMda
     {
+        public Queue<IBaggage> BaggageQueue { get; set; }
         public string NodeId { get; set; }
         public Action OnNodeStatusChangedToFree { get; set; }
         public NodeStatus NodeNodeStatus { get; set; }
         public string Destination { get; set; }
+
+        public Mda(string nodeId, string destination)
+        {
+            this.NodeId = nodeId;
+            this.Destination = destination;
+            NodeStatus = Status.Free;
+            this.BaggageQueue = new Queue<IBaggage>();
+        }
 
         public void AddNextNode(IChainNode node)
         {
             throw new NotImplementedException();
         }
 
-        public void PassBaggage(IBaggage b)
+        public void PassBaggageToConveyor()
         {
-            throw new NotImplementedException();
+            
+        }
+        public bool PassBaggage(IBaggage b)
+        {
+            if (this.BaggageQueue.Count <= 10)
+            {
+                this.BaggageQueue.Enqueue(b);
+                return true;
+            }
+            else
+            {
+                this.NodeStatus = Status.Busy;
+                return false;
+            }
         }
     }
 }
