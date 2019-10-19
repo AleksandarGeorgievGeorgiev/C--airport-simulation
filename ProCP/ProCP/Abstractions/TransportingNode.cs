@@ -8,8 +8,7 @@ using ProCP.Contracts;
 using ProCP.FlightAndBaggage;
 using System.Diagnostics;
 using CuttingEdge.Conditions;
-
-
+using ProCP.Services;
 
 namespace ProCP.Abstractions
 {
@@ -17,13 +16,14 @@ namespace ProCP.Abstractions
     {
         protected readonly int _length;
         protected IBaggage[] _conveyorBelt;
+        protected Timer _timer;
 
-        public TransportingNode(int legth, string nodeId, Timer timer) : base(nodeId, timer)
+        public TransportingNode(int legth, string nodeId, ITimerTracker timer) : base(nodeId, timer)
         {
             _length = legth;
-            timer = new Timer();
+            _timer = new Timer();
             _conveyorBelt = new IBaggage[_length];
-            timer.Elapsed += (sender, args) => Move();
+            _timer.Elapsed += (sender, args) => Move();
         }
 
         protected int LastIndex => _length - 1;
@@ -66,8 +66,8 @@ namespace ProCP.Abstractions
 
         public void Start()
         {
-            TimerService.Interval = MovingSpeed;
-            if (!TimerService.Enabled)
+            _timer.Interval = MovingSpeed;
+            if (!_timer.Enabled)
             {
                 TimerService.Start();
             }
@@ -75,7 +75,7 @@ namespace ProCP.Abstractions
 
         public void Stop()
         {
-            if (TimerService.Enabled)
+            if (_timer.Enabled)
             {
                 TimerService.Stop();
             }

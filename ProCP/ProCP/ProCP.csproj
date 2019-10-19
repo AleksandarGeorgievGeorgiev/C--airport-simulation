@@ -87,6 +87,7 @@
     </Compile>
     <Compile Include="Abstractions\ChainNode.cs" />
     <Compile Include="Contracts\ISimulationSettings.cs" />
+    <Compile Include="Services\LoggingConstants.cs" />
     <Compile Include="Nodes\PrimarySecurity.cs" />
     <Compile Include="Nodes\CheckInDesk.cs" />
     <Compile Include="Abstractions\ProcessingNode.cs" />
@@ -97,6 +98,8 @@
     <Compile Include="Nodes\Mda.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\ITimerTracker.cs" />
+    <Compile Include="Services\TImerTracker.cs" />
     <Compile Include="SimulationSettings.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

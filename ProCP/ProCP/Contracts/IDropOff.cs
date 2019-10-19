@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ProCP.Contracts
 {
-    public interface IDropOff : IChainNode
+    public interface IDropOff : IProcessingNode
     {
         int DropOffNumber { get; }
         string Destination { get; }

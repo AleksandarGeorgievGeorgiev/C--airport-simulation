@@ -1,6 +1,7 @@
 ﻿using ProCP.Abstractions;
 using ProCP.Contracts;
 using ProCP.FlightAndBaggage;
+using ProCP.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace ProCP.Nodes
 {
     public class ConveyorOneToOne : TransportingNode, IConveyorOneToOne
     {
-        public ConveyorOneToOne(int legth, string nodeId, Timer timer) : base(legth, nodeId, timer)
+        public ConveyorOneToOne(int legth, string nodeId, ITimerTracker timer) : base(legth, nodeId, timer)
         {
         }
 

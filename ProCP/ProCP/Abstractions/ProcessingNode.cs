@@ -1,5 +1,6 @@
 ﻿using ProCP.Contracts;
 using ProCP.FlightAndBaggage;
+using ProCP.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,11 +15,9 @@ namespace ProCP.Abstractions
         public List<IChainNode> nextNodes;
         public IBaggage currentBag;
 
-        public ProcessingNode(string nodeId, Timer timer) : base(nodeId, timer)
+        public ProcessingNode(string nodeId, ITimerTracker timer) : base(nodeId, timer)
         {
             nextNodes = new List<IChainNode>();
-            timer = new Timer();
-            timer.Elapsed += (sender, args) => Process(currentBag);
         }
 
 

@@ -19,6 +19,6 @@ namespace ProCP
     public class PrimarySecuritySettings : IPrimarySecuritySettings
     {
         public double PercentageFailedBags { get; set; }
-        public int ProcessingSpeed { get; set; }
+        public int ProcessingSpeed { get; set; } = 1000;
     }
 }

@@ -1,6 +1,7 @@
 ﻿using ProCP.Abstractions;
 using ProCP.Contracts;
 using ProCP.FlightAndBaggage;
+using ProCP.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace ProCP.Nodes
 {
     public class CheckInDesk : ProcessingNode, ICheckIn
     {
-        public CheckInDesk(string nodeId, Timer timer) : base(nodeId, timer)
+        public CheckInDesk(string nodeId, ITimerTracker timer) : base(nodeId, timer)
         {
 
         }

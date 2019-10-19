@@ -1,6 +1,7 @@
 ﻿using ProCP.Abstractions;
 using ProCP.Contracts;
 using ProCP.FlightAndBaggage;
+using ProCP.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,42 +13,14 @@ namespace ProCP.Nodes
 {
     public class PrimarySecurity : ProcessingNode, IPrimarySecurity
     {
-        private int _processingSpeed;
-        private double _percetange;
-        private Timer _timer;
-        public PrimarySecurity(IPrimarySecuritySettings settings, string nodeId, Timer timer) : base(nodeId, timer)
+        IPrimarySecuritySettings _psSettings;
+        private readonly Random _randomGen;
+        public PrimarySecurity(IPrimarySecuritySettings settings, string nodeId, ITimerTracker timeService) : base(nodeId, timeService)
         {
-            _percetange = settings.PercentageFailedBags;
-            _timer = timer;
+            _psSettings = settings;
+            _randomGen = new Random();
         }
 
-        public int ProcessingSpeed
-        {
-            get
-            {
-                return _processingSpeed;
-            }
-            set
-            {
-                switch (_processingSpeed)
-                {
-                    case 1:
-                        _timer.Interval = 1200;
-                        break;
-                    case 2:
-                        _timer.Interval = 1000;
-                        break;
-                    case 3:
-                        _timer.Interval = 800;
-                        break;
-                    case 4:
-                        _timer.Interval = 600;
-                        break;
-                    default:
-                        break;
-                }
-            }
-        }
         public override string Destination { get; }
 
         //TODO: we can prompt the user to enter a failure percetange for the securities 
@@ -55,13 +28,12 @@ namespace ProCP.Nodes
         //this must be done in the Process()
         public override void Process(IBaggage b)
         {
-            if (!_timer.Enabled)
-            {
-                _timer.Start();
-            }
-            _timer.Stop();
-            //logic with the percentage and add log to the bag logs
-            _timer.Start();
+            var isFail = _randomGen.Next(0, 101) < _psSettings.PercentageFailedBags;
+
+            b.AddLog(TimerService.GetTimeSinceSimulationStart(), TimerService.ConvertMillisecondsToTimeSpan(_psSettings.ProcessingSpeed),
+                $"Primary security check ID-{NodeId} processing - { (isFail ? LoggingConstants.PrimarySecurityCheckFailed : LoggingConstants.PrimarySecurityCheckSucceeded)}");
+
+            b.Destination = isFail ? "collected by security" : typeof(Mda).Name;
         }
     }
 }

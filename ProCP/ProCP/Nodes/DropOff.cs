@@ -1,6 +1,7 @@
 ﻿using ProCP.Abstractions;
 using ProCP.Contracts;
 using ProCP.FlightAndBaggage;
+using ProCP.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +11,9 @@ using System.Timers;
 
 namespace ProCP.Nodes
 {
-    public class DropOff : ProcessingNode, IProcessingNode, IDropOff
+    public class DropOff : ProcessingNode, IDropOff
     {
-        public DropOff(int dropOffNumber, string nodeId, Timer timer) : base(nodeId, timer)
+        public DropOff(int dropOffNumber, string nodeId, ITimerTracker timer) : base(nodeId, timer)
         {
             DropOffNumber = dropOffNumber;
         }

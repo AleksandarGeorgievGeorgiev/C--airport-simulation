@@ -26,8 +26,8 @@ namespace ProCP
                 new LineSeries
                 {
                     Title = "Time",
-                    Values = new ChartValues<int> {10, 25, 32, 45, 55},
-                    PointGeometry = DefaultGeometries.Square,
+                    Values = new ChartValues<int> {10, 25, 55, 45, 60},
+                    PointGeometry = DefaultGeometries.Circle,
                     PointGeometrySize = 15
                 }
             };
@@ -35,7 +35,8 @@ namespace ProCP
             cartesianChart1.AxisX.Add(new Axis
             {
                 Title = "Flight Number",
-                Labels = new[] { "1", "2", "3", "4", "5" }
+                Labels = new[] { "Flight to Miami", "Flight to Chicago", "Flight to Eindhoven", "Flight to Seattle", "Flight to Cologne" },
+                Height = 12
             });
 
             cartesianChart1.AxisY.Add(new Axis
