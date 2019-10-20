@@ -1,5 +1,7 @@
-﻿using ProCP.Contracts;
+﻿using ProCP.Abstractions;
+using ProCP.Contracts;
 using ProCP.FlightAndBaggage;
+using ProCP.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,18 +11,15 @@ using System.Timers;
 
 namespace ProCP.Nodes
 {
-    class Dispatcher : IDispatcher, IStartStop
+    class Dispatcher : ChainNode, IDispatcher, IStartStop
     {
-        public string NodeId { get; set; }
-        public Action OnNodeStatusChangedToFree { get; set; }
-        public NodeStatus NodeNodeStatus { get; set; }
-        public string Destination { get; set; }
+        public override string Destination => this.GetType().Name;
 
         public List<ICheckIn> checkins;
         public List<Queue<Baggage>> checkinQueues;
         private List<Timer> _flightTimers;
 
-        public Dispatcher()
+        public Dispatcher(string nodeId, ITimerTracker timeService) : base(nodeId, timeService)
         {
             checkins = new List<ICheckIn>();
             checkinQueues = new List<Queue<Baggage>>();
@@ -93,6 +92,8 @@ namespace ProCP.Nodes
             var checkIn = checkins[chosen];
             var queue = checkinQueues[chosen];
 
+            baggage.TransportationStartTime = TimerService.GetTicksSinceSimulationStart();
+            baggage.TransporterId = "Queue CheckIn";
 
             if (checkIn.NodeNodeStatus == NodeStatus.Free)
             {
@@ -147,7 +148,7 @@ namespace ProCP.Nodes
             checkins.Add((ICheckIn)node);
         }
 
-        public void PassBaggage(IBaggage b)
+        public override void PassBaggage(IBaggage b)
         {
             throw new NotImplementedException();
         }

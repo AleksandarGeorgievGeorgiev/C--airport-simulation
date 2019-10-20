@@ -12,5 +12,6 @@ namespace ProCP.Services
         TimeSpan ConvertMillisecondsToTimeSpan(int milliseconds);
         TimeSpan GetTimeSinceSimulationStart();
         long GetTicksSinceSimulationStart();
+        void SetSettings(ISimulationSettings settings);
     }
 }

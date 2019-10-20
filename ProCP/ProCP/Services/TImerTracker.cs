@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ProCP.Contracts;
 
 namespace ProCP.Services
 {
@@ -42,6 +43,12 @@ namespace ProCP.Services
         public TimeSpan ConvertMillisecondsToTimeSpan(int milliseconds)
         {
             return new TimeSpan(ticks: milliseconds * 10000);
+        }
+
+        public void SetSettings(ISimulationSettings settings)
+        {
+            var _simulationSettings = settings;
+            _simulationSettings.Flights = _simulationSettings.Flights.OrderBy(f => f.DipartureTime).ToList();
         }
     }
 }

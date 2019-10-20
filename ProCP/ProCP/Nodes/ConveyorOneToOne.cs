@@ -13,11 +13,11 @@ namespace ProCP.Nodes
 {
     public class ConveyorOneToOne : TransportingNode, IConveyorOneToOne
     {
-        public ConveyorOneToOne(int legth, string nodeId, ITimerTracker timer) : base(legth, nodeId, timer)
+        public ConveyorOneToOne(int legth, string nodeId, ITimerTracker timer, IConveyorSettings conveyorSettings) : base(legth, nodeId, timer, conveyorSettings)
         {
         }
 
-        public override string Destination { get; }
+        public override string Destination => this.GetType().Name;
 
         public override void Move()
         {

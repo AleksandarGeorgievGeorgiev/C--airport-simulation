@@ -33,7 +33,7 @@ namespace ProCP.Nodes
             b.AddLog(TimerService.GetTimeSinceSimulationStart(), TimerService.ConvertMillisecondsToTimeSpan(_psSettings.ProcessingSpeed),
                 $"Primary security check ID-{NodeId} processing - { (isFail ? LoggingConstants.PrimarySecurityCheckFailed : LoggingConstants.PrimarySecurityCheckSucceeded)}");
 
-            b.Destination = isFail ? "collected by security" : typeof(Mda).Name;
+            b.Destination = isFail ? LoggingConstants.BagStaysInSecurity : typeof(Mda).Name;
         }
     }
 }

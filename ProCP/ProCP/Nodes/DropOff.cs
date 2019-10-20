@@ -13,16 +13,14 @@ namespace ProCP.Nodes
 {
     public class DropOff : ProcessingNode, IDropOff
     {
-        public DropOff(int dropOffNumber, string nodeId, ITimerTracker timer) : base(nodeId, timer)
+        public DropOff(string nodeId, ITimerTracker timer) : base(nodeId, timer)
         {
-            DropOffNumber = dropOffNumber;
         }
 
         public int Capacity { get; set; }
         public int Workers { get; set; }
         public override string Destination => this.GetType().Name;
 
-        public int DropOffNumber { get; }
 
         public override void Process(IBaggage b)
         {

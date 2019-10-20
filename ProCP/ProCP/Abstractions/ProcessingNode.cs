@@ -12,8 +12,8 @@ namespace ProCP.Abstractions
 {
     public abstract class ProcessingNode : ChainNode, IProcessingNode
     {
-        public List<IChainNode> nextNodes;
-        public IBaggage currentBag;
+        protected List<IChainNode> nextNodes;
+        protected IBaggage currentBag;
 
         public ProcessingNode(string nodeId, ITimerTracker timer) : base(nodeId, timer)
         {
@@ -32,12 +32,24 @@ namespace ProCP.Abstractions
         {
             NodeNodeStatus = NodeStatus.Busy;
             currentBag = b;
+
+            if (b.TransportationStartTime != null)
+            {
+                var transportationStart = b.TransportationStartTime ?? 0;
+                var transportingTimeElapsed = TimerService.GetTicksSinceSimulationStart() - transportationStart;
+                b.AddLog(TimerService.GetTimeSinceSimulationStart(),
+                    new TimeSpan(transportingTimeElapsed),
+                    string.Format(LoggingConstants.BagReceivedInTemplate, Destination, b.TransporterId));
+                b.TransportationStartTime = null;
+            }
             ProcessInternal(b);
         }
 
         public void ProcessInternal(IBaggage b)
         {
             Process(b);
+            NextNode = nextNodes.FirstOrDefault(n => n.Destination == b.Destination);
+            currentBag.TransportationStartTime = TimerService.GetTicksSinceSimulationStart();
             Move();
         }
 

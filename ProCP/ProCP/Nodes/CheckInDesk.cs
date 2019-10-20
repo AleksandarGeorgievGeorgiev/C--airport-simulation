@@ -22,8 +22,9 @@ namespace ProCP.Nodes
 
         public override void Process(IBaggage b)
         {
-            //replace the new TimeSpan with real calculation for the time spent int this unit
-            //b.AddLog(new TimeSpan(), "Checkin processing");
+            b.AddLog(TimerService.GetTimeSinceSimulationStart(), TimerService.ConvertMillisecondsToTimeSpan(1000), "Checkin processing");
+
+            b.Destination = typeof(PrimarySecurity).Name;
         }
     }
 }

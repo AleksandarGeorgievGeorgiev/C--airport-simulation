@@ -9,7 +9,6 @@ namespace ProCP.Contracts
 {
     public interface IDropOff : IProcessingNode
     {
-        int DropOffNumber { get; }
         string Destination { get; }
         Action OnNodeStatusChangedToFree { get; set; }
         void PassBaggage(IBaggage baggage);
