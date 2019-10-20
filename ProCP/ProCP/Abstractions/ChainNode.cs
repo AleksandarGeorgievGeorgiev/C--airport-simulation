@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Timers;
 using ProCP.Contracts;
 using ProCP.FlightAndBaggage;
-
+using ProCP.Services;
 
 namespace ProCP.Abstractions
 {
@@ -15,7 +15,7 @@ namespace ProCP.Abstractions
         private NodeStatus _NodeStatus;
         public string NodeId { get; set; }
         public Action OnNodeStatusChangedToFree { get; set; }
-        public Timer TimerService { get; set; }
+        public ITimerTracker TimerService { get; set; }
         public virtual NodeStatus NodeNodeStatus
         {
             get
@@ -34,9 +34,9 @@ namespace ProCP.Abstractions
         public IChainNode NextNode { get; set; }
         public abstract string Destination { get; }
 
-        public ChainNode(string nodeId, Timer timer)
+        public ChainNode(string nodeId, ITimerTracker timerService)
         {
-            TimerService = timer;
+            TimerService = timerService;
             _NodeStatus = NodeStatus.Free;
             NodeId = nodeId;
         }

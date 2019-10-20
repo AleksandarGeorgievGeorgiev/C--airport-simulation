@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProCP.Contracts
 {
-    public interface IStartStop: ITransportingNode
+    public interface IStartStop
     {
         void Start();
         void Stop();

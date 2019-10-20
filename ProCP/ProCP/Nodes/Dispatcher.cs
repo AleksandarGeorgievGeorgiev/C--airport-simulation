@@ -9,7 +9,7 @@ using System.Timers;
 
 namespace ProCP.Nodes
 {
-    class Dispatcher : IDispatcher
+    class Dispatcher : IDispatcher, IStartStop
     {
         public string NodeId { get; set; }
         public Action OnNodeStatusChangedToFree { get; set; }
