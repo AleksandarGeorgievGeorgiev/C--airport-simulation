@@ -25,7 +25,7 @@ namespace ProCP.FlightAndBaggage
         public string Description { get; set; }
         public List<BaggageEventLog> Logs { get; set; }
         public string TransporterId { get; set; }
-        public long TransportationStartTime { get; set; }
+        public long? TransportationStartTime { get; set; }
         public string Destination { get; set; }
 
         public void AddLog(TimeSpan logCreation, TimeSpan timeElapsed, string description)
