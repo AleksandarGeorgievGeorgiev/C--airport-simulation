@@ -15,13 +15,20 @@ namespace ProCP.Nodes
     {
         IPrimarySecuritySettings _psSettings;
         private readonly Random _randomGen;
+        private double _percetange;
+        private Timer _timer;
+        public IBaggage currentBaggage { get; set; }
+        public List<IBaggage> dangerousBaggages { get; set; }
+        public override string Destination { get; }
         public PrimarySecurity(IPrimarySecuritySettings settings, string nodeId, ITimerTracker timeService) : base(nodeId, timeService)
         {
             _psSettings = settings;
             _randomGen = new Random();
+            _percetange = settings.PercentageFailedBags;
+            _timer = timer;
+            this.currentBag = null;
+            this.dangerousBaggages = new List<IBaggage>();
         }
-
-        public override string Destination { get; }
 
         //TODO: we can prompt the user to enter a failure percetange for the securities 
         //and use it here to calculate the passing rate of the security
@@ -34,6 +41,38 @@ namespace ProCP.Nodes
                 $"Primary security check ID-{NodeId} processing - { (isFail ? LoggingConstants.PrimarySecurityCheckFailed : LoggingConstants.PrimarySecurityCheckSucceeded)}");
 
             b.Destination = isFail ? "collected by security" : typeof(Mda).Name;
+        }
+
+        public override void PassBaggage(IBaggage b)
+        {
+            if (this.NodeNodeStatus == NodeStatus.Free)
+            {
+                this.currentBag = b;
+            }
+        }
+
+        private void ProcessBaggage(IBaggage b)
+        {
+            //process baggage
+            Random securityLevel = new Random();
+            int level = securityLevel.Next(0, 10);
+            if (level < 8)
+            {
+                this.PassBaggageToTheConveyor(b);
+            }
+            else
+            {
+                //do something here
+                this.dangerousBaggages.Add(b);
+            }
+        }
+
+        private void PassBaggageToTheConveyor(IBaggage b)
+        {
+            if (nextNodes is ITransportingNode tranportNode)
+            {
+                tranportNode.PassBaggage(b);
+            }
         }
     }
 }
