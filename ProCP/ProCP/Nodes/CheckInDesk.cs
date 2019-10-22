@@ -11,7 +11,7 @@ using System.Timers;
 
 namespace ProCP.Nodes
 {
-    public class CheckInDesk : ProcessingNode, ICheckIn
+    public class CheckInDesk : ProcessingNode, IProcessingNode, ICheckIn
     {
         public CheckInDesk(string nodeId, ITimerTracker timer) : base(nodeId, timer)
         {

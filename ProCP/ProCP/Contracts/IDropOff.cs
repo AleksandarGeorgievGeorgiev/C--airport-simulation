@@ -7,11 +7,8 @@ using System.Threading.Tasks;
 
 namespace ProCP.Contracts
 {
-    public interface IDropOff : IProcessingNode
+    public interface IDropOff : IChainNode
     {
-        string Destination { get; }
-        Action OnNodeStatusChangedToFree { get; set; }
-        void PassBaggage(IBaggage baggage);
         int Capacity { get; set; }
         int Workers { get; set; }
     }

@@ -74,6 +74,7 @@
     <Compile Include="Contracts\IStartStop.cs" />
     <Compile Include="Contracts\ITransportingNode.cs" />
     <Compile Include="Contracts\NodeStatus.cs" />
+    <Compile Include="Engine.cs" />
     <Compile Include="FlightAndBaggage\Baggage.cs" />
     <Compile Include="FlightAndBaggage\BaggageEventLog.cs" />
     <Compile Include="FlightAndBaggage\Flight.cs" />
@@ -100,7 +101,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ITimerTracker.cs" />
     <Compile Include="Services\NodeCreationService.cs" />
-    <Compile Include="Services\TImerTracker.cs" />
+    <Compile Include="Services\TimerTracker.cs" />
     <Compile Include="SimulationSettings.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

@@ -15,51 +15,57 @@ namespace ProCP.Services
         private ISimulationSettings _settings;
         private ITimerTracker _timerService;
 
-        public NodeCreationService()
+        public NodeCreationService(ITimerTracker timerService)
         {
             Nodes = new List<IChainNode>();
-            _timerService = new TImerTracker();
+            _timerService = timerService;
         }
 
         public void SetSimulationSettings(ISimulationSettings settings)
         {
             this._settings = settings;
         }
-        public void CreateCheckinDesk()
+        public ICheckIn CreateCheckinDesk()
         {
             ValidateSettings();
             var checkin = new CheckInDesk(Guid.NewGuid().ToString(), _timerService);
             Nodes.Add(checkin);
+            return checkin;
         }
-        public void CreatePrimarySecurity()
+        public IPrimarySecurity CreatePrimarySecurity()
         {
             ValidateSettings();
             var primarySecurity = new PrimarySecurity(_settings.Ps, Guid.NewGuid().ToString(), _timerService);
             Nodes.Add(primarySecurity);
+            return primarySecurity;
         }
-        public void CreateConveyorOneToOne(int length)
+        public IConveyorOneToOne CreateConveyorOneToOne(int length)
         {
             ValidateSettings();
             var conveyorOneToOne = new ConveyorOneToOne(length, Guid.NewGuid().ToString(), _timerService, _settings.Cs);
             Nodes.Add(conveyorOneToOne);
+            return conveyorOneToOne;
         }
-        public void CreateMda()
+        public IMda CreateMda()
         {
             ValidateSettings();
             var mda = new Mda(Guid.NewGuid().ToString(), _timerService);
             Nodes.Add(mda);
+            return mda;
         }
-        public void CreateCheckinDispatcher()
+        public IDispatcher CreateCheckinDispatcher()
         {
             ValidateSettings();
             var dispatcher = new Dispatcher(Guid.NewGuid().ToString(), _timerService);
             Nodes.Add(dispatcher);
+            return dispatcher;
         }
-        public void CreateDropoff()
+        public IDropOff CreateDropoff()
         {
             ValidateSettings();
             var dropoff = new DropOff(Guid.NewGuid().ToString(), _timerService);
             Nodes.Add(dropoff);
+            return dropoff;
         }
 
         public void ValidateSettings()

@@ -8,13 +8,18 @@ using ProCP.Contracts;
 
 namespace ProCP.Services
 {
-    public class TImerTracker : ITimerTracker
+    public class TimerTracker : ITimerTracker
     {
         private Stopwatch _watch;
 
-        public TImerTracker()
+        public TimerTracker()
         {
             _watch = new Stopwatch();
+        }
+
+        public void RunNewWatch()
+        {
+            _watch.Restart();
         }
 
         public void Start()
@@ -50,5 +55,6 @@ namespace ProCP.Services
             var _simulationSettings = settings;
             _simulationSettings.Flights = _simulationSettings.Flights.OrderBy(f => f.DipartureTime).ToList();
         }
+
     }
 }

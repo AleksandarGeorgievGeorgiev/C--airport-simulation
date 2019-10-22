@@ -9,6 +9,7 @@ namespace ProCP.Services
 {
     public interface ITimerTracker : IStartStop
     {
+        void RunNewWatch();
         TimeSpan ConvertMillisecondsToTimeSpan(int milliseconds);
         TimeSpan GetTimeSinceSimulationStart();
         long GetTicksSinceSimulationStart();

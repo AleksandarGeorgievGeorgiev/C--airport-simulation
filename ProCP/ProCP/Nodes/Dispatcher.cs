@@ -11,7 +11,7 @@ using System.Timers;
 
 namespace ProCP.Nodes
 {
-    class Dispatcher : ChainNode, IDispatcher, IStartStop
+    class Dispatcher : ChainNode, IDispatcher
     {
         public override string Destination => this.GetType().Name;
 
@@ -25,7 +25,7 @@ namespace ProCP.Nodes
             checkinQueues = new List<Queue<Baggage>>();
         }
 
-        public void SetCheckIns(List<ICheckIn> checkins)
+        public void SetCheckIns()
         {
             foreach (var checkin in checkins)
             {
