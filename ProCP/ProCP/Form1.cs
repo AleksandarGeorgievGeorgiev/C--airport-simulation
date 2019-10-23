@@ -51,6 +51,41 @@ namespace ProCP
 
 
             cartesianChart1.DataClick += CartesianChart1OnDataClick;
+
+
+
+            //////////////////Primary Security////////////////////////
+            primariySecurityChart.Series = new SeriesCollection
+            {
+                new ColumnSeries
+                {
+                Title = "Number Baggages",
+
+                    Values = new ChartValues<double> { 10, 10, 13, 29 }
+                }
+            };
+
+            //adding series will update and animate the chart automatically
+            primariySecurityChart.Series.Add(new ColumnSeries
+            {
+                Title = "Number of Security Police",
+                Values = new ChartValues<double> { 2, 2, 5, 5 }
+            });
+
+            //also adding values updates and animates the chart automatically
+            //primariySecurityChart.Series[1].Values.Add(12d);
+
+            primariySecurityChart.AxisX.Add(new Axis
+            {
+                Title = "Security Check",
+                Labels = new[] { "Gate1", "Gate2", "Gate3", "Gate4" }
+            });
+
+            primariySecurityChart.AxisY.Add(new Axis
+            {
+                Title = "Time",
+                LabelFormatter = value => value.ToString("N")
+            });
         }
 
         private void CartesianChart1OnDataClick(object sender, ChartPoint chartPoint)
@@ -67,6 +102,11 @@ namespace ProCP
         }
 
         private void tabPage2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cartesianChart2_ChildChanged(object sender, System.Windows.Forms.Integration.ChildChangedEventArgs e)
         {
 
         }
