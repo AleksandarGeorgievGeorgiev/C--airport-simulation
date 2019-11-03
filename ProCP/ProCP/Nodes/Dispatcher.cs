@@ -15,13 +15,13 @@ namespace ProCP.Nodes
     {
         public override string Destination => this.GetType().Name;
 
-        public List<ICheckIn> checkins;
+        public List<ICheckInDesk> checkins;
         public List<Queue<Baggage>> checkinQueues;
         private List<Timer> _flightTimers;
 
         public Dispatcher(string nodeId, ITimerTracker timeService) : base(nodeId, timeService)
         {
-            checkins = new List<ICheckIn>();
+            checkins = new List<ICheckInDesk>();
             checkinQueues = new List<Queue<Baggage>>();
         }
 
@@ -145,7 +145,7 @@ namespace ProCP.Nodes
 
         public void AddNextNode(IChainNode node)
         {
-            checkins.Add((ICheckIn)node);
+            checkins.Add((ICheckInDesk)node);
         }
 
         public override void PassBaggage(IBaggage b)

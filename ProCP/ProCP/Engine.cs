@@ -25,25 +25,26 @@ namespace ProCP
 
             //create nodes
 
+            _nodeCreationService.SetSimulationSettings(_settings);
             var checkInDispatcher = _nodeCreationService.CreateCheckinDispatcher();
             var checkIn = _nodeCreationService.CreateCheckinDesk();
             var conveyorCheckToSecurity = _nodeCreationService.CreateConveyorOneToOne(10);
             var primarySecurity = _nodeCreationService.CreatePrimarySecurity();
-            var conveyorSecurityToMda = _nodeCreationService.CreateConveyorOneToOne(10);
+            var conveyorSecurityToMda = _nodeCreationService.CreateConveyorOneToOne(5);
             var Mda = _nodeCreationService.CreateMda();
-            var conveyorToDropOff = _nodeCreationService.CreateConveyorOneToOne(10);
+            var conveyorToDropOff = _nodeCreationService.CreateConveyorOneToOne(15);
             var dropOff1 = _nodeCreationService.CreateDropoff();
 
             //connect nodes
 
             checkInDispatcher.AddNextNode(checkIn);
             checkInDispatcher.SetCheckIns();
-            checkIn.NextNode = conveyorCheckToSecurity;
-            conveyorCheckToSecurity.NextNode = primarySecurity;
-            primarySecurity.NextNode = conveyorSecurityToMda;
-            conveyorSecurityToMda.NextNode = Mda;
-            Mda.AddNextNode(conveyorToDropOff);
-            conveyorToDropOff.NextNode = dropOff1;
+            checkIn.AddNextNode(conveyorCheckToSecurity);
+            conveyorCheckToSecurity.SetNextNode(primarySecurity);
+            primarySecurity.AddNextNode(conveyorSecurityToMda);
+            conveyorSecurityToMda.SetNextNode(Mda);
+            Mda.AddNextNodes(conveyorToDropOff);
+            conveyorToDropOff.SetNextNode(dropOff1);
 
             //start simulation conveyors
 

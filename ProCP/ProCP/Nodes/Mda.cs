@@ -19,7 +19,7 @@ namespace ProCP.Nodes
 
         public override string Destination => this.GetType().Name;
 
-        public void AddNextNode(IChainNode node)
+        public void AddNextNodes(IChainNode node)
         {
             throw new NotImplementedException();
         }

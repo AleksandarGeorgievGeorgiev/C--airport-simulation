@@ -25,7 +25,7 @@ namespace ProCP.Services
         {
             this._settings = settings;
         }
-        public ICheckIn CreateCheckinDesk()
+        public ICheckInDesk CreateCheckinDesk()
         {
             ValidateSettings();
             var checkin = new CheckInDesk(Guid.NewGuid().ToString(), _timerService);

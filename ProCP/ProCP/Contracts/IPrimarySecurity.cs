@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProCP.Contracts
 {
-    public interface IPrimarySecurity : IChainNode
+    public interface IPrimarySecurity : IChainNode, IProcessingNode
     {
 
     }

@@ -10,5 +10,6 @@ namespace ProCP.Contracts
     {
         int Length { get; }
         long MovingSpeed { get; }
+        void SetNextNode(IChainNode node);
     }
 }

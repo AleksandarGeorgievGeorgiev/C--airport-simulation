@@ -24,7 +24,9 @@ namespace ProCP.Nodes
 
         public override void Process(IBaggage b)
         {
-            throw new NotImplementedException();
+            b.AddLog(TimerService.GetTimeSinceSimulationStart(), TimerService.ConvertMillisecondsToTimeSpan(1000), "drop off processing");
+
+            b.Destination = Destination;
         }
     }
 }

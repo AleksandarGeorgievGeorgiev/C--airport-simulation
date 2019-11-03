@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProCP.Contracts
+namespace ProCP.Services
 {
-    public interface IMda : IChainNode
+    public class StatisticsCalculator
     {
-        void AddNextNodes(IChainNode node);
+
     }
 }
