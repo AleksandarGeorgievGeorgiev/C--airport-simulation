@@ -38,6 +38,8 @@ namespace ProCP.Abstractions
         {
             NextNode = node;
         }
+
+        public override string Destination => NextNode.Destination;
         public abstract void Move();
 
         public bool CanMove()
@@ -71,7 +73,7 @@ namespace ProCP.Abstractions
             _timer.Interval = MovingSpeed;
             if (!_timer.Enabled)
             {
-                TimerService.Start();
+                _timer.Start();
             }
         }
 
@@ -79,7 +81,7 @@ namespace ProCP.Abstractions
         {
             if (_timer.Enabled)
             {
-                TimerService.Stop();
+                _timer.Stop();
             }
         }
     }

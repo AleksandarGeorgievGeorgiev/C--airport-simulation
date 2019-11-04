@@ -17,7 +17,7 @@ namespace ProCP.Nodes
         {
         }
 
-        public override string Destination => this.GetType().Name;
+        
 
         public override void Move()
         {
@@ -27,7 +27,9 @@ namespace ProCP.Nodes
             {
                 if (LastBaggage != null)
                 {
+                    System.Diagnostics.Debug.WriteLine("conveyor " + NextNode);
                     NextNode.PassBaggage(LastBaggage);
+                    System.Diagnostics.Debug.WriteLine(LastBaggage.Destination);
                     _conveyorBelt[LastIndex] = null;
                 }
 
@@ -49,6 +51,7 @@ namespace ProCP.Nodes
 
         public override void PassBaggage(IBaggage b)
         {
+            System.Diagnostics.Debug.WriteLine("conveyor" + b.Destination);
             NodeNodeStatus = NodeStatus.Busy;
             b.TransporterId = NodeId;
             Add(b);

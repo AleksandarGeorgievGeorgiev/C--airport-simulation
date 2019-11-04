@@ -13,14 +13,31 @@ using LiveCharts;
 using System.Timers;
 using LiveCharts.Wpf;
 using Brushes = System.Windows.Media.Brushes;
+using ProCP.FlightAndBaggage;
 
 namespace ProCP
 {
     public partial class Form1 : Form
     {
+        private Engine _engine;
+        private SimulationSettings _simulationSettings;
         public Form1()
         {
             InitializeComponent();
+            _engine = new Engine();
+            _simulationSettings = new SimulationSettings();
+
+            //create flight
+            var flight = new Flight()
+            {
+                BaggageCount = 20,
+                DipartureTime = new TimeSpan(5, 45, 00),
+                FlightNumber = "test 1",
+            };
+
+            _simulationSettings.Flights.Add(flight);
+
+            //
             cartesianChart1.Series = new SeriesCollection
             {
                 new LineSeries
@@ -109,6 +126,11 @@ namespace ProCP
         private void cartesianChart2_ChildChanged(object sender, System.Windows.Forms.Integration.ChildChangedEventArgs e)
         {
 
+        }
+
+        private void BtnStart_Click(object sender, EventArgs e)
+        {
+            _engine.RunDemo(_simulationSettings);
         }
     }
 }

@@ -18,12 +18,17 @@ namespace ProCP.Nodes
 
         }
 
-        public override string Destination => this.GetType().Name;
+        public IFlight Flight { get; set; }
+
+        public void AssignFlight(IFlight flight)
+        {
+            Flight = flight;
+        }
 
         public override void Process(IBaggage b)
         {
+            System.Diagnostics.Debug.WriteLine("checkin" + b.Destination);
             b.AddLog(TimerService.GetTimeSinceSimulationStart(), TimerService.ConvertMillisecondsToTimeSpan(1000), "Checkin processing");
-
             b.Destination = typeof(PrimarySecurity).Name;
         }
     }

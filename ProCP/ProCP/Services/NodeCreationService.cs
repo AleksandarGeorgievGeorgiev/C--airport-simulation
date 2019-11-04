@@ -56,14 +56,14 @@ namespace ProCP.Services
         public IDispatcher CreateCheckinDispatcher()
         {
             ValidateSettings();
-            var dispatcher = new Dispatcher(Guid.NewGuid().ToString(), _timerService);
+            var dispatcher = new Dispatcher(Guid.NewGuid().ToString(), _timerService, _settings);
             Nodes.Add(dispatcher);
             return dispatcher;
         }
         public IDropOff CreateDropoff()
         {
             ValidateSettings();
-            var dropoff = new DropOff(Guid.NewGuid().ToString(), _timerService);
+            var dropoff = new DropOff(Guid.NewGuid().ToString(), _timerService, _settings.DropOffSettings);
             Nodes.Add(dropoff);
             return dropoff;
         }

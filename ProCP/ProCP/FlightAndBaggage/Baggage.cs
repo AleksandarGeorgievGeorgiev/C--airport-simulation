@@ -17,6 +17,8 @@ namespace ProCP.FlightAndBaggage
         public Baggage()
         {
             Logs = new List<BaggageEventLog>();
+            Flight = new Flight();
+
             AllBaggage.Add(this);
         }
 

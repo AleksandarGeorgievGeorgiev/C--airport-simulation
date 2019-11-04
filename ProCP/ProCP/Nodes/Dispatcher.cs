@@ -18,19 +18,22 @@ namespace ProCP.Nodes
         public List<ICheckInDesk> checkins;
         public List<Queue<Baggage>> checkinQueues;
         private List<Timer> _flightTimers;
+        private readonly ISimulationSettings _simulationSettings;
 
-        public Dispatcher(string nodeId, ITimerTracker timeService) : base(nodeId, timeService)
+
+        public Dispatcher(string nodeId, ITimerTracker timeService, ISimulationSettings simulationSettings) : base(nodeId, timeService)
         {
+            _simulationSettings = simulationSettings;
             checkins = new List<ICheckInDesk>();
             checkinQueues = new List<Queue<Baggage>>();
+            SetupFlightTimers();
         }
 
-        public void SetCheckIns()
+        public void SetCheckIns(IChainNode node)
         {
-            foreach (var checkin in checkins)
-            {
-                checkins.Add(checkin);
-            }
+
+            checkins.Add((CheckInDesk)node);
+
 
             SetupCheckinQueues();
         }
@@ -60,11 +63,11 @@ namespace ProCP.Nodes
 
         }
 
-        public void SetupFlightTimers(List<IFlight> flights)
+        public void SetupFlightTimers()
         {
             _flightTimers = new List<Timer>();
 
-            foreach (var flight in flights)
+            foreach (var flight in _simulationSettings.Flights)
             {
                 var timer = new Timer();
                 _flightTimers.Add(timer);
@@ -86,8 +89,11 @@ namespace ProCP.Nodes
 
         private void DispatchBaggage(IFlight flight)
         {
-            var baggage = new Baggage();
-            baggage.Flight.FlightNumber = flight.FlightNumber;
+            var baggage = new Baggage()
+            {
+                Flight = flight
+            };
+
             int chosen = FindMostSuitableCheckin(baggage);
             var checkIn = checkins[chosen];
             var queue = checkinQueues[chosen];
@@ -129,7 +135,7 @@ namespace ProCP.Nodes
 
             foreach (var checkIn in Enumerable.Range(0, checkins.Count))
             {
-                if (checkins.ElementAt(checkIn).Destination == baggage.Destination)
+                if (checkins.ElementAt(checkIn).Flight.FlightNumber == baggage.Flight.FlightNumber)
                 {
                     if (checkins.ElementAt(checkIn).NodeNodeStatus == NodeStatus.Free)
                     {
@@ -141,11 +147,6 @@ namespace ProCP.Nodes
             }
             return chosenIndex;
 
-        }
-
-        public void AddNextNode(IChainNode node)
-        {
-            checkins.Add((ICheckInDesk)node);
         }
 
         public override void PassBaggage(IBaggage b)

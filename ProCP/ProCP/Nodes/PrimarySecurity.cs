@@ -21,13 +21,13 @@ namespace ProCP.Nodes
             _randomGen = new Random();
         }
 
-        public override string Destination { get; }
-
         //TODO: we can prompt the user to enter a failure percetange for the securities 
         //and use it here to calculate the passing rate of the security
         //this must be done in the Process()
         public override void Process(IBaggage b)
         {
+            System.Diagnostics.Debug.WriteLine("psc" + b.Destination);
+
             var isFail = _randomGen.Next(0, 101) < _psSettings.PercentageFailedBags;
 
             b.AddLog(TimerService.GetTimeSinceSimulationStart(), TimerService.ConvertMillisecondsToTimeSpan(_psSettings.ProcessingSpeed),

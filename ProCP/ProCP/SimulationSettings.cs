@@ -13,9 +13,12 @@ namespace ProCP
         public PrimarySecuritySettings Ps { get; set; }
         public List<IFlight> Flights { get; set; }
         public ConveyorSettings Cs { get; set; }
+        public DropOffSettings DropOffSettings { get; set; }
 
         public SimulationSettings()
         {
+            DropOffSettings = new DropOffSettings();
+            Cs = new ConveyorSettings();
             Ps = new PrimarySecuritySettings();
             Flights = new List<IFlight>();
         }
@@ -23,12 +26,17 @@ namespace ProCP
 
     public class PrimarySecuritySettings : IPrimarySecuritySettings
     {
-        public double PercentageFailedBags { get; set; }
+        public double PercentageFailedBags { get; set; } = 10;
         public int ProcessingSpeed { get; set; } = 1000;
     }
 
     public class ConveyorSettings : IConveyorSettings
     {
         public long Speed { get; set; } = 1000;
+    }
+
+    public class DropOffSettings : IDropoffSettings
+    {
+        public int NumberOfWorker { get; set; } = 1;
     }
 }

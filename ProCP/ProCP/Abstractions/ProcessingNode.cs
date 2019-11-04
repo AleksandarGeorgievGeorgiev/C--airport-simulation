@@ -26,6 +26,9 @@ namespace ProCP.Abstractions
             nextNodes.Add(node);
         }
 
+        public override string Destination => GetType().Name;
+
+
         public abstract void Process(IBaggage b);
 
         public override void PassBaggage(IBaggage b)

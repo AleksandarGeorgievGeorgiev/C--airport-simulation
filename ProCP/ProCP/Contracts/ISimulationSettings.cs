@@ -11,6 +11,7 @@ namespace ProCP.Contracts
     {
         PrimarySecuritySettings Ps { get; set; }
         ConveyorSettings Cs { get; set; }
+         DropOffSettings DropOffSettings { get; set; }
         List<IFlight> Flights { get; set; }
     }
 
@@ -23,5 +24,10 @@ namespace ProCP.Contracts
     public interface IConveyorSettings
     {
         long Speed { get; set; }
+    }
+
+    public interface IDropoffSettings
+    {
+        int NumberOfWorker { get; set; }
     }
 }
