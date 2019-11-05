@@ -473,22 +473,23 @@
             // 
             // primariySecurityChart
             // 
-            this.primariySecurityChart.Location = new System.Drawing.Point(61, 405);
+            this.primariySecurityChart.Location = new System.Drawing.Point(609, 55);
             this.primariySecurityChart.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.primariySecurityChart.Name = "primariySecurityChart";
-            this.primariySecurityChart.Size = new System.Drawing.Size(645, 314);
+            this.primariySecurityChart.Size = new System.Drawing.Size(505, 290);
             this.primariySecurityChart.TabIndex = 1;
             this.primariySecurityChart.Text = "cartesianChart2";
             this.primariySecurityChart.ChildChanged += new System.EventHandler<System.Windows.Forms.Integration.ChildChangedEventArgs>(this.cartesianChart2_ChildChanged);
             // 
             // cartesianChart1
             // 
-            this.cartesianChart1.Location = new System.Drawing.Point(61, 50);
+            this.cartesianChart1.Location = new System.Drawing.Point(66, 55);
             this.cartesianChart1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cartesianChart1.Name = "cartesianChart1";
-            this.cartesianChart1.Size = new System.Drawing.Size(645, 314);
+            this.cartesianChart1.Size = new System.Drawing.Size(505, 285);
             this.cartesianChart1.TabIndex = 0;
             this.cartesianChart1.Text = "cartesianChart1";
+            this.cartesianChart1.ChildChanged += new System.EventHandler<System.Windows.Forms.Integration.ChildChangedEventArgs>(this.cartesianChart1_ChildChanged);
             // 
             // Form1
             // 
