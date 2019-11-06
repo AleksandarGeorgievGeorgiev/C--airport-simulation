@@ -24,6 +24,7 @@ namespace ProCP.Services
         public Baggage FirstCollectedBag { get; set; }
         public Baggage LastCollectedBag { get; set; }
         public List<Baggage> TotalBagsTransfered { get; set; }
+        public long? AverageTimeOfTottalBags { get; set; }
 
         public StatisticsData()
         {
@@ -31,5 +32,6 @@ namespace ProCP.Services
             BagsSucceededPsc = new List<Baggage>();
             TotalBagsTransfered = new List<Baggage>();
         }
+
     }
 }
