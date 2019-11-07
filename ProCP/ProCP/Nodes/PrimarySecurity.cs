@@ -19,7 +19,7 @@ namespace ProCP.Nodes
         private Timer _timer;
         public IBaggage currentBaggage { get; set; }
         public List<IBaggage> dangerousBaggages { get; set; }
-        public override string Destination { get; }
+        public override string Destination => this.GetType().Name;
         public PrimarySecurity(IPrimarySecuritySettings settings, string nodeId, ITimerTracker timeService) : base(nodeId, timeService)
         {
             _psSettings = settings;
@@ -35,11 +35,12 @@ namespace ProCP.Nodes
         //this must be done in the Process()
         public override void Process(IBaggage b)
         {
+            //based on the front end percentage
             var isFail = _randomGen.Next(0, 101) < _psSettings.PercentageFailedBags;
 
             b.AddLog(TimerService.GetTimeSinceSimulationStart(), TimerService.ConvertMillisecondsToTimeSpan(_psSettings.ProcessingSpeed),
                 $"Primary security check ID-{NodeId} processing - { (isFail ? LoggingConstants.PrimarySecurityCheckFailed : LoggingConstants.PrimarySecurityCheckSucceeded)}");
-
+            ///keep charge where the baggage is going
             b.Destination = isFail ? "collected by security" : typeof(Mda).Name;
         }
 
