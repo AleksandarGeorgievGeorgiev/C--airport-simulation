@@ -15,6 +15,7 @@ namespace ProCP.Nodes
     {
         IPrimarySecuritySettings _psSettings;
         private readonly Random _randomGen;
+        public List<IBaggage> bagsTaken = new List<IBaggage>();
         public PrimarySecurity(IPrimarySecuritySettings settings, string nodeId, ITimerTracker timeService) : base(nodeId, timeService)
         {
             _psSettings = settings;
@@ -32,8 +33,14 @@ namespace ProCP.Nodes
 
             b.AddLog(TimerService.GetTimeSinceSimulationStart(), TimerService.ConvertMillisecondsToTimeSpan(_psSettings.ProcessingSpeed),
                 $"Primary security check ID-{NodeId} processing - { (isFail ? LoggingConstants.PrimarySecurityCheckFailed : LoggingConstants.PrimarySecurityCheckSucceeded)}");
+            if (!isFail)
+            {
+                b.Destination = typeof(Mda).Name;
+                return;
+            }
 
-            b.Destination = isFail ? LoggingConstants.BagStaysInSecurity : typeof(Mda).Name;
+            bagsTaken.Add(b);
+            currentBag = null;
         }
     }
 }

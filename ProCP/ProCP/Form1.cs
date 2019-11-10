@@ -10,10 +10,10 @@ using System.Windows.Forms;
 using System.Windows.Controls;
 using System.Windows.Media;
 using LiveCharts;
-using System.Timers;
 using LiveCharts.Wpf;
 using Brushes = System.Windows.Media.Brushes;
 using ProCP.FlightAndBaggage;
+using ProCP.Services;
 
 namespace ProCP
 {
@@ -21,11 +21,16 @@ namespace ProCP
     {
         private Engine _engine;
         private SimulationSettings _simulationSettings;
+        private Timer _timer;
+        private StatisticsData dataStats = new StatisticsData();
         public Form1()
         {
             InitializeComponent();
             _engine = new Engine();
             _simulationSettings = new SimulationSettings();
+            _timer = new System.Windows.Forms.Timer();
+            _timer.Tick += _timer_Tick;
+            _timer.Interval = 5000;
 
             //create flight
             var flight = new Flight()
@@ -69,40 +74,17 @@ namespace ProCP
 
             cartesianChart1.DataClick += CartesianChart1OnDataClick;
 
-
-
-            //////////////////Primary Security////////////////////////
-            primariySecurityChart.Series = new SeriesCollection
-            {
-                new ColumnSeries
-                {
-                Title = "Number Baggages",
-
-                    Values = new ChartValues<double> { 10, 10, 13, 29 }
-                }
-            };
-
             //adding series will update and animate the chart automatically
-            primariySecurityChart.Series.Add(new ColumnSeries
-            {
-                Title = "Number of Security Police",
-                Values = new ChartValues<double> { 2, 2, 5, 5 }
-            });
-
             //also adding values updates and animates the chart automatically
             //primariySecurityChart.Series[1].Values.Add(12d);
+        }
 
-            primariySecurityChart.AxisX.Add(new Axis
-            {
-                Title = "Security Check",
-                Labels = new[] { "Gate1", "Gate2", "Gate3", "Gate4" }
-            });
+        private void _timer_Tick(object sender, EventArgs e)
+        {
+            var calculator = _engine.GetStatisticsCalculator();
+            dataStats = calculator();
 
-            primariySecurityChart.AxisY.Add(new Axis
-            {
-                Title = "Time",
-                LabelFormatter = value => value.ToString("N")
-            });
+            StatisticsChartData(dataStats);
         }
 
         private void CartesianChart1OnDataClick(object sender, ChartPoint chartPoint)
@@ -131,6 +113,27 @@ namespace ProCP
         private void BtnStart_Click(object sender, EventArgs e)
         {
             _engine.RunDemo(_simulationSettings);
+            _timer.Start();
+        }
+
+        private void StatisticsChartData(StatisticsData data)
+        {
+            //clean charts
+            pieChartBagsSecurity.Series.Clear();
+            PrimarySecurityChart.Series.Clear();
+
+
+
+
+            //pie chart
+            pieChartBagsSecurity.Series.Add(new PieSeries() { Title = "Succeeded", Values = new ChartValues<int> { data.BagsSucceededPsc.Count }, DataLabels = true });
+            pieChartBagsSecurity.Series.Add(new PieSeries() { Title = "Failed", Values = new ChartValues<int> { data.BagsFailedPsc.Count }, DataLabels = true });
+
+            //column chart
+            foreach (var flight in data.BagsPerFlight)
+            {
+                PrimarySecurityChart.Series.Add(new ColumnSeries() { Title = flight.Key, Values = new ChartValues<int> { flight.Value }, DataLabels = true } );
+            }
         }
     }
 }

@@ -29,7 +29,6 @@ namespace ProCP.Nodes
                 {
                     System.Diagnostics.Debug.WriteLine("conveyor " + NextNode);
                     NextNode.PassBaggage(LastBaggage);
-                    System.Diagnostics.Debug.WriteLine(LastBaggage.Destination);
                     _conveyorBelt[LastIndex] = null;
                 }
 
