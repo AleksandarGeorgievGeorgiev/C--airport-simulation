@@ -11,7 +11,7 @@ namespace ProCP.Services
 {
     public class NodeCreationService
     {
-        public List<IChainNode> Nodes { get; set; }
+        public static List<IChainNode> Nodes;
         private ISimulationSettings _settings;
         private ITimerTracker _timerService;
 

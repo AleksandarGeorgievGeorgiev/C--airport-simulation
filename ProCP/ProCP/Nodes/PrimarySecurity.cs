@@ -15,11 +15,7 @@ namespace ProCP.Nodes
     {
         IPrimarySecuritySettings _psSettings;
         private readonly Random _randomGen;
-        private double _percetange;
-        private Timer _timer;
-        public IBaggage currentBaggage { get; set; }
-        public List<IBaggage> dangerousBaggages { get; set; }
-        public override string Destination => this.GetType().Name;
+        public List<IBaggage> bagsTaken = new List<IBaggage>();
         public PrimarySecurity(IPrimarySecuritySettings settings, string nodeId, ITimerTracker timeService) : base(nodeId, timeService)
         {
             _psSettings = settings;
@@ -41,17 +37,14 @@ namespace ProCP.Nodes
 
             b.AddLog(TimerService.GetTimeSinceSimulationStart(), TimerService.ConvertMillisecondsToTimeSpan(_psSettings.ProcessingSpeed),
                 $"Primary security check ID-{NodeId} processing - { (isFail ? LoggingConstants.PrimarySecurityCheckFailed : LoggingConstants.PrimarySecurityCheckSucceeded)}");
-            ///keep charge where the baggage is going
-            //b.Destination = isFail ? "collected by security" : typeof(Mda).Name;
-            b.Destination = isFail ? LoggingConstants.BagStaysInSecurity : typeof(Mda).Name;
-        }
-
-        public override void PassBaggage(IBaggage b)
-        {
-            if (this.NodeNodeStatus == NodeStatus.Free)
+            if (!isFail)
             {
-                this.currentBag = b;
+                b.Destination = typeof(Mda).Name;
+                return;
             }
+
+            bagsTaken.Add(b);
+            currentBag = null;
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using ProCP.Contracts;
 using ProCP.FlightAndBaggage;
+using ProCP.Nodes;
 using ProCP.Services;
 using System;
 using System.Collections.Generic;
@@ -51,6 +52,11 @@ namespace ProCP.Abstractions
         public void ProcessInternal(IBaggage b)
         {
             Process(b);
+            if (currentBag == null) 
+            {
+                NodeNodeStatus = NodeStatus.Free;
+                return;
+            }
             NextNode = nextNodes.FirstOrDefault(n => n.Destination == b.Destination);
             currentBag.TransportationStartTime = TimerService.GetTicksSinceSimulationStart();
             Move();

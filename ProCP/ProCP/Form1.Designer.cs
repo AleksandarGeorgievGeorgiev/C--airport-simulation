@@ -64,7 +64,8 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.primariySecurityChart = new LiveCharts.WinForms.CartesianChart();
+            this.pieChartBagsSecurity = new LiveCharts.WinForms.PieChart();
+            this.PrimarySecurityChart = new LiveCharts.WinForms.CartesianChart();
             this.cartesianChart1 = new LiveCharts.WinForms.CartesianChart();
             this.panel1.SuspendLayout();
             this.gbSettings.SuspendLayout();
@@ -459,7 +460,8 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.primariySecurityChart);
+            this.tabPage2.Controls.Add(this.pieChartBagsSecurity);
+            this.tabPage2.Controls.Add(this.PrimarySecurityChart);
             this.tabPage2.Controls.Add(this.cartesianChart1);
             this.tabPage2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabPage2.Location = new System.Drawing.Point(4, 27);
@@ -472,15 +474,23 @@
             this.tabPage2.UseVisualStyleBackColor = true;
             this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
             // 
-            // primariySecurityChart
+            // pieChartBagsSecurity
             // 
-            this.primariySecurityChart.Location = new System.Drawing.Point(61, 405);
-            this.primariySecurityChart.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.primariySecurityChart.Name = "primariySecurityChart";
-            this.primariySecurityChart.Size = new System.Drawing.Size(645, 314);
-            this.primariySecurityChart.TabIndex = 1;
-            this.primariySecurityChart.Text = "cartesianChart2";
-            this.primariySecurityChart.ChildChanged += new System.EventHandler<System.Windows.Forms.Integration.ChildChangedEventArgs>(this.cartesianChart2_ChildChanged);
+            this.pieChartBagsSecurity.Location = new System.Drawing.Point(749, 59);
+            this.pieChartBagsSecurity.Name = "pieChartBagsSecurity";
+            this.pieChartBagsSecurity.Size = new System.Drawing.Size(260, 276);
+            this.pieChartBagsSecurity.TabIndex = 2;
+            this.pieChartBagsSecurity.Text = "Bags in security";
+            // 
+            // PrimarySecurityChart
+            // 
+            this.PrimarySecurityChart.Location = new System.Drawing.Point(61, 405);
+            this.PrimarySecurityChart.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.PrimarySecurityChart.Name = "PrimarySecurityChart";
+            this.PrimarySecurityChart.Size = new System.Drawing.Size(645, 314);
+            this.PrimarySecurityChart.TabIndex = 1;
+            this.PrimarySecurityChart.Text = "cartesianChart2";
+            this.PrimarySecurityChart.ChildChanged += new System.EventHandler<System.Windows.Forms.Integration.ChildChangedEventArgs>(this.cartesianChart2_ChildChanged);
             // 
             // cartesianChart1
             // 
@@ -552,7 +562,8 @@
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnStart;
         private LiveCharts.WinForms.CartesianChart cartesianChart1;
-        private LiveCharts.WinForms.CartesianChart primariySecurityChart;
+        private LiveCharts.WinForms.CartesianChart PrimarySecurityChart;
+        private LiveCharts.WinForms.PieChart pieChartBagsSecurity;
     }
 }
 
