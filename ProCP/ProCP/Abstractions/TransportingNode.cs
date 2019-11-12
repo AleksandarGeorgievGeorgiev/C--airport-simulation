@@ -17,25 +17,29 @@ namespace ProCP.Abstractions
         protected readonly int _length;
         protected IBaggage[] _conveyorBelt;
         protected Timer _timer;
+        private readonly IConveyorSettings _conveyorSettings;
 
-        public TransportingNode(int legth, string nodeId, ITimerTracker timer) : base(nodeId, timer)
+        public TransportingNode(int legth, string nodeId, ITimerTracker timer, IConveyorSettings conveyorSettings) : base(nodeId, timer)
         {
             _length = legth;
             _timer = new Timer();
             _conveyorBelt = new IBaggage[_length];
             _timer.Elapsed += (sender, args) => Move();
+            _conveyorSettings = conveyorSettings;
         }
 
         protected int LastIndex => _length - 1;
         protected IBaggage LastBaggage => _conveyorBelt[LastIndex];
         protected bool HasLastItem => LastBaggage != null;
-        public int Length { get; set; }
-        public int MovingSpeed { get; set; }
+        public int Length => _length;
+        public long MovingSpeed => _conveyorSettings.Speed;
 
         public void SetNextNode(IChainNode node)
         {
             NextNode = node;
         }
+
+        public override string Destination => NextNode.Destination;
         public abstract void Move();
 
         public bool CanMove()
@@ -69,7 +73,7 @@ namespace ProCP.Abstractions
             _timer.Interval = MovingSpeed;
             if (!_timer.Enabled)
             {
-                TimerService.Start();
+                _timer.Start();
             }
         }
 
@@ -77,7 +81,7 @@ namespace ProCP.Abstractions
         {
             if (_timer.Enabled)
             {
-                TimerService.Stop();
+                _timer.Stop();
             }
         }
     }

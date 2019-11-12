@@ -4,16 +4,22 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ProCP.Contracts;
 
 namespace ProCP.Services
 {
-    public class TImerTracker : ITimerTracker
+    public class TimerTracker : ITimerTracker
     {
         private Stopwatch _watch;
 
-        public TImerTracker()
+        public TimerTracker()
         {
             _watch = new Stopwatch();
+        }
+
+        public void RunNewWatch()
+        {
+            _watch.Restart();
         }
 
         public void Start()
@@ -43,5 +49,12 @@ namespace ProCP.Services
         {
             return new TimeSpan(ticks: milliseconds * 10000);
         }
+
+        public void SetSettings(ISimulationSettings settings)
+        {
+            var _simulationSettings = settings;
+            _simulationSettings.Flights = _simulationSettings.Flights.OrderBy(f => f.DipartureTime).ToList();
+        }
+
     }
 }

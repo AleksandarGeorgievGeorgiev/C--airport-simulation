@@ -9,6 +9,7 @@ namespace ProCP.Contracts
 {
     public interface IProcessingNode
     {
+        void AddNextNode(IChainNode node);
         void Process(IBaggage b);
     }
 }

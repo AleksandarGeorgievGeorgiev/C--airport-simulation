@@ -13,14 +13,31 @@ using LiveCharts;
 using System.Timers;
 using LiveCharts.Wpf;
 using Brushes = System.Windows.Media.Brushes;
+using ProCP.FlightAndBaggage;
 
 namespace ProCP
 {
     public partial class Form1 : Form
     {
+        private Engine _engine;
+        private SimulationSettings _simulationSettings;
         public Form1()
         {
             InitializeComponent();
+            _engine = new Engine();
+            _simulationSettings = new SimulationSettings();
+
+            //create flight
+            var flight = new Flight()
+            {
+                BaggageCount = 20,
+                DipartureTime = new TimeSpan(5, 45, 00),
+                FlightNumber = "test 1",
+            };
+
+            _simulationSettings.Flights.Add(flight);
+
+            //
             cartesianChart1.Series = new SeriesCollection
             {
                 new LineSeries
@@ -51,6 +68,41 @@ namespace ProCP
 
 
             cartesianChart1.DataClick += CartesianChart1OnDataClick;
+
+
+
+            //////////////////Primary Security////////////////////////
+            primariySecurityChart.Series = new SeriesCollection
+            {
+                new ColumnSeries
+                {
+                Title = "Number Baggages",
+
+                    Values = new ChartValues<double> { 10, 10, 13, 29 }
+                }
+            };
+
+            //adding series will update and animate the chart automatically
+            primariySecurityChart.Series.Add(new ColumnSeries
+            {
+                Title = "Number of Security Police",
+                Values = new ChartValues<double> { 2, 2, 5, 5 }
+            });
+
+            //also adding values updates and animates the chart automatically
+            //primariySecurityChart.Series[1].Values.Add(12d);
+
+            primariySecurityChart.AxisX.Add(new Axis
+            {
+                Title = "Security Check",
+                Labels = new[] { "Gate1", "Gate2", "Gate3", "Gate4" }
+            });
+
+            primariySecurityChart.AxisY.Add(new Axis
+            {
+                Title = "Time",
+                LabelFormatter = value => value.ToString("N")
+            });
         }
 
         private void CartesianChart1OnDataClick(object sender, ChartPoint chartPoint)
@@ -69,6 +121,16 @@ namespace ProCP
         private void tabPage2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void cartesianChart2_ChildChanged(object sender, System.Windows.Forms.Integration.ChildChangedEventArgs e)
+        {
+
+        }
+
+        private void BtnStart_Click(object sender, EventArgs e)
+        {
+            _engine.RunDemo(_simulationSettings);
         }
     }
 }

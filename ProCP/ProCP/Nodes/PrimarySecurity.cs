@@ -35,13 +35,15 @@ namespace ProCP.Nodes
         //this must be done in the Process()
         public override void Process(IBaggage b)
         {
-            //based on the front end percentage
+            System.Diagnostics.Debug.WriteLine("psc" + b.Destination);
+
             var isFail = _randomGen.Next(0, 101) < _psSettings.PercentageFailedBags;
 
             b.AddLog(TimerService.GetTimeSinceSimulationStart(), TimerService.ConvertMillisecondsToTimeSpan(_psSettings.ProcessingSpeed),
                 $"Primary security check ID-{NodeId} processing - { (isFail ? LoggingConstants.PrimarySecurityCheckFailed : LoggingConstants.PrimarySecurityCheckSucceeded)}");
             ///keep charge where the baggage is going
-            b.Destination = isFail ? "collected by security" : typeof(Mda).Name;
+            //b.Destination = isFail ? "collected by security" : typeof(Mda).Name;
+            b.Destination = isFail ? LoggingConstants.BagStaysInSecurity : typeof(Mda).Name;
         }
 
         public override void PassBaggage(IBaggage b)
@@ -49,30 +51,6 @@ namespace ProCP.Nodes
             if (this.NodeNodeStatus == NodeStatus.Free)
             {
                 this.currentBag = b;
-            }
-        }
-
-        private void ProcessBaggage(IBaggage b)
-        {
-            //process baggage
-            Random securityLevel = new Random();
-            int level = securityLevel.Next(0, 10);
-            if (level < 8)
-            {
-                this.PassBaggageToTheConveyor(b);
-            }
-            else
-            {
-                //do something here
-                this.dangerousBaggages.Add(b);
-            }
-        }
-
-        private void PassBaggageToTheConveyor(IBaggage b)
-        {
-            if (nextNodes is ITransportingNode tranportNode)
-            {
-                tranportNode.PassBaggage(b);
             }
         }
     }

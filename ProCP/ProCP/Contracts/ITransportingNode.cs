@@ -8,7 +8,8 @@ namespace ProCP.Contracts
 {
     public interface ITransportingNode: IChainNode
     {
-        int Length { get; set; }
-        int MovingSpeed { get; set; }
+        int Length { get; }
+        long MovingSpeed { get; }
+        void SetNextNode(IChainNode node);
     }
 }

@@ -13,7 +13,7 @@ namespace ProCP.FlightAndBaggage
         string Description { get; set; }
         string Destination { get; set; }
         List<BaggageEventLog> Logs { get; set; }
-        long TransportationStartTime { get; set; }
+        long? TransportationStartTime { get; set; }
         //Node id
         string TransporterId { get; set; }
         void AddLog(TimeSpan logCreation, TimeSpan timeElapsed, string description);

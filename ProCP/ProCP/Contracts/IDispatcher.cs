@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace ProCP.Contracts
 {
-    public interface IDispatcher: IChainNode
+    public interface IDispatcher: IChainNode, IStartStop
     {
-        void AddNextNode(IChainNode node);
+        void SetCheckIns(IChainNode node);
     }
 }

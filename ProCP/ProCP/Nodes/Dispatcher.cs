@@ -1,5 +1,7 @@
-﻿using ProCP.Contracts;
+﻿using ProCP.Abstractions;
+using ProCP.Contracts;
 using ProCP.FlightAndBaggage;
+using ProCP.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,29 +11,29 @@ using System.Timers;
 
 namespace ProCP.Nodes
 {
-    class Dispatcher : IDispatcher, IStartStop
+    class Dispatcher : ChainNode, IDispatcher
     {
-        public string NodeId { get; set; }
-        public Action OnNodeStatusChangedToFree { get; set; }
-        public NodeStatus NodeNodeStatus { get; set; }
-        public string Destination { get; set; }
+        public override string Destination => this.GetType().Name;
 
-        public List<ICheckIn> checkins;
+        public List<ICheckInDesk> checkins;
         public List<Queue<Baggage>> checkinQueues;
         private List<Timer> _flightTimers;
+        private readonly ISimulationSettings _simulationSettings;
 
-        public Dispatcher()
+
+        public Dispatcher(string nodeId, ITimerTracker timeService, ISimulationSettings simulationSettings) : base(nodeId, timeService)
         {
-            checkins = new List<ICheckIn>();
+            _simulationSettings = simulationSettings;
+            checkins = new List<ICheckInDesk>();
             checkinQueues = new List<Queue<Baggage>>();
+            SetupFlightTimers();
         }
 
-        public void SetCheckIns(List<ICheckIn> checkins)
+        public void SetCheckIns(IChainNode node)
         {
-            foreach (var checkin in checkins)
-            {
-                checkins.Add(checkin);
-            }
+
+            checkins.Add((CheckInDesk)node);
+
 
             SetupCheckinQueues();
         }
@@ -61,11 +63,11 @@ namespace ProCP.Nodes
 
         }
 
-        public void SetupFlightTimers(List<IFlight> flights)
+        public void SetupFlightTimers()
         {
             _flightTimers = new List<Timer>();
 
-            foreach (var flight in flights)
+            foreach (var flight in _simulationSettings.Flights)
             {
                 var timer = new Timer();
                 _flightTimers.Add(timer);
@@ -87,12 +89,17 @@ namespace ProCP.Nodes
 
         private void DispatchBaggage(IFlight flight)
         {
-            var baggage = new Baggage();
-            baggage.Flight.FlightNumber = flight.FlightNumber;
+            var baggage = new Baggage()
+            {
+                Flight = flight
+            };
+
             int chosen = FindMostSuitableCheckin(baggage);
             var checkIn = checkins[chosen];
             var queue = checkinQueues[chosen];
 
+            baggage.TransportationStartTime = TimerService.GetTicksSinceSimulationStart();
+            baggage.TransporterId = "Queue CheckIn";
 
             if (checkIn.NodeNodeStatus == NodeStatus.Free)
             {
@@ -128,7 +135,7 @@ namespace ProCP.Nodes
 
             foreach (var checkIn in Enumerable.Range(0, checkins.Count))
             {
-                if (checkins.ElementAt(checkIn).Destination == baggage.Destination)
+                if (checkins.ElementAt(checkIn).Flight.FlightNumber == baggage.Flight.FlightNumber)
                 {
                     if (checkins.ElementAt(checkIn).NodeNodeStatus == NodeStatus.Free)
                     {
@@ -142,12 +149,7 @@ namespace ProCP.Nodes
 
         }
 
-        public void AddNextNode(IChainNode node)
-        {
-            checkins.Add((ICheckIn)node);
-        }
-
-        public void PassBaggage(IBaggage b)
+        public override void PassBaggage(IBaggage b)
         {
             throw new NotImplementedException();
         }

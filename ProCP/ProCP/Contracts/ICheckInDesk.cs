@@ -7,11 +7,9 @@ using System.Threading.Tasks;
 
 namespace ProCP.Contracts
 {
-    public interface IDropOff : IChainNode
+    public interface ICheckInDesk : IChainNode, IProcessingNode
     {
-        void AssighFlight(IFlight flight);
-        int Capacity { get; set; }
-        int Workers { get; set; }
         IFlight Flight { get; set; }
+        void AssignFlight(IFlight Flight);
     }
 }

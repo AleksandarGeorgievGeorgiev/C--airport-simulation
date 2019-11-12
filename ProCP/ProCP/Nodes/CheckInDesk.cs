@@ -11,19 +11,25 @@ using System.Timers;
 
 namespace ProCP.Nodes
 {
-    public class CheckInDesk : ProcessingNode, ICheckIn
+    public class CheckInDesk : ProcessingNode, ICheckInDesk
     {
         public CheckInDesk(string nodeId, ITimerTracker timer) : base(nodeId, timer)
         {
 
         }
 
-        public override string Destination => this.GetType().Name;
+        public IFlight Flight { get; set; }
+
+        public void AssignFlight(IFlight flight)
+        {
+            Flight = flight;
+        }
 
         public override void Process(IBaggage b)
         {
-            //replace the new TimeSpan with real calculation for the time spent int this unit
-            //b.AddLog(new TimeSpan(), "Checkin processing");
+            System.Diagnostics.Debug.WriteLine("checkin" + b.Destination);
+            b.AddLog(TimerService.GetTimeSinceSimulationStart(), TimerService.ConvertMillisecondsToTimeSpan(1000), "Checkin processing");
+            b.Destination = typeof(PrimarySecurity).Name;
         }
     }
 }
