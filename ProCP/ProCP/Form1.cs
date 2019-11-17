@@ -14,6 +14,8 @@ using LiveCharts.Wpf;
 using Brushes = System.Windows.Media.Brushes;
 using ProCP.FlightAndBaggage;
 using ProCP.Services;
+using ProCP.Visuals;
+using Grid = ProCP.Visuals.Grid;
 
 namespace ProCP
 {
@@ -23,6 +25,7 @@ namespace ProCP
         private SimulationSettings _simulationSettings;
         private Timer _timer;
         private StatisticsData dataStats = new StatisticsData();
+        Grid theGrid;
         public Form1()
         {
             InitializeComponent();
@@ -31,7 +34,7 @@ namespace ProCP
             _timer = new System.Windows.Forms.Timer();
             _timer.Tick += _timer_Tick;
             _timer.Interval = 5000;
-
+            theGrid = new Grid(animationBox.Width, animationBox.Height);
             //create flight
             var flight = new Flight()
             {
@@ -100,21 +103,9 @@ namespace ProCP
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            this.Location = new Point(0, 0);
-            this.Size = Screen.PrimaryScreen.WorkingArea.Size;
-            FormBorderStyle = FormBorderStyle.Sizable;
-            WindowState = FormWindowState.Maximized;
+            
         }
 
-        private void tabPage2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void cartesianChart2_ChildChanged(object sender, System.Windows.Forms.Integration.ChildChangedEventArgs e)
-        {
-
-        }
 
         private void BtnStart_Click(object sender, EventArgs e)
         {
@@ -144,6 +135,12 @@ namespace ProCP
             generalStatsTable.GridColor = System.Drawing.Color.Black;
             generalStatsTable.Columns[0].Name = "Simulation time elapsed";
             generalStatsTable.Columns[1].Name = "";
+        }
+
+
+        private void animationBox_Paint_1(object sender, PaintEventArgs e)
+        {
+            theGrid.DrawGrid(e);
         }
     }
 }

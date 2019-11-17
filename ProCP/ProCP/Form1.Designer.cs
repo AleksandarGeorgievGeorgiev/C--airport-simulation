@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.gb1 = new System.Windows.Forms.GroupBox();
+            this.btnStop = new System.Windows.Forms.Button();
             this.btnStart = new System.Windows.Forms.Button();
             this.gbSettings = new System.Windows.Forms.GroupBox();
             this.btnSpeed4 = new System.Windows.Forms.Button();
@@ -54,7 +56,6 @@
             this.labelNoOfBags = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.labelFlightNo = new System.Windows.Forms.Label();
-            this.btnStop = new System.Windows.Forms.Button();
             this.gbBuild = new System.Windows.Forms.GroupBox();
             this.btnSecurity = new System.Windows.Forms.Button();
             this.btnConveyor = new System.Windows.Forms.Button();
@@ -63,29 +64,32 @@
             this.btnCheckin = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.animationBox = new System.Windows.Forms.PictureBox();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.generalStatsTable = new System.Windows.Forms.DataGridView();
+            this.pieChartBagsSecurity = new LiveCharts.WinForms.PieChart();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.PrimarySecurityChart = new LiveCharts.WinForms.CartesianChart();
             this.cartesianChart1 = new LiveCharts.WinForms.CartesianChart();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.pieChartBagsSecurity = new LiveCharts.WinForms.PieChart();
-            this.generalStatsTable = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
+            this.gb1.SuspendLayout();
             this.gbSettings.SuspendLayout();
             this.gbFlightInfo.SuspendLayout();
             this.gbBuild.SuspendLayout();
             this.tabControl1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.animationBox)).BeginInit();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.generalStatsTable)).BeginInit();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.panel1.Controls.Add(this.btnStart);
+            this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel1.Controls.Add(this.gb1);
             this.panel1.Controls.Add(this.gbSettings);
             this.panel1.Controls.Add(this.gbFlightInfo);
-            this.panel1.Controls.Add(this.btnStop);
             this.panel1.Controls.Add(this.gbBuild);
             this.panel1.Location = new System.Drawing.Point(4, 10);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -93,10 +97,31 @@
             this.panel1.Size = new System.Drawing.Size(394, 790);
             this.panel1.TabIndex = 0;
             // 
+            // gb1
+            // 
+            this.gb1.Controls.Add(this.btnStop);
+            this.gb1.Controls.Add(this.btnStart);
+            this.gb1.Location = new System.Drawing.Point(0, 726);
+            this.gb1.Name = "gb1";
+            this.gb1.Size = new System.Drawing.Size(394, 61);
+            this.gb1.TabIndex = 6;
+            this.gb1.TabStop = false;
+            // 
+            // btnStop
+            // 
+            this.btnStop.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStop.Location = new System.Drawing.Point(203, 20);
+            this.btnStop.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnStop.Name = "btnStop";
+            this.btnStop.Size = new System.Drawing.Size(151, 29);
+            this.btnStop.TabIndex = 4;
+            this.btnStop.Text = "Stop";
+            this.btnStop.UseVisualStyleBackColor = true;
+            // 
             // btnStart
             // 
             this.btnStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStart.Location = new System.Drawing.Point(36, 750);
+            this.btnStart.Location = new System.Drawing.Point(31, 20);
             this.btnStart.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(151, 29);
@@ -213,7 +238,7 @@
             // 
             // gbFlightInfo
             // 
-            this.gbFlightInfo.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.gbFlightInfo.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.gbFlightInfo.Controls.Add(this.btnDelete);
             this.gbFlightInfo.Controls.Add(this.AvailableFlights);
             this.gbFlightInfo.Controls.Add(this.btnAdd);
@@ -356,17 +381,6 @@
             this.labelFlightNo.TabIndex = 0;
             this.labelFlightNo.Text = "Flight Number";
             // 
-            // btnStop
-            // 
-            this.btnStop.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStop.Location = new System.Drawing.Point(203, 750);
-            this.btnStop.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnStop.Name = "btnStop";
-            this.btnStop.Size = new System.Drawing.Size(151, 29);
-            this.btnStop.TabIndex = 4;
-            this.btnStop.Text = "Stop";
-            this.btnStop.UseVisualStyleBackColor = true;
-            // 
             // gbBuild
             // 
             this.gbBuild.Controls.Add(this.btnSecurity);
@@ -454,6 +468,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.animationBox);
             this.tabPage1.Location = new System.Drawing.Point(4, 27);
             this.tabPage1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage1.Name = "tabPage1";
@@ -462,6 +477,46 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Simulation Map";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // animationBox
+            // 
+            this.animationBox.Location = new System.Drawing.Point(0, -1);
+            this.animationBox.Name = "animationBox";
+            this.animationBox.Size = new System.Drawing.Size(1296, 764);
+            this.animationBox.TabIndex = 0;
+            this.animationBox.TabStop = false;
+            this.animationBox.Paint += new System.Windows.Forms.PaintEventHandler(this.animationBox_Paint_1);
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.generalStatsTable);
+            this.tabPage3.Controls.Add(this.pieChartBagsSecurity);
+            this.tabPage3.Location = new System.Drawing.Point(4, 27);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(1296, 762);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "General Statistics Overview";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // generalStatsTable
+            // 
+            this.generalStatsTable.AllowUserToAddRows = false;
+            this.generalStatsTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.generalStatsTable.Location = new System.Drawing.Point(23, 16);
+            this.generalStatsTable.Name = "generalStatsTable";
+            this.generalStatsTable.ReadOnly = true;
+            this.generalStatsTable.RowHeadersWidth = 51;
+            this.generalStatsTable.RowTemplate.Height = 24;
+            this.generalStatsTable.Size = new System.Drawing.Size(240, 150);
+            this.generalStatsTable.TabIndex = 4;
+            // 
+            // pieChartBagsSecurity
+            // 
+            this.pieChartBagsSecurity.Location = new System.Drawing.Point(743, 16);
+            this.pieChartBagsSecurity.Name = "pieChartBagsSecurity";
+            this.pieChartBagsSecurity.Size = new System.Drawing.Size(260, 276);
+            this.pieChartBagsSecurity.TabIndex = 3;
+            this.pieChartBagsSecurity.Text = "Bags in security";
             // 
             // tabPage2
             // 
@@ -476,7 +531,6 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Statistics";
             this.tabPage2.UseVisualStyleBackColor = true;
-            this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
             // 
             // PrimarySecurityChart
             // 
@@ -486,7 +540,6 @@
             this.PrimarySecurityChart.Size = new System.Drawing.Size(645, 314);
             this.PrimarySecurityChart.TabIndex = 1;
             this.PrimarySecurityChart.Text = "cartesianChart2";
-            this.PrimarySecurityChart.ChildChanged += new System.EventHandler<System.Windows.Forms.Integration.ChildChangedEventArgs>(this.cartesianChart2_ChildChanged);
             // 
             // cartesianChart1
             // 
@@ -496,37 +549,6 @@
             this.cartesianChart1.Size = new System.Drawing.Size(645, 314);
             this.cartesianChart1.TabIndex = 0;
             this.cartesianChart1.Text = "cartesianChart1";
-            // 
-            // tabPage3
-            // 
-            this.tabPage3.Controls.Add(this.generalStatsTable);
-            this.tabPage3.Controls.Add(this.pieChartBagsSecurity);
-            this.tabPage3.Location = new System.Drawing.Point(4, 27);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(1296, 762);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "General Statistics Overview";
-            this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // pieChartBagsSecurity
-            // 
-            this.pieChartBagsSecurity.Location = new System.Drawing.Point(743, 16);
-            this.pieChartBagsSecurity.Name = "pieChartBagsSecurity";
-            this.pieChartBagsSecurity.Size = new System.Drawing.Size(260, 276);
-            this.pieChartBagsSecurity.TabIndex = 3;
-            this.pieChartBagsSecurity.Text = "Bags in security";
-            // 
-            // generalStatsTable
-            // 
-            this.generalStatsTable.AllowUserToAddRows = false;
-            this.generalStatsTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.generalStatsTable.Location = new System.Drawing.Point(23, 16);
-            this.generalStatsTable.Name = "generalStatsTable";
-            this.generalStatsTable.ReadOnly = true;
-            this.generalStatsTable.RowHeadersWidth = 51;
-            this.generalStatsTable.RowTemplate.Height = 24;
-            this.generalStatsTable.Size = new System.Drawing.Size(240, 150);
-            this.generalStatsTable.TabIndex = 4;
             // 
             // Form1
             // 
@@ -539,15 +561,18 @@
             this.Text = "ProCp";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
+            this.gb1.ResumeLayout(false);
             this.gbSettings.ResumeLayout(false);
             this.gbSettings.PerformLayout();
             this.gbFlightInfo.ResumeLayout(false);
             this.gbFlightInfo.PerformLayout();
             this.gbBuild.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
-            this.tabPage2.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.animationBox)).EndInit();
             this.tabPage3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.generalStatsTable)).EndInit();
+            this.tabPage2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -595,6 +620,8 @@
         private System.Windows.Forms.TabPage tabPage3;
         private LiveCharts.WinForms.PieChart pieChartBagsSecurity;
         private System.Windows.Forms.DataGridView generalStatsTable;
+        private System.Windows.Forms.GroupBox gb1;
+        private System.Windows.Forms.PictureBox animationBox;
     }
 }
 
