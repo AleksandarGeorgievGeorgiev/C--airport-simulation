@@ -88,6 +88,8 @@
     </Compile>
     <Compile Include="Abstractions\ChainNode.cs" />
     <Compile Include="Contracts\ISimulationSettings.cs" />
+    <Compile Include="Nodes\FinalSecurity.cs" />
+    <Compile Include="Nodes\SecondSecurity.cs" />
     <Compile Include="Services\LoggingConstants.cs" />
     <Compile Include="Nodes\PrimarySecurity.cs" />
     <Compile Include="Nodes\CheckInDesk.cs" />
