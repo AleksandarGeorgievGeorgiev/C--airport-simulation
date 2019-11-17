@@ -83,6 +83,48 @@ namespace ProCP
             //adding series will update and animate the chart automatically
             //also adding values updates and animates the chart automatically
             //primariySecurityChart.Series[1].Values.Add(12d);
+
+            PrimarySecurityChart.Series = new SeriesCollection
+            {
+                new LineSeries
+                {
+                    Title = "Time",
+                    Values = new ChartValues<int> {10, 25, 55, 45, 60},
+                    PointGeometry = DefaultGeometries.Circle,
+                    PointGeometrySize = 15
+                }
+            };
+
+            PrimarySecurityChart.AxisX.Add(new Axis
+            {
+                Title = "Flight Number",
+                Labels = new[] { "Flight to Miami", "Flight to Chicago", "Flight to Eindhoven", "Flight to Seattle", "Flight to Cologne" },
+                Height = 12
+            });
+
+            PrimarySecurityChart.AxisY.Add(new Axis
+            {
+                Title = "Transfer Time",
+                LabelFormatter = value => value.ToString()
+            });
+
+            PrimarySecurityChart.LegendLocation = LegendLocation.Right;
+
+
+
+
+
+
+
+
+
+
+
+            //hardcoded values for calibration session
+            pieChartBagsSecurity.LegendLocation = LegendLocation.Bottom;
+            pieChartBagsSecurity.Series.Add(new PieSeries() { Title = "Succeeded", Values = new ChartValues<int> { 30 }, DataLabels = true });
+            pieChartBagsSecurity.Series.Add(new PieSeries() { Title = "Failed", Values = new ChartValues<int> { 7 }, DataLabels = true });
+
         }
 
         private void _timer_Tick(object sender, EventArgs e)
@@ -129,8 +171,10 @@ namespace ProCP
             PrimarySecurityChart.Series.Clear();
 
             //pie chart
-            pieChartBagsSecurity.Series.Add(new PieSeries() { Title = "Succeeded", Values = new ChartValues<int> { data.BagsSucceededPsc.Count }, DataLabels = true });
+            pieChartBagsSecurity.LegendLocation = LegendLocation.Bottom;
+            pieChartBagsSecurity.Series.Add(new PieSeries() { Title = "Succeeded", Values = new ChartValues<int> { data.BagsSucceededPsc.Count }, DataLabels = true}) ;
             pieChartBagsSecurity.Series.Add(new PieSeries() { Title = "Failed", Values = new ChartValues<int> { data.BagsFailedPsc.Count }, DataLabels = true });
+            
 
             //column chart
             foreach (var flight in data.BagsPerFlight)
