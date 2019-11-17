@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProCP.Data
 {
-    class ReadFromDatabase: IData
+    class ReadFromDatabase: BaseDataReader, IData
     {
         public void ReadData(string file)
         {

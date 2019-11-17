@@ -74,6 +74,11 @@
     <Compile Include="Contracts\IStartStop.cs" />
     <Compile Include="Contracts\ITransportingNode.cs" />
     <Compile Include="Contracts\NodeStatus.cs" />
+    <Compile Include="Data\BaseDataReader.cs" />
+    <Compile Include="Data\DataInitialization.cs" />
+    <Compile Include="Data\IData.cs" />
+    <Compile Include="Data\ReadFromDatabase.cs" />
+    <Compile Include="Data\ReadTextFile.cs" />
     <Compile Include="Engine.cs" />
     <Compile Include="FlightAndBaggage\Baggage.cs" />
     <Compile Include="FlightAndBaggage\BaggageEventLog.cs" />
@@ -89,6 +94,10 @@
     <Compile Include="Abstractions\ChainNode.cs" />
     <Compile Include="Contracts\ISimulationSettings.cs" />
     <Compile Include="Nodes\FinalSecurity.cs" />
+    <Compile Include="Nodes\OwnImplementation\BaseSecurity.cs" />
+    <Compile Include="Nodes\OwnImplementation\FinalSecurity.cs" />
+    <Compile Include="Nodes\OwnImplementation\PrimarySecurity.cs" />
+    <Compile Include="Nodes\OwnImplementation\SecondSecurity.cs" />
     <Compile Include="Nodes\SecondSecurity.cs" />
     <Compile Include="Services\LoggingConstants.cs" />
     <Compile Include="Nodes\PrimarySecurity.cs" />
