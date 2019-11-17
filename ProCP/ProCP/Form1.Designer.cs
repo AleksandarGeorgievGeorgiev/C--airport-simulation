@@ -64,7 +64,10 @@
             this.btnCheckin = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+<<<<<<< HEAD
             this.animationBox = new System.Windows.Forms.PictureBox();
+=======
+>>>>>>> demo-test
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.generalStatsTable = new System.Windows.Forms.DataGridView();
             this.pieChartBagsSecurity = new LiveCharts.WinForms.PieChart();
@@ -77,8 +80,11 @@
             this.gbFlightInfo.SuspendLayout();
             this.gbBuild.SuspendLayout();
             this.tabControl1.SuspendLayout();
+<<<<<<< HEAD
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.animationBox)).BeginInit();
+=======
+>>>>>>> demo-test
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.generalStatsTable)).BeginInit();
             this.tabPage2.SuspendLayout();
@@ -478,6 +484,7 @@
             this.tabPage1.Text = "Simulation Map";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+<<<<<<< HEAD
             // animationBox
             // 
             this.animationBox.Location = new System.Drawing.Point(0, -1);
@@ -487,6 +494,8 @@
             this.animationBox.TabStop = false;
             this.animationBox.Paint += new System.Windows.Forms.PaintEventHandler(this.animationBox_Paint_1);
             // 
+=======
+>>>>>>> demo-test
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.generalStatsTable);
@@ -507,7 +516,13 @@
             this.generalStatsTable.ReadOnly = true;
             this.generalStatsTable.RowHeadersWidth = 51;
             this.generalStatsTable.RowTemplate.Height = 24;
+<<<<<<< HEAD
             this.generalStatsTable.Size = new System.Drawing.Size(240, 150);
+=======
+            this.generalStatsTable.RowTemplate.ReadOnly = true;
+            this.generalStatsTable.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.generalStatsTable.Size = new System.Drawing.Size(653, 65);
+>>>>>>> demo-test
             this.generalStatsTable.TabIndex = 4;
             // 
             // pieChartBagsSecurity
@@ -568,8 +583,11 @@
             this.gbFlightInfo.PerformLayout();
             this.gbBuild.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
+<<<<<<< HEAD
             this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.animationBox)).EndInit();
+=======
+>>>>>>> demo-test
             this.tabPage3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.generalStatsTable)).EndInit();
             this.tabPage2.ResumeLayout(false);
