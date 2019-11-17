@@ -64,15 +64,19 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.pieChartBagsSecurity = new LiveCharts.WinForms.PieChart();
             this.PrimarySecurityChart = new LiveCharts.WinForms.CartesianChart();
             this.cartesianChart1 = new LiveCharts.WinForms.CartesianChart();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.pieChartBagsSecurity = new LiveCharts.WinForms.PieChart();
+            this.generalStatsTable = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
             this.gbSettings.SuspendLayout();
             this.gbFlightInfo.SuspendLayout();
             this.gbBuild.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.generalStatsTable)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -438,9 +442,10 @@
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabControl1.Location = new System.Drawing.Point(403, 10);
+            this.tabControl1.Location = new System.Drawing.Point(404, 10);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -455,12 +460,11 @@
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage1.Size = new System.Drawing.Size(1296, 762);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Simulation ";
+            this.tabPage1.Text = "Simulation Map";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.pieChartBagsSecurity);
             this.tabPage2.Controls.Add(this.PrimarySecurityChart);
             this.tabPage2.Controls.Add(this.cartesianChart1);
             this.tabPage2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -473,14 +477,6 @@
             this.tabPage2.Text = "Statistics";
             this.tabPage2.UseVisualStyleBackColor = true;
             this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
-            // 
-            // pieChartBagsSecurity
-            // 
-            this.pieChartBagsSecurity.Location = new System.Drawing.Point(749, 59);
-            this.pieChartBagsSecurity.Name = "pieChartBagsSecurity";
-            this.pieChartBagsSecurity.Size = new System.Drawing.Size(260, 276);
-            this.pieChartBagsSecurity.TabIndex = 2;
-            this.pieChartBagsSecurity.Text = "Bags in security";
             // 
             // PrimarySecurityChart
             // 
@@ -501,6 +497,37 @@
             this.cartesianChart1.TabIndex = 0;
             this.cartesianChart1.Text = "cartesianChart1";
             // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.generalStatsTable);
+            this.tabPage3.Controls.Add(this.pieChartBagsSecurity);
+            this.tabPage3.Location = new System.Drawing.Point(4, 27);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(1296, 762);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "General Statistics Overview";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // pieChartBagsSecurity
+            // 
+            this.pieChartBagsSecurity.Location = new System.Drawing.Point(743, 16);
+            this.pieChartBagsSecurity.Name = "pieChartBagsSecurity";
+            this.pieChartBagsSecurity.Size = new System.Drawing.Size(260, 276);
+            this.pieChartBagsSecurity.TabIndex = 3;
+            this.pieChartBagsSecurity.Text = "Bags in security";
+            // 
+            // generalStatsTable
+            // 
+            this.generalStatsTable.AllowUserToAddRows = false;
+            this.generalStatsTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.generalStatsTable.Location = new System.Drawing.Point(23, 16);
+            this.generalStatsTable.Name = "generalStatsTable";
+            this.generalStatsTable.ReadOnly = true;
+            this.generalStatsTable.RowHeadersWidth = 51;
+            this.generalStatsTable.RowTemplate.Height = 24;
+            this.generalStatsTable.Size = new System.Drawing.Size(240, 150);
+            this.generalStatsTable.TabIndex = 4;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -519,6 +546,8 @@
             this.gbBuild.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
+            this.tabPage3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.generalStatsTable)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -563,7 +592,9 @@
         private System.Windows.Forms.Button btnStart;
         private LiveCharts.WinForms.CartesianChart cartesianChart1;
         private LiveCharts.WinForms.CartesianChart PrimarySecurityChart;
+        private System.Windows.Forms.TabPage tabPage3;
         private LiveCharts.WinForms.PieChart pieChartBagsSecurity;
+        private System.Windows.Forms.DataGridView generalStatsTable;
     }
 }
 

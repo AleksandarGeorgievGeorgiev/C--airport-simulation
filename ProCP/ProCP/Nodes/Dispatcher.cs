@@ -94,6 +94,7 @@ namespace ProCP.Nodes
                 Flight = flight
             };
 
+
             int chosen = FindMostSuitableCheckin(baggage);
             var checkIn = checkins[chosen];
             var queue = checkinQueues[chosen];
@@ -114,8 +115,8 @@ namespace ProCP.Nodes
                 queue.Enqueue(baggage);
                 checkIn.OnNodeStatusChangedToFree += () => PassQueuedBaggage(chosen);
             }
-            flight.DispatchedBaggageCount++;
 
+            flight.DispatchedBaggageCount++;
         }
 
         private void PassQueuedBaggage(int chosen)

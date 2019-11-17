@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.Concurrent;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,11 +12,11 @@ namespace ProCP.FlightAndBaggage
     }
     public class Baggage : IBaggage
     {
-        public static List<Baggage> AllBaggage = new List<Baggage>();
+        public static ConcurrentBag<Baggage> AllBaggage = new ConcurrentBag<Baggage>();
 
         public Baggage()
         {
-            Logs = new List<BaggageEventLog>();
+            Logs = new ConcurrentBag<BaggageEventLog>();
             Flight = new Flight();
 
             AllBaggage.Add(this);
@@ -25,7 +25,7 @@ namespace ProCP.FlightAndBaggage
         public BaggageType Type { get; set; }
         public IFlight Flight { get; set; }
         public string Description { get; set; }
-        public List<BaggageEventLog> Logs { get; set; }
+        public ConcurrentBag<BaggageEventLog> Logs { get; set; }
         public string TransporterId { get; set; }
         public long? TransportationStartTime { get; set; }
         public string Destination { get; set; }

@@ -37,10 +37,16 @@ namespace ProCP
             {
                 BaggageCount = 20,
                 DipartureTime = new TimeSpan(5, 45, 00),
-                FlightNumber = "test 1",
+                FlightNumber = "34353",
             };
 
             _simulationSettings.Flights.Add(flight);
+            _simulationSettings.Flights.Add(new Flight()
+            {
+                BaggageCount = 20,
+                DipartureTime = new TimeSpan(5, 55, 00),
+                FlightNumber = "1234",
+            });
 
             //
             cartesianChart1.Series = new SeriesCollection
@@ -122,9 +128,6 @@ namespace ProCP
             pieChartBagsSecurity.Series.Clear();
             PrimarySecurityChart.Series.Clear();
 
-
-
-
             //pie chart
             pieChartBagsSecurity.Series.Add(new PieSeries() { Title = "Succeeded", Values = new ChartValues<int> { data.BagsSucceededPsc.Count }, DataLabels = true });
             pieChartBagsSecurity.Series.Add(new PieSeries() { Title = "Failed", Values = new ChartValues<int> { data.BagsFailedPsc.Count }, DataLabels = true });
@@ -132,8 +135,15 @@ namespace ProCP
             //column chart
             foreach (var flight in data.BagsPerFlight)
             {
-                PrimarySecurityChart.Series.Add(new ColumnSeries() { Title = flight.Key, Values = new ChartValues<int> { flight.Value }, DataLabels = true } );
+                PrimarySecurityChart.Series.Add(new ColumnSeries() { Title = flight.Key, Values = new ChartValues<int> { flight.Value }, DataLabels = true, LabelPoint = point => "Flight with number" + flight.Key } );
             }
+        }
+
+        private void SetupGeneralStatsTable()
+        {
+            generalStatsTable.GridColor = System.Drawing.Color.Black;
+            generalStatsTable.Columns[0].Name = "Simulation time elapsed";
+            generalStatsTable.Columns[1].Name = "";
         }
     }
 }

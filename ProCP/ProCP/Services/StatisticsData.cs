@@ -19,7 +19,7 @@ namespace ProCP.Services
 
         public List<Baggage> BagsFailedPsc { get; set; }
         public List<Baggage> BagsSucceededPsc { get; set; }
-        public Baggage FirstDispatchedBag { get; set; }
+        public double FirstDispatchedBag { get; set; }
         public Baggage LastDispatchedBag { get; set; }
         public double FirstCollectedBag { get; set; }
         public double LastCollectedBag { get; set; }
