@@ -69,6 +69,21 @@ namespace ProCP
 
             cartesianChart1.DataClick += CartesianChart1OnDataClick;
 
+
+            PrimarySecurityChart.Series.Add(new ColumnSeries() { Title = "85", Values = new ChartValues<int> { 20 } });
+            PrimarySecurityChart.AxisY.Add(new Axis()
+            {
+                Title = "Baggage amount"
+            });
+            PrimarySecurityChart.AxisX.Add(new Axis()
+            {
+                Title = "Flight"
+            });
+
+            PrimarySecurityChart.LegendLocation = LegendLocation.Right;
+
+
+
             //adding series will update and animate the chart automatically
             //also adding values updates and animates the chart automatically
             //primariySecurityChart.Series[1].Values.Add(12d);
