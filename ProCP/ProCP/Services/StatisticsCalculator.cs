@@ -24,6 +24,7 @@ namespace ProCP.Services
                 SetPscFailedAndSucceededBags(statisticsData, baggages);
                 BagsPerFlight(statisticsData, baggages);
                 BagsTimesDispatchedAndCollectedStats(statisticsData, baggages);
+                ElapsedTimeForeachFlight(statisticsData, baggages);
             }
             catch (Exception e)
             {
@@ -77,19 +78,12 @@ namespace ProCP.Services
 
         public static void BagsPerFlight(StatisticsData data, ConcurrentBag<Baggage> baggages)
         {
-            data.BagsTransferredPerFlight = data.TotalBagsTransfered.GroupBy(b => b.Flight.FlightNumber);
+            data.BagsGroupedPerFlight = data.TotalBagsTransfered.GroupBy(b => b.Flight.FlightNumber);
 
-            foreach (var group in data.BagsTransferredPerFlight)
+            foreach (var group in data.BagsGroupedPerFlight)
             {
                 data.BagsPerFlight.Add(group.Key, group.Count());
             }
-        }
-
-        public static void TransportationTimePerConveyorBeforeSecurity(StatisticsData data, ConcurrentBag<Baggage> baggages)
-        {
-            var allTransporterTimes = baggages.Where(b => b.Logs.Any(l => l.Description.Contains("Primary security"))).ToList();
-
-
         }
 
         public static void BagsTimesDispatchedAndCollectedStats(StatisticsData data, ConcurrentBag<Baggage> baggages)
@@ -98,12 +92,36 @@ namespace ProCP.Services
             {
                 return;
             }
+
             var bagsOrderedbyFirstCreation = baggages.OrderBy(b => b.Logs.FirstOrDefault().LogCreated).ToList();
 
             data.FirstDispatchedBag = bagsOrderedbyFirstCreation.FirstOrDefault().Logs.FirstOrDefault().LogCreated.TotalSeconds;
             data.LastCollectedBag = bagsOrderedbyFirstCreation.LastOrDefault().Logs.LastOrDefault().LogCreated.TotalSeconds;
 
-            var simulationElapsedTime = (data.LastCollectedBag - data.FirstDispatchedBag).ToString().Split(new Char[] { '.'})[0];
+            data.SimulationTimeElapsed = (data.LastCollectedBag - data.FirstDispatchedBag).ToString().Split(new Char[] { '.' })[0];
+        }
+        
+        public static void ElapsedTimeForeachFlight(StatisticsData data, ConcurrentBag<Baggage> baggages)
+        {
+
+            if (data.TotalBagsTransfered == null)
+            {
+                return;
+            }
+
+            data.ElapsedTimesGroupedPerFlight = data.TotalBagsTransfered.GroupBy(b => b.Flight.FlightNumber);
+
+            foreach (var group in data.ElapsedTimesGroupedPerFlight)
+            {
+                var orderedByFirstBag = group.OrderBy(b => b.Logs.FirstOrDefault().LogCreated).ToList();
+                
+                var firstBagDispached = orderedByFirstBag.FirstOrDefault().Logs.FirstOrDefault().LogCreated.TotalSeconds;
+                var lastBagCollected = orderedByFirstBag.LastOrDefault().Logs.LastOrDefault().LogCreated.TotalSeconds;
+
+                var timeElapsed = (lastBagCollected - firstBagDispached).ToString().Split(new Char[] { '.' })[0];
+
+                data.ElapsedTimesPerFlight.Add(group.Key, timeElapsed);
+            }
         }
     }
 }
