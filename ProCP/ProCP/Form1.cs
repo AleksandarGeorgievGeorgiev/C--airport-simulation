@@ -174,5 +174,25 @@ namespace ProCP
         {
             theGrid.DrawGrid(e);
         }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureLogo_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void animationBox_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
