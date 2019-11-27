@@ -43,6 +43,8 @@ namespace ProCP.Visuals
         {
             this.column = column;
             this.row = row;
+            arrowImgPath = "../../Resources/arrow.png";
+            arrowImg = Image.FromFile(arrowImgPath);
         }
 
         public GridTile NextTile
@@ -77,7 +79,7 @@ namespace ProCP.Visuals
             DrawTileInfo(g, r, tileHeight);
         }
 
-        protected virtual void DrawBackground(Pen p, Graphics g, RectangleF r, int tileWidth, int tileHeight)
+        public virtual void DrawBackground(Pen p, Graphics g, RectangleF r, int tileWidth, int tileHeight)
         {
             g.DrawImage(img, r);
             g.DrawRectangle(p, column * tileWidth, row * tileHeight, tileWidth, tileHeight);
@@ -89,7 +91,7 @@ namespace ProCP.Visuals
             }
         }
 
-        protected virtual void DrawArrowNext(Pen p, Graphics g, int tileWidth, int tileHeight)
+        public virtual void DrawArrowNext(Pen p, Graphics g, int tileWidth, int tileHeight)
         {
             if (nextTile != null)
             {
@@ -126,7 +128,7 @@ namespace ProCP.Visuals
             }
         }
 
-        protected virtual void DrawBaggage(Graphics g, int tileWidth, int tileHeight)
+        public virtual void DrawBaggage(Graphics g, int tileWidth, int tileHeight)
         {
             if (nodeInGrid != null)
             {
