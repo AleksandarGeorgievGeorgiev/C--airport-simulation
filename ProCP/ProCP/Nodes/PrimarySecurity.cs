@@ -36,15 +36,18 @@ namespace ProCP.Nodes
 
             b.AddLog(TimerService.GetTimeSinceSimulationStart(), TimerService.ConvertMillisecondsToTimeSpan(_psSettings.ProcessingSpeed),
                 $"Primary security check ID-{NodeId} processing - { (isFail ? LoggingConstants.PrimarySecurityCheckFailed : LoggingConstants.PrimarySecurityCheckSucceeded)}");
+
             if (!isFail)
             {
                 //b.Destination = typeof(Mda).Name;
                 b.Destination = typeof(SecondSecurity).Name;
                 return;
             }
-
-            bagsTaken.Add(b);
-            currentBag = null;
+            else
+            {
+                bagsTaken.Add(b);
+                currentBag = null;
+            }
         }
     }
 }

@@ -14,6 +14,8 @@ using LiveCharts.Wpf;
 using Brushes = System.Windows.Media.Brushes;
 using ProCP.FlightAndBaggage;
 using ProCP.Services;
+using ProCP.Visuals;
+using Grid = ProCP.Visuals.Grid;
 
 namespace ProCP
 {
@@ -23,6 +25,7 @@ namespace ProCP
         private SimulationSettings _simulationSettings;
         private Timer _timer;
         private StatisticsData dataStats = new StatisticsData();
+        Grid theGrid;
         public Form1()
         {
             InitializeComponent();
@@ -31,40 +34,32 @@ namespace ProCP
             _timer = new System.Windows.Forms.Timer();
             _timer.Tick += _timer_Tick;
             _timer.Interval = 5000;
-
+            theGrid = new Grid(animationBox.Width, animationBox.Height);
             //create flight
             var flight = new Flight()
             {
                 BaggageCount = 20,
                 DipartureTime = new TimeSpan(5, 45, 00),
-                FlightNumber = "test 1",
+                FlightNumber = "34353",
             };
 
             _simulationSettings.Flights.Add(flight);
-
-            //
-            cartesianChart1.Series = new SeriesCollection
+            _simulationSettings.Flights.Add(new Flight()
             {
-                new LineSeries
-                {
-                    Title = "Time",
-                    Values = new ChartValues<int> {10, 25, 55, 45, 60},
-                    PointGeometry = DefaultGeometries.Circle,
-                    PointGeometrySize = 15
-                }
-            };
-
-            cartesianChart1.AxisX.Add(new Axis
-            {
-                Title = "Flight Number",
-                Labels = new[] { "Flight to Miami", "Flight to Chicago", "Flight to Eindhoven", "Flight to Seattle", "Flight to Cologne" },
-                Height = 12
+                BaggageCount = 20,
+                DipartureTime = new TimeSpan(5, 55, 00),
+                FlightNumber = "1234",
             });
 
-            cartesianChart1.AxisY.Add(new Axis
+            //
+            cartesianChart1.Series.Add(new ColumnSeries() { Title = "2132", Values = new ChartValues<int> { 20 } });
+            cartesianChart1.AxisY.Add(new Axis()
             {
-                Title = "Transfer Time",
-                LabelFormatter = value => value.ToString()
+                Title = "Time (min)"
+            });
+            cartesianChart1.AxisX.Add(new Axis()
+            {
+                Title = "Flight"
             });
 
             cartesianChart1.LegendLocation = LegendLocation.Right;
@@ -74,9 +69,26 @@ namespace ProCP
 
             cartesianChart1.DataClick += CartesianChart1OnDataClick;
 
+
+            PrimarySecurityChart.Series.Add(new ColumnSeries() { Title = "85", Values = new ChartValues<int> { 20 } });
+            PrimarySecurityChart.AxisY.Add(new Axis()
+            {
+                Title = "Baggage amount"
+            });
+            PrimarySecurityChart.AxisX.Add(new Axis()
+            {
+                Title = "Flight"
+            });
+
+            PrimarySecurityChart.LegendLocation = LegendLocation.Right;
+
+
+
             //adding series will update and animate the chart automatically
             //also adding values updates and animates the chart automatically
             //primariySecurityChart.Series[1].Values.Add(12d);
+
+            SetupGeneralStatsTable();
         }
 
         private void _timer_Tick(object sender, EventArgs e)
@@ -85,6 +97,7 @@ namespace ProCP
             dataStats = calculator();
 
             StatisticsChartData(dataStats);
+            PopulateTable(dataStats);
         }
 
         private void CartesianChart1OnDataClick(object sender, ChartPoint chartPoint)
@@ -94,21 +107,9 @@ namespace ProCP
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            this.Location = new Point(0, 0);
-            this.Size = Screen.PrimaryScreen.WorkingArea.Size;
-            FormBorderStyle = FormBorderStyle.Sizable;
-            WindowState = FormWindowState.Maximized;
+            
         }
 
-        private void tabPage2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void cartesianChart2_ChildChanged(object sender, System.Windows.Forms.Integration.ChildChangedEventArgs e)
-        {
-
-        }
 
         private void BtnStart_Click(object sender, EventArgs e)
         {
@@ -121,9 +122,7 @@ namespace ProCP
             //clean charts
             pieChartBagsSecurity.Series.Clear();
             PrimarySecurityChart.Series.Clear();
-
-
-
+            cartesianChart1.Series.Clear();
 
             //pie chart
             pieChartBagsSecurity.Series.Add(new PieSeries() { Title = "Succeeded", Values = new ChartValues<int> { data.BagsSucceededPsc.Count }, DataLabels = true });
@@ -132,8 +131,48 @@ namespace ProCP
             //column chart
             foreach (var flight in data.BagsPerFlight)
             {
-                PrimarySecurityChart.Series.Add(new ColumnSeries() { Title = flight.Key, Values = new ChartValues<int> { flight.Value }, DataLabels = true } );
+                PrimarySecurityChart.Series.Add(new ColumnSeries() { Title = flight.Key, Values = new ChartValues<int> { flight.Value }} );
             }
+
+            //cartesian chart
+            foreach (var flight in data.ElapsedTimesPerFlight)
+            {
+                cartesianChart1.Series.Add(new ColumnSeries() { Title = flight.Key, Values = new ChartValues<int> { int.Parse(flight.Value)} });
+            }
+        }
+
+        private void SetupGeneralStatsTable()
+        {
+            generalStatsTable.ColumnCount = 3;
+            generalStatsTable.GridColor = System.Drawing.Color.Black;
+            generalStatsTable.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
+            generalStatsTable.CellBorderStyle = DataGridViewCellBorderStyle.Single;
+            generalStatsTable.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+
+
+            generalStatsTable.Columns[0].Name = "Simulation time elapsed";
+            generalStatsTable.Columns[1].Name = "Total number of bags";
+            generalStatsTable.Columns[2].Name = "Number of fligths";
+
+            generalStatsTable.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            generalStatsTable.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            generalStatsTable.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+        }
+
+        private void PopulateTable(StatisticsData data)
+        {
+            generalStatsTable.Rows.Clear();
+
+            string[] row0 = { data.SimulationTimeElapsed, Baggage.AllBaggage.Count().ToString(), _simulationSettings.Flights.Count().ToString()};
+
+            generalStatsTable.Rows.Add(row0);
+            generalStatsTable.Columns[0].DisplayIndex = 0;
+        }
+
+
+        private void animationBox_Paint_1(object sender, PaintEventArgs e)
+        {
+            theGrid.DrawGrid(e);
         }
     }
 }

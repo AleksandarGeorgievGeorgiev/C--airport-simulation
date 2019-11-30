@@ -19,15 +19,27 @@ namespace ProCP.Services
 
         public List<Baggage> BagsFailedPsc { get; set; }
         public List<Baggage> BagsSucceededPsc { get; set; }
-        public Baggage FirstDispatchedBag { get; set; }
+        public double FirstDispatchedBag { get; set; }
         public Baggage LastDispatchedBag { get; set; }
         public double FirstCollectedBag { get; set; }
         public double LastCollectedBag { get; set; }
         public List<Baggage> TotalBagsTransfered { get; set; }
-        public IEnumerable<IGrouping<string, Baggage>> BagsTransferredPerFlight { get; set; }
-        public Dictionary<string, int> BagsPerFlight { get; set; } 
+
+        //transfferd bags per flight 
+        public IEnumerable<IGrouping<string, Baggage>> BagsGroupedPerFlight { get; set; }
+        public Dictionary<string, int> BagsPerFlight { get; set; }
+
+        //elapsed times per flight
+        public IEnumerable<IGrouping<string, Baggage>> ElapsedTimesGroupedPerFlight { get; set; }
+
+        public Dictionary<string, string> ElapsedTimesPerFlight { get; set; }
+
+        //
         public Dictionary<string, double> TransportingTimePerConveyorBeforePrimarySecurity { get; set; }
         public long? AverageTimeOfTottalBags { get; set; }
+
+        //simulation elapsed time
+        public string SimulationTimeElapsed { get; set; }
 
         public StatisticsData()
         {
@@ -36,6 +48,7 @@ namespace ProCP.Services
             TotalBagsTransfered = new List<Baggage>();
             TransportingTimePerConveyorBeforePrimarySecurity = new Dictionary<string, double>();
             BagsPerFlight = new Dictionary<string, int>();
+            ElapsedTimesPerFlight = new Dictionary<string, string>();
         }
 
     }

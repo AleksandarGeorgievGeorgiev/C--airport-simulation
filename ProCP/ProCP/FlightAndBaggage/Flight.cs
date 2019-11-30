@@ -12,6 +12,6 @@ namespace ProCP.FlightAndBaggage
         public int BaggageCount { get; set; }
         public string FlightNumber { get; set; }
         public string Gate { get; set; }
-        public int DispatchedBaggageCount { get; set; }
+        public int DispatchedBaggageCount { get; set; } = 0;
     }
 }
