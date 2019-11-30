@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using ProCP.Abstractions;
 using ProCP.Visuals;
 
+
 namespace ProCP.Visuals
 {
     [Serializable]
@@ -15,14 +16,17 @@ namespace ProCP.Visuals
     {
         private int tileWidth;
         private int tileHeight;
-        private int horizontalTileCount = 20;
-        private int verticalTileCount = 20;
+        private int horizontalTileCount = 17;
+        private int verticalTileCount = 12;
         private float animatedBoxWidth;
         private float animatedBoxHeight;
 
         int bottomRow;
+        int topRow;
 
         public List<GridTile> gridTiles;
+
+
 
         public int HorizontalTileCount
         {
@@ -69,6 +73,33 @@ namespace ProCP.Visuals
             {
                 n.DrawTile(e, tileWidth, tileHeight);
             }
+        }
+        //Drawing the check-in desk
+        public GridTile DrawCheckInDesk(GridTile toReplace, ChainNode nodeToReplace)
+        {
+            CheckInTile newCheckInTile = new CheckInTile(toReplace.Column, toReplace.Row, tileWidth, tileHeight);
+            gridTiles.Remove(toReplace);
+            gridTiles.Add(newCheckInTile);
+            newCheckInTile.nodeInGrid = nodeToReplace;
+            return newCheckInTile;
+        }
+        //Drawing the drop off
+        public GridTile DrawDroppOffTile(GridTile toReplace, ChainNode nodeToReplace)
+        {
+            DropOffTile newDropOffTile = new DropOffTile(toReplace.Column, toReplace.Row, tileWidth, tileHeight);
+            gridTiles.Remove(toReplace);
+            gridTiles.Add(newDropOffTile);
+            newDropOffTile.nodeInGrid = nodeToReplace;
+            return newDropOffTile;
+        }
+        //Drawing the security desk
+        public GridTile DrawSecurityTile(GridTile toReplace, ChainNode nodeToReplace)
+        {
+            SecurityTile newSecurityTile = new SecurityTile(toReplace.Column, toReplace.Row, tileWidth, tileHeight);
+            gridTiles.Remove(toReplace);
+            gridTiles.Add(newSecurityTile);
+            newSecurityTile.nodeInGrid = nodeToReplace;
+            return newSecurityTile;
         }
     }
 }

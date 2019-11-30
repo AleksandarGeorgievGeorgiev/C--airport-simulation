@@ -105,9 +105,13 @@
     <Compile Include="Services\StatisticsData.cs" />
     <Compile Include="Services\TimerTracker.cs" />
     <Compile Include="SimulationSettings.cs" />
+    <Compile Include="Visuals\CheckInTile.cs" />
+    <Compile Include="Visuals\ConveyorTIle.cs" />
+    <Compile Include="Visuals\DropOffTile.cs" />
     <Compile Include="Visuals\EmptyTile.cs" />
     <Compile Include="Visuals\Grid.cs" />
     <Compile Include="Visuals\GridTile.cs" />
+    <Compile Include="Visuals\SecurityTile.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
