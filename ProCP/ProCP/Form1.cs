@@ -194,5 +194,15 @@ namespace ProCP
         {
 
         }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void nButtonControl1_Click(Nevron.Nov.Dom.NEventArgs arg)
+        {
+            MessageBox.Show("yeah it works biaaatch");
+        }
     }
 }
