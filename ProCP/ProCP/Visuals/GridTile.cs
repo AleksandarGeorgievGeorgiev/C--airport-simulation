@@ -14,6 +14,7 @@ namespace ProCP.Visuals
     {
         private int column;
         private int row;
+        private int tileId;
 
         [NonSerialized]
         public Brush fillBrush;
@@ -38,9 +39,12 @@ namespace ProCP.Visuals
 
         public int Column { get; set; }
         public int Row { get; set; }
+        public int TileId { get; private set; }
 
         public GridTile(int column, int row, int tileWidth, int tileHeight)
         {
+            tileId++;
+            this.TileId = tileId;
             this.column = column;
             this.row = row;
             arrowImgPath = "../../Resources/arrow.png";
@@ -111,7 +115,7 @@ namespace ProCP.Visuals
                     p = new Pen(Color.Red);
                     Rectangle r = new Rectangle(arrowX, arrowY, arrowWidth, arrowHeight);
                     g.DrawImage(arrowImg, r);
-                    
+
                 }
                 else if (nextTile.row < this.row)
                 {
