@@ -23,7 +23,7 @@ namespace ProCP.Data
             }
             catch(IOException e)
             {
-                MessageBox.Show(e);
+                MessageBox.Show(e.ToString());
             }
         }
     }
