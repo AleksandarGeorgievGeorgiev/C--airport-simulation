@@ -130,7 +130,7 @@ namespace ProCP.Visuals
         {
             if (nodeInGrid != null)
             {
-                if (nodeInGrid.NodeNodeStatus == NodeStatus.Busy)
+                if (nodeInGrid.NodeStatus == NodeStatus.Busy)
                 {
                     RectangleF baggageRec = new RectangleF(column * tileWidth + 10, row * tileHeight + 10, tileWidth - 20, tileHeight - 20);
                     g.DrawImage(baggageImg, baggageRec);

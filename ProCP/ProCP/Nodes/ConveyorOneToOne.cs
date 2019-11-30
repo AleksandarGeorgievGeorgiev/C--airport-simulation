@@ -39,7 +39,7 @@ namespace ProCP.Nodes
                 }
 
                 NextNode.OnNodeStatusChangedToFree -= Move;
-                NodeNodeStatus = NodeStatus.Free;
+                NodeStatus = NodeStatus.Free;
                 TimerService.Start();
             }
             else
@@ -51,7 +51,7 @@ namespace ProCP.Nodes
         public override void PassBaggage(IBaggage b)
         {
             System.Diagnostics.Debug.WriteLine("conveyor" + b.Destination);
-            NodeNodeStatus = NodeStatus.Busy;
+            NodeStatus = NodeStatus.Busy;
             b.TransporterId = NodeId;
             Add(b);
         }

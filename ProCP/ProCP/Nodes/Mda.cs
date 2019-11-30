@@ -42,7 +42,7 @@ namespace ProCP.Nodes
             {
                 if (_transporterQueues[destination].Count > 0)
                 {
-                    if (nextNode.NodeNodeStatus == NodeStatus.Free)
+                    if (nextNode.NodeStatus == NodeStatus.Free)
                     {
                         var tempBag = _transporterQueues[destination].Dequeue();
 

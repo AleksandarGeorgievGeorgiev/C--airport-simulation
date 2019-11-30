@@ -44,7 +44,7 @@ namespace ProCP.Abstractions
 
         public bool CanMove()
         {
-            if (NextNode.NodeNodeStatus == NodeStatus.Free)
+            if (NextNode.NodeStatus == NodeStatus.Free)
             {
                 return true;
             }

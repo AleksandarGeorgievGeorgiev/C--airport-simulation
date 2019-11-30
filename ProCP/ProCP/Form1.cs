@@ -82,7 +82,10 @@ namespace ProCP
 
             PrimarySecurityChart.LegendLocation = LegendLocation.Right;
 
-
+            //pie chart
+            pieChartBagsSecurity.Series.Add(new PieSeries() { Title = "Succeeded", Values = new ChartValues<int> {30 }, DataLabels = true });
+            pieChartBagsSecurity.Series.Add(new PieSeries() { Title = "Failed", Values = new ChartValues<int> { 20 }, DataLabels = true });
+            pieChartBagsSecurity.LegendLocation = LegendLocation.Right;
 
             //adding series will update and animate the chart automatically
             //also adding values updates and animates the chart automatically
@@ -127,17 +130,18 @@ namespace ProCP
             //pie chart
             pieChartBagsSecurity.Series.Add(new PieSeries() { Title = "Succeeded", Values = new ChartValues<int> { data.BagsSucceededPsc.Count }, DataLabels = true });
             pieChartBagsSecurity.Series.Add(new PieSeries() { Title = "Failed", Values = new ChartValues<int> { data.BagsFailedPsc.Count }, DataLabels = true });
+            pieChartBagsSecurity.LegendLocation = LegendLocation.Right;
 
             //column chart
             foreach (var flight in data.BagsPerFlight)
             {
-                PrimarySecurityChart.Series.Add(new ColumnSeries() { Title = flight.Key, Values = new ChartValues<int> { flight.Value }} );
+                PrimarySecurityChart.Series.Add(new ColumnSeries() { Title ="Flight number " + flight.Key, Values = new ChartValues<int> { flight.Value }} );
             }
 
             //cartesian chart
             foreach (var flight in data.ElapsedTimesPerFlight)
             {
-                cartesianChart1.Series.Add(new ColumnSeries() { Title = flight.Key, Values = new ChartValues<int> { int.Parse(flight.Value)} });
+                cartesianChart1.Series.Add(new ColumnSeries() { Title = "Flight number " + flight.Key, Values = new ChartValues<int> { int.Parse(flight.Value)} });
             }
         }
 

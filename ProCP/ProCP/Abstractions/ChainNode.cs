@@ -16,7 +16,7 @@ namespace ProCP.Abstractions
         public string NodeId { get; set; }
         public Action OnNodeStatusChangedToFree { get; set; }
         public ITimerTracker TimerService { get; set; }
-        public virtual NodeStatus NodeNodeStatus
+        public virtual NodeStatus NodeStatus
         {
             get
             {

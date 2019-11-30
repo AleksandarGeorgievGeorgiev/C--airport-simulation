@@ -34,7 +34,7 @@ namespace ProCP.Abstractions
 
         public override void PassBaggage(IBaggage b)
         {
-            NodeNodeStatus = NodeStatus.Busy;
+            NodeStatus = NodeStatus.Busy;
             currentBag = b;
 
             if (b.TransportationStartTime != null)
@@ -49,12 +49,12 @@ namespace ProCP.Abstractions
             ProcessInternal(b);
         }
 
-        public void ProcessInternal(IBaggage b)
+        private void ProcessInternal(IBaggage b)
         {
             Process(b);
             if (currentBag == null) 
             {
-                NodeNodeStatus = NodeStatus.Free;
+                NodeStatus = NodeStatus.Free;
                 return;
             }
             NextNode = nextNodes.FirstOrDefault(n => n.Destination == b.Destination);
@@ -64,13 +64,13 @@ namespace ProCP.Abstractions
 
         private void Move()
         {
-            if (NextNode.NodeNodeStatus == NodeStatus.Free && currentBag != null)
+            if (NextNode.NodeStatus == NodeStatus.Free && currentBag != null)
             {
                 NextNode.OnNodeStatusChangedToFree -= Move;
                 NextNode.PassBaggage(currentBag);
-                NodeNodeStatus = NodeStatus.Free;
+                NodeStatus = NodeStatus.Free;
             }
-            else if (NextNode.NodeNodeStatus == NodeStatus.Busy)
+            else if (NextNode.NodeStatus == NodeStatus.Busy)
             {
                 NextNode.OnNodeStatusChangedToFree += Move;
             }

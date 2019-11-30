@@ -39,7 +39,7 @@ namespace ProCP
             var Mda = _nodeCreationService.CreateMda();
             var conveyorToDropOff = _nodeCreationService.CreateConveyorOneToOne(15);
             var dropOff1 = _nodeCreationService.CreateDropoff();
-            dropOff1.AssighFlight(_settings.Flights.Find(f => f.FlightNumber == "1234"));
+            dropOff1.AssignFlight(_settings.Flights.Find(f => f.FlightNumber == "1234"));
 
             //line B
             var checkIn2 = _nodeCreationService.CreateCheckinDesk();
@@ -49,7 +49,7 @@ namespace ProCP
             var conveyorSecurityToMda2 = _nodeCreationService.CreateConveyorOneToOne(8);
             var conveyorToDropOff2 = _nodeCreationService.CreateConveyorOneToOne(5);
             var dropOff2 = _nodeCreationService.CreateDropoff();
-            dropOff2.AssighFlight(_settings.Flights.Find(f => f.FlightNumber == "34353"));
+            dropOff2.AssignFlight(_settings.Flights.Find(f => f.FlightNumber == "34353"));
 
 
             //connect nodes

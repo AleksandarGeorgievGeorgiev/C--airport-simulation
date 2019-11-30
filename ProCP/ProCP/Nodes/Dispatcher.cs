@@ -31,10 +31,7 @@ namespace ProCP.Nodes
 
         public void SetCheckIns(IChainNode node)
         {
-
             checkins.Add((CheckInDesk)node);
-
-
             SetupCheckinQueues();
         }
 
@@ -102,7 +99,7 @@ namespace ProCP.Nodes
             baggage.TransportationStartTime = TimerService.GetTicksSinceSimulationStart();
             baggage.TransporterId = "Queue CheckIn";
 
-            if (checkIn.NodeNodeStatus == NodeStatus.Free)
+            if (checkIn.NodeStatus == NodeStatus.Free)
             {
                 checkIn.PassBaggage(baggage);
                 if (OnNodeStatusChangedToFree != null)
@@ -138,7 +135,7 @@ namespace ProCP.Nodes
             {
                 if (checkins.ElementAt(checkIn).Flight.FlightNumber == baggage.Flight.FlightNumber)
                 {
-                    if (checkins.ElementAt(checkIn).NodeNodeStatus == NodeStatus.Free)
+                    if (checkins.ElementAt(checkIn).NodeStatus == NodeStatus.Free)
                     {
                         chosenIndex = checkIn;
                         return chosenIndex;
