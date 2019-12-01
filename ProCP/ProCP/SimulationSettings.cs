@@ -11,7 +11,7 @@ namespace ProCP
     public class SimulationSettings: ISimulationSettings
     {
         public PrimarySecuritySettings Ps { get; set; }
-        public List<IFlight> Flights { get; set; }
+        public List<Flight> Flights { get; set; }
         public ConveyorSettings Cs { get; set; }
         public DropOffSettings DropOffSettings { get; set; }
 
@@ -20,7 +20,7 @@ namespace ProCP
             DropOffSettings = new DropOffSettings();
             Cs = new ConveyorSettings();
             Ps = new PrimarySecuritySettings();
-            Flights = new List<IFlight>();
+            Flights = new List<Flight>();
         }
     }
 

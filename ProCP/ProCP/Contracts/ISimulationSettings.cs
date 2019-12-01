@@ -11,8 +11,8 @@ namespace ProCP.Contracts
     {
         PrimarySecuritySettings Ps { get; set; }
         ConveyorSettings Cs { get; set; }
-         DropOffSettings DropOffSettings { get; set; }
-        List<IFlight> Flights { get; set; }
+        DropOffSettings DropOffSettings { get; set; }
+        List<Flight> Flights { get; set; }
     }
 
     public interface IPrimarySecuritySettings
