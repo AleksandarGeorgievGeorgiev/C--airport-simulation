@@ -117,6 +117,7 @@
     <Compile Include="Services\StatisticsData.cs" />
     <Compile Include="Services\TimerTracker.cs" />
     <Compile Include="SimulationSettings.cs" />
+    <Compile Include="Visuals\BuildType.cs" />
     <Compile Include="Visuals\CheckInTile.cs" />
     <Compile Include="Visuals\ConveyorTIle.cs" />
     <Compile Include="Visuals\DropOffTile.cs" />
