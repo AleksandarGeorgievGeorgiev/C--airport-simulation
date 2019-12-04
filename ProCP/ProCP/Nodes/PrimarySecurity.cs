@@ -20,6 +20,9 @@ namespace ProCP.Nodes
         {
             _psSettings = settings;
             _randomGen = new Random();
+            /*_percetange = settings.PercentageFailedBags;
+            _timer = timer;*/
+            this.currentBag = null;
         }
 
         //TODO: we can prompt the user to enter a failure percetange for the securities 
@@ -36,7 +39,9 @@ namespace ProCP.Nodes
 
             if (!isFail)
             {
-                b.Destination = typeof(Mda).Name;
+                //b.Destination = typeof(Mda).Name;
+                b.Destination = typeof(SecondSecurity).Name;
+                return;
             }
             else
             {

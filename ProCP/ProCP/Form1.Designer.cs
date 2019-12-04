@@ -408,6 +408,7 @@
             this.btnSecurity.TabIndex = 4;
             this.btnSecurity.Text = "Security Block";
             this.btnSecurity.UseVisualStyleBackColor = true;
+            this.btnSecurity.Click += new System.EventHandler(this.btnSecurity_Click);
             // 
             // btnConveyor
             // 
@@ -419,6 +420,7 @@
             this.btnConveyor.TabIndex = 3;
             this.btnConveyor.Text = "Conveyor";
             this.btnConveyor.UseVisualStyleBackColor = true;
+            this.btnConveyor.Click += new System.EventHandler(this.btnConveyor_Click);
             // 
             // btnDropoff
             // 
@@ -430,6 +432,7 @@
             this.btnDropoff.TabIndex = 2;
             this.btnDropoff.Text = "Drop-off";
             this.btnDropoff.UseVisualStyleBackColor = true;
+            this.btnDropoff.Click += new System.EventHandler(this.btnDropoff_Click);
             // 
             // btnMain
             // 
@@ -441,6 +444,7 @@
             this.btnMain.TabIndex = 1;
             this.btnMain.Text = "Main Process Area";
             this.btnMain.UseVisualStyleBackColor = true;
+            this.btnMain.Click += new System.EventHandler(this.btnMain_Click);
             // 
             // btnCheckin
             // 
@@ -452,6 +456,7 @@
             this.btnCheckin.TabIndex = 0;
             this.btnCheckin.Text = "Check-in ";
             this.btnCheckin.UseVisualStyleBackColor = true;
+            this.btnCheckin.Click += new System.EventHandler(this.btnCheckin_Click);
             // 
             // tabControl1
             // 
@@ -486,6 +491,7 @@
             this.animationBox.TabIndex = 0;
             this.animationBox.TabStop = false;
             this.animationBox.Paint += new System.Windows.Forms.PaintEventHandler(this.animationBox_Paint_1);
+            this.animationBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.animationBox_MouseDown);
             // 
             // tabPage3
             // 
@@ -507,7 +513,6 @@
             this.generalStatsTable.ReadOnly = true;
             this.generalStatsTable.RowHeadersWidth = 51;
             this.generalStatsTable.RowTemplate.Height = 24;
-            this.generalStatsTable.Size = new System.Drawing.Size(240, 150);
             this.generalStatsTable.RowTemplate.ReadOnly = true;
             this.generalStatsTable.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.generalStatsTable.Size = new System.Drawing.Size(653, 65);

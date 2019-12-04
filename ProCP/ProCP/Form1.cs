@@ -25,7 +25,8 @@ namespace ProCP
         private SimulationSettings _simulationSettings;
         private Timer _timer;
         private StatisticsData dataStats = new StatisticsData();
-        Grid theGrid;
+        private Grid _grid;
+        BuildType buildType;
         public Form1()
         {
             InitializeComponent();
@@ -34,7 +35,7 @@ namespace ProCP
             _timer = new System.Windows.Forms.Timer();
             _timer.Tick += _timer_Tick;
             _timer.Interval = 5000;
-            theGrid = new Grid(animationBox.Width, animationBox.Height);
+            _grid = new Grid(animationBox.Width, animationBox.Height);
             //create flight
             var flight = new Flight()
             {
@@ -176,7 +177,79 @@ namespace ProCP
 
         private void animationBox_Paint_1(object sender, PaintEventArgs e)
         {
-            theGrid.DrawGrid(e);
+            _grid.DrawGrid(e);
+        }
+
+        //inform about drawing component fail or not
+        public void DrawAndConnectComponentHelper(GridTile t, GridTile selectedTile)
+        {
+            if(!this._grid.DrawAComponent(t, selectedTile))
+            {
+                MessageBox.Show("Cant draw a component here");
+            }
+            else
+            {
+                if(!this._grid.ConnectTile(t)) 
+                {
+                    MessageBox.Show("Cant connect");
+                }
+            }
+        }
+
+        private void animationBox_MouseDown(object sender, MouseEventArgs e)
+        {
+            //for drawing the checkins, drop-off, mda,...
+            GridTile t = this._grid.FindTileInPixelCoordinates(e.X, e.Y);
+            GridTile currentTile;
+            if(this.buildType == BuildType.CheckIn)
+            {
+                currentTile = new CheckInTile(t.Column, t.Row, this._grid.GetTileWidth(), this._grid.GetTileHeight());
+                this.DrawAndConnectComponentHelper(currentTile, t);
+            } 
+            else if(this.buildType == BuildType.Conveyor)
+            {
+                currentTile = new ConveyorTile(t.Column, t.Row, this._grid.GetTileWidth(), this._grid.GetTileHeight());
+                this.DrawAndConnectComponentHelper(currentTile, t); ;
+            }
+            else if(this.buildType == BuildType.Mda)
+            {
+                //mda later on
+            }
+            else if(this.buildType == BuildType.Security)
+            {
+                currentTile = new SecurityTile(t.Column, t.Row, this._grid.GetTileWidth(), this._grid.GetTileHeight());
+                this.DrawAndConnectComponentHelper(currentTile, t);
+            }
+            else if(this.buildType == BuildType.DropOff)
+            {
+                currentTile = new DropOffTile(t.Column, t.Row, this._grid.GetTileWidth(), this._grid.GetTileHeight());
+                this.DrawAndConnectComponentHelper(currentTile, t);
+            }
+        }
+
+        private void btnCheckin_Click(object sender, EventArgs e)
+        {
+            this.buildType = BuildType.CheckIn;
+        }
+
+        private void btnDropoff_Click(object sender, EventArgs e)
+        {
+            this.buildType = BuildType.DropOff;
+        }
+
+        private void btnConveyor_Click(object sender, EventArgs e)
+        {
+            this.buildType = BuildType.Conveyor;
+        }
+
+        private void btnSecurity_Click(object sender, EventArgs e)
+        {
+            this.buildType = BuildType.Security;
+        }
+
+        private void btnMain_Click(object sender, EventArgs e)
+        {
+            this.buildType = BuildType.Mda;
         }
     }
 }

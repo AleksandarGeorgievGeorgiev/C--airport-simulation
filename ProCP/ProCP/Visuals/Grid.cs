@@ -18,13 +18,12 @@ namespace ProCP.Visuals
         private int tileHeight;
         private int horizontalTileCount = 17;
         private int verticalTileCount = 12;
-        private float animatedBoxWidth;
-        private float animatedBoxHeight;
 
         int bottomRow;
         int topRow;
 
         public List<GridTile> gridTiles;
+        public List<GridTile> componentList;
 
 
 
@@ -43,9 +42,7 @@ namespace ProCP.Visuals
         public Grid(int animBoxW, int animBoxH)
         {
             gridTiles = new List<GridTile>();
-
-            this.animatedBoxHeight = animBoxH;
-            this.animatedBoxWidth = animBoxW;
+            this.componentList = new List<GridTile>();
 
             tileHeight = (int)(animBoxH - 1) / verticalTileCount;
             tileWidth = (int)(animBoxW - 1) / horizontalTileCount;
@@ -54,6 +51,9 @@ namespace ProCP.Visuals
 
             CreateGrid();
         }
+
+        public int GetTileWidth() { return this.tileWidth; }
+        public int GetTileHeight() { return this.tileHeight; }
 
         private void CreateGrid()
         {
@@ -74,32 +74,99 @@ namespace ProCP.Visuals
                 n.DrawTile(e, tileWidth, tileHeight);
             }
         }
-        //Drawing the check-in desk
-        public GridTile DrawCheckInDesk(GridTile toReplace, ChainNode nodeToReplace)
+
+        public GridTile FindTileInPixelCoordinates(float targetX, float targetY)
         {
-            CheckInTile newCheckInTile = new CheckInTile(toReplace.Column, toReplace.Row, tileWidth, tileHeight);
-            gridTiles.Remove(toReplace);
-            gridTiles.Add(newCheckInTile);
-            newCheckInTile.nodeInGrid = nodeToReplace;
-            return newCheckInTile;
+            GridTile foundTile = new EmptyTile(-1, -1, tileWidth, tileHeight);
+            foreach (GridTile n in gridTiles)
+            {
+                if ((n.Column * tileWidth) <= targetX && (n.Column * tileWidth) + tileWidth >= targetX && (n.Row * tileHeight) <= targetY && (n.Row * tileHeight) + tileHeight >= targetY)
+                {
+                    foundTile = n;
+                    break;
+                }
+            }
+            return foundTile;
         }
-        //Drawing the drop off
-        public GridTile DrawDroppOffTile(GridTile toReplace, ChainNode nodeToReplace)
+        public GridTile FindTileInRowColumnCoordinates(int targetColumn, int targetRow)
         {
-            DropOffTile newDropOffTile = new DropOffTile(toReplace.Column, toReplace.Row, tileWidth, tileHeight);
-            gridTiles.Remove(toReplace);
-            gridTiles.Add(newDropOffTile);
-            newDropOffTile.nodeInGrid = nodeToReplace;
-            return newDropOffTile;
+            GridTile foundTile = new EmptyTile(targetColumn, targetRow, tileWidth, tileHeight);
+            foreach (GridTile n in gridTiles)
+            {
+                if (n.Column == targetColumn && n.Row == targetRow)
+                {
+                    foundTile = n;
+                    return foundTile;
+                }
+            }
+            return foundTile;
         }
-        //Drawing the security desk
-        public GridTile DrawSecurityTile(GridTile toReplace, ChainNode nodeToReplace)
+
+        //my changes
+        public bool DrawAComponent(GridTile component, GridTile selectedTile)
         {
-            SecurityTile newSecurityTile = new SecurityTile(toReplace.Column, toReplace.Row, tileWidth, tileHeight);
-            gridTiles.Remove(toReplace);
-            gridTiles.Add(newSecurityTile);
-            newSecurityTile.nodeInGrid = nodeToReplace;
-            return newSecurityTile;
+            if(selectedTile is EmptyTile)
+            {
+                this.gridTiles.Remove(selectedTile);
+                this.gridTiles.Add(component);
+                if(component is CheckInTile)
+                {
+                    // send this list to the back-end, reason for sending only the checkins since it is the root so from that the back-end 
+                    // can retrieve all the node that connected to this check in and create nodes in the back-end accordingly => not necessary to send all the nodes(except the checkins)
+                    this.componentList.Add(component);
+                }
+                return true;
+            }
+            return false;
+        }
+        // find 4 tiles surround current tile
+        private List<GridTile> FindTilesFromCurrentLocation(GridTile current)
+        {
+            List<GridTile> temp = new List<GridTile>();
+            if(!(current is CheckInTile) && !(current is DropOffTile)) 
+            {
+                temp.Add(FindTileInRowColumnCoordinates(current.Column + 1, current.Row));
+                temp.Add(FindTileInRowColumnCoordinates(current.Column - 1, current.Row));
+                temp.Add(FindTileInRowColumnCoordinates(current.Column, current.Row - 1));
+                temp.Add(FindTileInRowColumnCoordinates(current.Column, current.Row + 1));
+            } 
+            else if(current is CheckInTile)
+            {
+                temp.Add(FindTileInRowColumnCoordinates(current.Column, current.Row + 1));
+            }
+            else
+            {
+                temp.Add(FindTileInRowColumnCoordinates(current.Column, current.Row - 1));
+            }
+            
+            return temp;
+        }
+
+        public bool ConnectTile(GridTile currentTile)
+        {
+            List<GridTile> tileList = this.FindTilesFromCurrentLocation(currentTile);
+            if(tileList.Count == 1)
+            {
+                if(!(tileList[0] is EmptyTile))
+                {
+                    tileList[0].SetNextTile(currentTile);
+                    currentTile.SetPreviousTile(tileList[0]);
+                    return true;
+                }
+            }
+            foreach(var tile in tileList)
+            {
+                if(!(tile is EmptyTile))
+                {
+                    if(tile.NextTile == null || tile.PreviousTile == null)
+                    {
+                        tile.SetNextTile(currentTile);
+                        currentTile.SetPreviousTile(tile);
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
     }
 }
