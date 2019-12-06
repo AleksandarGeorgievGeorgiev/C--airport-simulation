@@ -49,6 +49,7 @@ namespace ProCP.Services
             data.BagsFailedPsc = baggages.Where(bag => bag.Logs.Any(log => log.Description.Contains(LoggingConstants.PrimarySecurityCheckFailed))).ToList();
             data.BagsSucceededPsc = baggages.Where(bag => bag.Logs.Any(log => log.Description.Contains(LoggingConstants.PrimarySecurityCheckSucceeded))).ToList();
         }
+
         public static void AverageTimeCheckInDropOff(StatisticsData data, ConcurrentBag<Baggage> baggages)
         {
             List<long?> timeList = new List<long?>();
