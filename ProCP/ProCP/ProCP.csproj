@@ -125,6 +125,7 @@
     <Compile Include="Visuals\Grid.cs" />
     <Compile Include="Visuals\GridTile.cs" />
     <Compile Include="Visuals\MDATile.cs" />
+    <Compile Include="Visuals\MDATilePart.cs" />
     <Compile Include="Visuals\SecurityTile.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

@@ -207,6 +207,7 @@ namespace ProCP
                 //mda later on
                 currentTile = new MDATile(t.Column, t.Row, this._grid.GetTileWidth(), this._grid.GetTileHeight());
                 this.DrawAndConnectComponentHelper(currentTile, t);
+                this._grid.ConnectTile(currentTile);
             }
             else if(this.buildType == BuildType.Security)
             {

@@ -110,16 +110,24 @@ namespace ProCP.Visuals
         //my changes
         public bool DrawAComponent(GridTile component, GridTile selectedTile)
         {
+            GridTile replace;
             if(selectedTile is EmptyTile)
             {
-                if(component is MDATile)
+                if(component is MDATile m)
                 {
                     //replace empty tile with mda
                     // 2 row
                     for(int i = selectedTile.Row; i <= selectedTile.Row + 1; i++)
                     {
                         // 17 column
-                        
+                        for(int j = selectedTile.Column; j <= selectedTile.Column + 17; j++)
+                        {
+                            replace = FindTileInRowColumnCoordinates(j, i);
+                            this.gridTiles.Remove(replace);
+                            MDATilePart p = new MDATilePart(j, i, tileWidth, tileHeight, m);
+                            m.AddTilePart(p);
+                            this.gridTiles.Add(p);
+                        }
                     }
                 }
                 else
@@ -176,15 +184,24 @@ namespace ProCP.Visuals
             {
                 if(!(tile is EmptyTile))
                 {
-                    if(tile.NextTiles[0] == null || tile.PreviousTile == null)
+                    if(tile.NextTiles.Count == 0 || tile.PreviousTile == null)
                     {
                         tile.SetNextTile(currentTile);
                         currentTile.SetPreviousTile(tile);
-                        return true;
+                    }
+                    if(tile is MDATilePart p)
+                    {
+                        this.ConnectMda(currentTile, p);
                     }
                 }
             }
             return false;
+        }
+
+        public void ConnectMda(GridTile current, MDATilePart tilePart)
+        {
+            current.SetNextTile(tilePart.GetMainTile());
+            tilePart.GetMainTile().SetPreviousTile(current);
         }
     }
 }

@@ -7,12 +7,19 @@ using System.Drawing;
 
 namespace ProCP.Visuals
 {
-    class MDATile: GridTile
+    public class MDATile: GridTile
     {
-        
-        public MDATile(int column, int row, int tileWidth, int tileHeight) : base(column, row, tileWidth, tileHeight)
-        {
+        List<MDATilePart> tileParts = new List<MDATilePart>();
+        public MDATile(int column, int row, int tileWidth, int tileHeight) : base(column, row, tileWidth, tileHeight) { }
 
+        public List<MDATilePart> GetTileParts()
+        {
+            return this.tileParts;
+        }
+
+        public void AddTilePart(MDATilePart t)
+        {
+            this.tileParts.Add(t);
         }
     }
 }

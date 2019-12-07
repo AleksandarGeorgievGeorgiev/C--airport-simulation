@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace ProCP.Visuals
 {
-    class MDATilePart: GridTile
+    public class MDATilePart: GridTile
     {
-        MDATile mainMDATile;
-        public MDATilePart(int column, int row, int tileWidth, int tileHeight, MDATile mainMDATile): base(column, row, tileWidth, tileHeight)
+        MDATile mainTile;
+        public MDATilePart(int column, int row, int tileWidth, int tileHeight, MDATile mainTile): base(column, row, tileWidth, tileHeight)
         {
 
             clickableColor = Brushes.Purple;
@@ -20,7 +20,12 @@ namespace ProCP.Visuals
             img = loadImage(imgpath, img, this.tileWidth, this.tileHeight);
 
             fillBrush = Brushes.Purple;
-            this.mainMDATile = mainMDATile;
+            this.mainTile = mainTile;
+        }
+
+        public MDATile GetMainTile()
+        {
+            return this.mainTile;
         }
     }
 }
