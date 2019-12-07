@@ -183,13 +183,6 @@ namespace ProCP
             {
                 MessageBox.Show("Cant draw a component here");
             }
-            else
-            {
-                if(!this._grid.ConnectTile(t)) 
-                {
-                    MessageBox.Show("Cant connect");
-                }
-            }
         }
 
         private void animationBox_MouseDown(object sender, MouseEventArgs e)
@@ -201,26 +194,35 @@ namespace ProCP
             {
                 currentTile = new CheckInTile(t.Column, t.Row, this._grid.GetTileWidth(), this._grid.GetTileHeight());
                 this.DrawAndConnectComponentHelper(currentTile, t);
+                this._grid.ConnectTile(currentTile);
             } 
             else if(this.buildType == BuildType.Conveyor)
             {
                 currentTile = new ConveyorTile(t.Column, t.Row, this._grid.GetTileWidth(), this._grid.GetTileHeight());
-                this.DrawAndConnectComponentHelper(currentTile, t); ;
+                this.DrawAndConnectComponentHelper(currentTile, t);
+                this._grid.ConnectTile(currentTile);
             }
             else if(this.buildType == BuildType.Mda)
             {
                 //mda later on
+                currentTile = new MDATile(t.Column, t.Row, this._grid.GetTileWidth(), this._grid.GetTileHeight());
+                this.DrawAndConnectComponentHelper(currentTile, t);
             }
             else if(this.buildType == BuildType.Security)
             {
                 currentTile = new SecurityTile(t.Column, t.Row, this._grid.GetTileWidth(), this._grid.GetTileHeight());
                 this.DrawAndConnectComponentHelper(currentTile, t);
+                this._grid.ConnectTile(currentTile);
             }
             else if(this.buildType == BuildType.DropOff)
             {
                 currentTile = new DropOffTile(t.Column, t.Row, this._grid.GetTileWidth(), this._grid.GetTileHeight());
                 this.DrawAndConnectComponentHelper(currentTile, t);
+                this._grid.ConnectTile(currentTile);
             }
+
+            //redraw the grid
+            this.animationBox.Invalidate();
         }
 
         private void btnCheckin_Click(object sender, EventArgs e)
@@ -246,6 +248,11 @@ namespace ProCP
         private void btnMain_Click(object sender, EventArgs e)
         {
             this.buildType = BuildType.Mda;
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -13,8 +13,10 @@ namespace ProCP.Visuals
     
     public class GridTile
     {
-        private int column;
-        private int row;
+        protected int column;
+        protected int row;
+        protected int tileWidth;
+        protected int tileHeight;
 
         [NonSerialized]
         public Brush fillBrush;
@@ -26,7 +28,7 @@ namespace ProCP.Visuals
         public ChainNode nodeInGrid;
 
         protected GridTile previousTile;
-        protected GridTile nextTile;
+        protected List<GridTile> nextTiles;
 
         protected string imgpath;
         protected Image img;
@@ -43,35 +45,37 @@ namespace ProCP.Visuals
 
         static int nodeId = 0;
 
+        public int NodeId { get; private set; }
+
         public GridTile(int column, int row, int tileWidth, int tileHeight)
         {
             this.column = column;
             this.row = row;
-            arrowImgPath = "../../Resources/arrow.png";
+            this.tileWidth = tileWidth;
+            this.tileHeight = tileHeight;
+            arrowImgPath = "..\\Resources\\arrow.png";
             arrowImg = Image.FromFile(arrowImgPath);
-            this.nextTile = null;
             this.previousTile = null;
+            this.nextTiles = new List<GridTile>();
             nodeId++;
-        }
-
-        public int GetNodeId()
-        {
-            return nodeId;
-        }
-
-        public GridTile NextTile
-        {
-            get { return nextTile; }
+            this.NodeId = nodeId;
         }
 
         public void SetNextTile(GridTile nextTile)
         {
-            this.nextTile = nextTile;
+            this.nextTiles.Add(nextTile);
         }
 
         public void SetPreviousTile(GridTile previousTile)
         {
             this.previousTile = previousTile;
+        }
+
+        public List<GridTile> NextTiles => this.nextTiles;
+
+        public GridTile GetPreviousTile()
+        {
+            return this.previousTile; 
         }
 
         public GridTile PreviousTile { get { return this.previousTile; } }
@@ -98,7 +102,7 @@ namespace ProCP.Visuals
             RectangleF r = new RectangleF(column * tileWidth, row * tileHeight, tileWidth, tileHeight);
 
             DrawBackground(p, g, r, tileWidth, tileHeight);
-            DrawArrowNext(p, g, tileWidth, tileHeight);
+  //          DrawArrowNext(p, g, tileWidth, tileHeight);
             DrawBaggage(g, tileWidth, tileHeight);
             DrawTileInfo(g, r, tileHeight);
         }
@@ -117,33 +121,33 @@ namespace ProCP.Visuals
 
         public virtual void DrawArrowNext(Pen p, Graphics g, int tileWidth, int tileHeight)
         {
-            if (nextTile != null)
+            if (nextTiles[0] != null)
             {
                 int arrowWidth = tileWidth / 4;
                 int arrowHeight = tileHeight / 4;
 
                 int arrowX = column * tileWidth + tileWidth / 2 - arrowWidth / 2;
                 int arrowY = row * tileHeight + tileHeight / 2 - arrowHeight / 2;
-                if (nextTile.column < this.column)
+                if (nextTiles[0].column < this.column)
                 {
                     p = new Pen(Color.Red);
                     Rectangle r = new Rectangle(arrowX, arrowY, arrowWidth, arrowHeight);
                     g.DrawImage(arrowImg, r);
                 }
-                else if (nextTile.column > this.column)
+                else if (nextTiles[0].column > this.column)
                 {
                     p = new Pen(Color.Red);
                     Rectangle r = new Rectangle(arrowX, arrowY, arrowWidth, arrowHeight);
                     g.DrawImage(arrowImg, r);
                     
                 }
-                else if (nextTile.row < this.row)
+                else if (nextTiles[0].row < this.row)
                 {
                     p = new Pen(Color.Red);
                     Rectangle r = new Rectangle(arrowX, arrowY, arrowWidth, arrowHeight);
                     g.DrawImage(arrowImg, r);
                 }
-                else if (nextTile.row > this.row)
+                else if (nextTiles[0].row > this.row)
                 {
                     p = new Pen(Color.Red);
                     Rectangle r = new Rectangle(arrowX, arrowY, arrowWidth, arrowHeight);

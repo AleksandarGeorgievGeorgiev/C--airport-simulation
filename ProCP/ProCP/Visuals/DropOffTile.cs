@@ -19,17 +19,17 @@ namespace ProCP.Visuals
             clickableColor = Brushes.White;
             unclickableColour = Brushes.LightGray;
 
-            imgpath = "/../../Resources/luggage-cart.png";
+            imgpath = "../Resources/luggage-cart.png";
             img = loadImage(imgpath, img, tileWidth, tileHeight);
 
             fillBrush = clickableColor;
         }
         protected override void DrawTileInfo(Graphics g, RectangleF r, int tileHeight)
         {
-            Font stringFont = new Font("Ariel", tileHeight / 4, FontStyle.Bold, GraphicsUnit.Pixel);
+        /*    Font stringFont = new Font("Ariel", tileHeight / 4, FontStyle.Bold, GraphicsUnit.Pixel);
             DropOff c = nodeInGrid as DropOff;
             string gateID = Convert.ToString(c.NodeId);
-            g.DrawString("Gate: " + gateID, stringFont, Brushes.Black, r);
+            g.DrawString("Gate: " + gateID, stringFont, Brushes.Black, r);*/
         }
 
     }
