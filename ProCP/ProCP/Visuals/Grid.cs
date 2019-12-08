@@ -83,7 +83,7 @@ namespace ProCP.Visuals
                 if ((n.Column * tileWidth) <= targetX && (n.Column * tileWidth) + tileWidth >= targetX && (n.Row * tileHeight) <= targetY && (n.Row * tileHeight) + tileHeight >= targetY)
                 {
                     foundTile = n;
-                    break;
+                    return foundTile;
                 }
             }
             return foundTile;
@@ -158,7 +158,7 @@ namespace ProCP.Visuals
             {
                 if(!(tile is EmptyTile))
                 {
-                    if(tile.NextTile == null || tile.PreviousTile == null)
+                    if(tile.NextTiles == null || tile.PreviousTile == null)
                     {
                         tile.SetNextTile(currentTile);
                         currentTile.SetPreviousTile(tile);

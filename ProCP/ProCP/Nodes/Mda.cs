@@ -22,7 +22,7 @@ namespace ProCP.Nodes
 
         public override string Destination => this.GetType().Name;
 
-        public void AddNextNodes(IConveyorOneToOne node)
+        public void AddNextNodes(IChainNode node)
         {
             _listOfNextNode.Add(node.Destination, node);
             _transporterQueues.Add(node.Destination, new Queue<IBaggage>());

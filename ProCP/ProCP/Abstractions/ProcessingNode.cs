@@ -13,7 +13,7 @@ namespace ProCP.Abstractions
 {
     public abstract class ProcessingNode : ChainNode, IProcessingNode
     {
-        protected List<IChainNode> nextNodes;
+        protected IEnumerable<IChainNode> nextNodes;
         protected IBaggage currentBag;
 
         public ProcessingNode(string nodeId, ITimerTracker timer) : base(nodeId, timer)
@@ -22,9 +22,9 @@ namespace ProCP.Abstractions
         }
 
 
-        public void AddNextNode(IChainNode node)
+        public void AddNextNodes(IEnumerable<IChainNode> nodes)
         {
-            nextNodes.Add(node);
+            nextNodes = nodes;
         }
 
         public override string Destination => GetType().Name;

@@ -7,9 +7,8 @@ using ProCP.FlightAndBaggage;
 
 namespace ProCP.Contracts
 {
-    public interface IProcessingNode
+    public interface IProcessingNode : IMultiNextNode
     {
-        void AddNextNode(IChainNode node);
         void Process(IBaggage b);
     }
 }

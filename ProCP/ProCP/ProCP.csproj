@@ -68,9 +68,11 @@
     <Compile Include="Contracts\IConveyorOneToOne.cs" />
     <Compile Include="Contracts\IDispatcher.cs" />
     <Compile Include="Contracts\IDropOff.cs" />
+    <Compile Include="Contracts\IMultiNextNode.cs" />
     <Compile Include="Contracts\IPrimarySecurity.cs" />
     <Compile Include="Contracts\IMda.cs" />
     <Compile Include="Contracts\IProcessingNode.cs" />
+    <Compile Include="Contracts\ISingleNextNode.cs" />
     <Compile Include="Contracts\IStartStop.cs" />
     <Compile Include="Contracts\ITransportingNode.cs" />
     <Compile Include="Contracts\NodeStatus.cs" />
@@ -113,6 +115,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ITimerTracker.cs" />
     <Compile Include="Services\NodeCreationService.cs" />
+    <Compile Include="Services\NodesConnectorService.cs" />
     <Compile Include="Services\StatisticsCalculator.cs" />
     <Compile Include="Services\StatisticsData.cs" />
     <Compile Include="Services\TimerTracker.cs" />

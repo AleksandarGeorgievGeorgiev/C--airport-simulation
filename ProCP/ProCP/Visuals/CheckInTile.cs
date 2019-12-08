@@ -17,7 +17,7 @@ namespace ProCP.Visuals
             clickableColor = Brushes.White;
             unclickableColour = Brushes.LightGray;
 
-            imgpath = "/../../Resources/counter.png";
+            imgpath = "E:/Alexander/ProcpSecond/procp-airportsimulation/ProCP/ProCP/Resources/counter.png";
             img = loadImage(imgpath, img, tileWidth, tileHeight);
 
             fillBrush = clickableColor;

@@ -34,7 +34,7 @@ namespace ProCP.Abstractions
         public int Length => _length;
         public long MovingSpeed => _conveyorSettings.Speed;
 
-        public void SetNextNode(IChainNode node)
+        public void SetSingleNextNode(IChainNode node)
         {
             NextNode = node;
         }

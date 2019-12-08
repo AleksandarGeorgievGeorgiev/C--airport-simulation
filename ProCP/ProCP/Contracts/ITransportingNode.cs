@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace ProCP.Contracts
 {
-    public interface ITransportingNode: IChainNode
+    public interface ITransportingNode: IChainNode, ISingleNextNode
     {
         int Length { get; }
         long MovingSpeed { get; }
-        void SetNextNode(IChainNode node);
     }
 }

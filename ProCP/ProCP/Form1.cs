@@ -189,10 +189,10 @@ namespace ProCP
             }
             else
             {
-                if(!this._grid.ConnectTile(t)) 
-                {
-                    MessageBox.Show("Cant connect");
-                }
+                //if(!this._grid.ConnectTile(t)) 
+                //{
+                //    MessageBox.Show("Cant connect");
+                //}
             }
         }
 

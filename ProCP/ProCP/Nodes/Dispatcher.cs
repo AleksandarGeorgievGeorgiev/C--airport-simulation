@@ -29,10 +29,9 @@ namespace ProCP.Nodes
             SetupFlightTimers();
         }
 
-        public void SetCheckIns(IChainNode node)
+        public void SetCheckIns(List<ICheckInDesk> nodes)
         {
-            checkins.Add((CheckInDesk)node);
-            SetupCheckinQueues();
+            checkins = nodes;
         }
 
         private void SetupCheckinQueues()

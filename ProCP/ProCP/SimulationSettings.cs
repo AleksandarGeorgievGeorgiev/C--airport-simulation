@@ -1,5 +1,6 @@
 ﻿using ProCP.Contracts;
 using ProCP.FlightAndBaggage;
+using ProCP.Visuals;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,7 @@ namespace ProCP
         public List<Flight> Flights { get; set; }
         public ConveyorSettings Cs { get; set; }
         public DropOffSettings DropOffSettings { get; set; }
+        public List<GridTile> FrontNodes { get; set; }
 
         public SimulationSettings()
         {
