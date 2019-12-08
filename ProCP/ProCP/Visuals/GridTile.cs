@@ -13,8 +13,10 @@ namespace ProCP.Visuals
     
     public class GridTile
     {
-        private int column;
-        private int row;
+        protected int column;
+        protected int row;
+        protected int tileWidth;
+        protected int tileHeight;
 
         [NonSerialized]
         public Brush fillBrush;
@@ -43,23 +45,21 @@ namespace ProCP.Visuals
 
         static int nodeId = 0;
 
+        public int NodeId { get; private set; }
+
         public GridTile(int column, int row, int tileWidth, int tileHeight)
         {
             this.column = column;
             this.row = row;
-            arrowImgPath = "../../Resources/arrow.png";
+            this.tileWidth = tileWidth;
+            this.tileHeight = tileHeight;
+            arrowImgPath = "..\\Resources\\arrow.png";
             arrowImg = Image.FromFile(arrowImgPath);
-            this.nextTiles = new List<GridTile>();
             this.previousTile = null;
+            this.nextTiles = new List<GridTile>();
             nodeId++;
+            this.NodeId = nodeId;
         }
-
-        public int GetNodeId()
-        {
-            return nodeId;
-        }
-
-        public List<GridTile> NextTiles => this.nextTiles;
 
         public void SetNextTile(GridTile nextTile)
         {
@@ -69,6 +69,13 @@ namespace ProCP.Visuals
         public void SetPreviousTile(GridTile previousTile)
         {
             this.previousTile = previousTile;
+        }
+
+        public List<GridTile> NextTiles => this.nextTiles;
+
+        public GridTile GetPreviousTile()
+        {
+            return this.previousTile; 
         }
 
         public GridTile PreviousTile { get { return this.previousTile; } }
@@ -114,42 +121,42 @@ namespace ProCP.Visuals
             }
         }
 
-        //public virtual void DrawArrowNext(Pen p, Graphics g, int tileWidth, int tileHeight)
-        //{
-        //    if (nextTile != null)
-        //    {
-        //        int arrowWidth = tileWidth / 4;
-        //        int arrowHeight = tileHeight / 4;
+        public virtual void DrawArrowNext(Pen p, Graphics g, int tileWidth, int tileHeight)
+        {
+            if (nextTiles[0] != null)
+            {
+                int arrowWidth = tileWidth / 4;
+                int arrowHeight = tileHeight / 4;
 
-        //        int arrowX = column * tileWidth + tileWidth / 2 - arrowWidth / 2;
-        //        int arrowY = row * tileHeight + tileHeight / 2 - arrowHeight / 2;
-        //        if (nextTile.column < this.column)
-        //        {
-        //            p = new Pen(Color.Red);
-        //            Rectangle r = new Rectangle(arrowX, arrowY, arrowWidth, arrowHeight);
-        //            g.DrawImage(arrowImg, r);
-        //        }
-        //        else if (nextTile.column > this.column)
-        //        {
-        //            p = new Pen(Color.Red);
-        //            Rectangle r = new Rectangle(arrowX, arrowY, arrowWidth, arrowHeight);
-        //            g.DrawImage(arrowImg, r);
-
-        //        }
-        //        else if (nextTile.row < this.row)
-        //        {
-        //            p = new Pen(Color.Red);
-        //            Rectangle r = new Rectangle(arrowX, arrowY, arrowWidth, arrowHeight);
-        //            g.DrawImage(arrowImg, r);
-        //        }
-        //        else if (nextTile.row > this.row)
-        //        {
-        //            p = new Pen(Color.Red);
-        //            Rectangle r = new Rectangle(arrowX, arrowY, arrowWidth, arrowHeight);
-        //            g.DrawImage(arrowImg, r);
-        //        }
-        //    }
-        //}
+                int arrowX = column * tileWidth + tileWidth / 2 - arrowWidth / 2;
+                int arrowY = row * tileHeight + tileHeight / 2 - arrowHeight / 2;
+                if (nextTiles[0].column < this.column)
+                {
+                    p = new Pen(Color.Red);
+                    Rectangle r = new Rectangle(arrowX, arrowY, arrowWidth, arrowHeight);
+                    g.DrawImage(arrowImg, r);
+                }
+                else if (nextTiles[0].column > this.column)
+                {
+                    p = new Pen(Color.Red);
+                    Rectangle r = new Rectangle(arrowX, arrowY, arrowWidth, arrowHeight);
+                    g.DrawImage(arrowImg, r);
+                    
+                }
+                else if (nextTiles[0].row < this.row)
+                {
+                    p = new Pen(Color.Red);
+                    Rectangle r = new Rectangle(arrowX, arrowY, arrowWidth, arrowHeight);
+                    g.DrawImage(arrowImg, r);
+                }
+                else if (nextTiles[0].row > this.row)
+                {
+                    p = new Pen(Color.Red);
+                    Rectangle r = new Rectangle(arrowX, arrowY, arrowWidth, arrowHeight);
+                    g.DrawImage(arrowImg, r);
+                }
+            }
+        }
 
         public virtual void DrawBaggage(Graphics g, int tileWidth, int tileHeight)
         {

@@ -17,17 +17,19 @@ namespace ProCP.Visuals
             clickableColor = Brushes.White;
             unclickableColour = Brushes.LightGray;
 
-            imgpath = "E:/Alexander/ProcpSecond/procp-airportsimulation/ProCP/ProCP/Resources/counter.png";
+            imgpath = "../Resources/counter.png";
             img = loadImage(imgpath, img, tileWidth, tileHeight);
 
+            //img = Image.FromFile(imgpath);
+                
             fillBrush = clickableColor;
         }
         protected override void DrawTileInfo(Graphics g, RectangleF r, int tileHeight)
         {
-            Font stringFont = new Font("Ariel", tileHeight / 3, FontStyle.Bold, GraphicsUnit.Pixel);
+            /*Font stringFont = new Font("Ariel", tileHeight / 3, FontStyle.Bold, GraphicsUnit.Pixel);
             CheckInDesk c = nodeInGrid as CheckInDesk;
             string s = Convert.ToString(c.NodeId);
-            g.DrawString("ID " + s, stringFont, Brushes.Black, r);
+            g.DrawString("ID " + s, stringFont, Brushes.Black, r);*/
         }
     }
 }

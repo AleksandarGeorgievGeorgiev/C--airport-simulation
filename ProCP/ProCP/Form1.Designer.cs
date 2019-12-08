@@ -291,6 +291,7 @@
             this.btnAdd.TabIndex = 10;
             this.btnAdd.Text = "Add Flight ";
             this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // cmbDropOffPoint
             // 
