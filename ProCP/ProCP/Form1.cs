@@ -253,7 +253,35 @@ namespace ProCP
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            List<GridTile> temp = this._grid.CheckTheConnection();
+            foreach(var tile in temp)
+            {
+                var t = tile;
+                while(t != null)
+                {
+                    MessageBox.Show("current Id: " + t.NodeId + " Type: " + t.GetType().ToString() + " next node id: " + t.NextTiles[0].NodeId);
+                    t = t.NextTiles[0];
+                }
+            }
+        }
 
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            List<GridTile> temp = this._grid.CheckTheConnection();
+            foreach (var tile in temp)
+            {
+                var t = tile;
+                while (t != null)
+                {
+                    if(t is MDATile m)
+                    {
+                        //some problem in the constructor that might cause the mdatile to connect to itself
+                        MessageBox.Show(m.NextTiles.Count.ToString() + " type 1: " + m.NextTiles[0].GetType().ToString() + " type2: " + m.NextTiles[1].GetType().ToString());
+                        break;
+                    }
+                    t = t.NextTiles[0];
+                }
+            }
         }
     }
 }
