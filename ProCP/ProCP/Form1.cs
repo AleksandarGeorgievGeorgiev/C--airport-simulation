@@ -35,16 +35,16 @@ namespace ProCP
             _timer = new System.Windows.Forms.Timer();
             _timer.Tick += _timer_Tick;
             _timer.Interval = 5000;
-            _grid = new Grid(animationBox.Width, animationBox.Height);
+            _grid = new Grid(animationBox.Width, animationBox.Height, _simulationSettings);
             //create flight
-            var flight = new Flight()
-            {
-                BaggageCount = 20,
-                DipartureTime = new TimeSpan(5, 45, 00),
-                FlightNumber = "34353",
-            };
+            //var flight = new Flight()
+            //{
+            //    BaggageCount = 20,
+            //    DipartureTime = new TimeSpan(5, 45, 00),
+            //    FlightNumber = "34353",
+            //};
 
-            _simulationSettings.Flights.Add(flight);
+            //_simulationSettings.Flights.Add(flight);
             _simulationSettings.Flights.Add(new Flight()
             {
                 BaggageCount = 20,

@@ -30,18 +30,19 @@ namespace ProCP.Services
 
             foreach (var node in nodes ?? Enumerable.Empty<GridTile>())
             {
-                var existingNode = Nodes.FirstOrDefault(n => n.NodeId == node.GetNodeId().ToString());
+                var existingNode = Nodes.FirstOrDefault(n => n.NodeId == node.NodeId.ToString());
+                IChainNode currentNode = null;
 
                 if (existingNode == null)
                 {
-                    CreateNode(node);
+                    currentNode = CreateNode(node);
                 }
 
-                createdNodes.Add(existingNode);
+                createdNodes.Add(currentNode);
 
                 var chiledNodes = CreateNodes(node.NextTiles).ToList();
 
-                ConnectNodes(existingNode, chiledNodes);
+                ConnectNodes(currentNode, chiledNodes);
             }
 
             return createdNodes;
@@ -49,13 +50,6 @@ namespace ProCP.Services
 
         public void ConnectNodes(IChainNode node, List<IChainNode> nextNodes)
         {
-            if (node is IDispatcher dispatcher)
-            {
-                dispatcher.SetCheckIns(GetNodesOfType<ICheckInDesk>(nextNodes).ToList());
-            }
-            if (node is IDropOff dropOff)
-            {
-            }
             if (node is ISingleNextNode single)
             {
                 single.SetSingleNextNode(nextNodes.FirstOrDefault());
@@ -71,21 +65,28 @@ namespace ProCP.Services
             return nodes.OfType<T>();
         }
 
-        public void CreateNode(GridTile frontNode)
+        public IChainNode CreateNode(GridTile frontNode)
         {
             if (frontNode is CheckInTile)
-                CreateCheckinDesk(frontNode.GetNodeId());
+            {
+                return CreateCheckinDesk(frontNode.NodeId);
+            }
             if (frontNode is ConveyorTile)
-                CreateConveyorOneToOne(frontNode.GetNodeId(), frontNode.Length);
+            {
+                return CreateConveyorOneToOne(frontNode.NodeId, frontNode.Length);
+            }
             if (frontNode is SecurityTile)
-                CreatePrimarySecurity(frontNode.GetNodeId());
+            {
+                return CreatePrimarySecurity(frontNode.NodeId);
+            }
             if (frontNode is MDATile)
-                CreateMda(frontNode.GetNodeId());
+            {
+                return CreateMda(frontNode.NodeId);
+            }
             if (frontNode is DropOffTile)
-                CreateDropoff(frontNode.GetNodeId());
-            if (frontNode is CheckInTile)
-                CreateCheckinDesk(frontNode.GetNodeId());
-            else
+            {
+                return CreateDropoff(frontNode.NodeId);
+            }
                 throw new ArgumentException("Unsupported node type");
         }
 

@@ -24,7 +24,7 @@ namespace ProCP.Abstractions
 
         public void AddNextNodes(IEnumerable<IChainNode> nodes)
         {
-            nextNodes = nodes;
+            nextNodes = nodes.ToList();
         }
 
         public override string Destination => GetType().Name;

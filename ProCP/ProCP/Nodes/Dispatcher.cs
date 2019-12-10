@@ -32,6 +32,7 @@ namespace ProCP.Nodes
         public void SetCheckIns(List<ICheckInDesk> nodes)
         {
             checkins = nodes;
+            SetupCheckinQueues();
         }
 
         private void SetupCheckinQueues()

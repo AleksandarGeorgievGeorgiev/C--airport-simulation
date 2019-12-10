@@ -23,7 +23,7 @@ namespace ProCP.Visuals
         int topRow;
 
         public List<GridTile> gridTiles;
-        public List<GridTile> componentList;
+        private SimulationSettings _simulationSettings;
 
 
 
@@ -39,10 +39,10 @@ namespace ProCP.Visuals
         }
 
 
-        public Grid(int animBoxW, int animBoxH)
+        public Grid(int animBoxW, int animBoxH, SimulationSettings settings)
         {
             gridTiles = new List<GridTile>();
-            this.componentList = new List<GridTile>();
+            _simulationSettings = settings;
 
             tileHeight = (int)(animBoxH - 1) / verticalTileCount;
             tileWidth = (int)(animBoxW - 1) / horizontalTileCount;
@@ -54,11 +54,6 @@ namespace ProCP.Visuals
 
         public int GetTileWidth() { return this.tileWidth; }
         public int GetTileHeight() { return this.tileHeight; }
-
-        public List<GridTile> CheckTheConnection()
-        {
-            return this.componentList;
-        }
 
         private void CreateGrid()
         {
@@ -139,7 +134,7 @@ namespace ProCP.Visuals
                 {
                     // send this list to the back-end, reason for sending only the checkins since it is the root so from that the back-end 
                     // can retrieve all the node that connected to this check in and create nodes in the back-end accordingly => not necessary to send all the nodes(except the checkins)
-                    this.componentList.Add(component);
+                    _simulationSettings.FrontNodes.Add(component);
                 }
                 return true;
             }

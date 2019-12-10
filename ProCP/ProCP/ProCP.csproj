@@ -172,5 +172,6 @@
     <Content Include="Resources\trolley %281%29.png" />
     <Content Include="Resources\trolley.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

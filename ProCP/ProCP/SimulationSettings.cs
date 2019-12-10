@@ -23,6 +23,8 @@ namespace ProCP
             Cs = new ConveyorSettings();
             Ps = new PrimarySecuritySettings();
             Flights = new List<Flight>();
+            FrontNodes = new List<GridTile>();
+
         }
     }
 

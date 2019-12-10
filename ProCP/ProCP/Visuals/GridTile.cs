@@ -53,7 +53,7 @@ namespace ProCP.Visuals
             this.row = row;
             this.tileWidth = tileWidth;
             this.tileHeight = tileHeight;
-            arrowImgPath = "..\\Resources\\arrow.png";
+            arrowImgPath = "../../Resources/arrow.png";
             arrowImg = Image.FromFile(arrowImgPath);
             this.previousTile = null;
             this.nextTiles = new List<GridTile>();

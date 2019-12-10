@@ -19,7 +19,7 @@ namespace ProCP.Visuals
             clickableColor = Brushes.White;
             unclickableColour = Brushes.LightGray;
 
-            imgpath = "../Resources/luggage-cart.png";
+            imgpath = "../../Resources/luggage-cart.png";
             img = loadImage(imgpath, img, tileWidth, tileHeight);
 
             fillBrush = clickableColor;
