@@ -51,6 +51,8 @@ namespace ProCP.Visuals
         {
             this.column = column;
             this.row = row;
+            this.Column = column;
+            this.Row = row;
             this.tileWidth = tileWidth;
             this.tileHeight = tileHeight;
             arrowImgPath = "../../Resources/arrow.png";

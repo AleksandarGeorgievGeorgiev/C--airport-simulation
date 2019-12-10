@@ -108,20 +108,24 @@ namespace ProCP.Visuals
             GridTile replace;
             if(selectedTile is EmptyTile)
             {
-                if(component is MDATile m)
+                if(component is MDATile)
                 {
+                    MDATile m = (MDATile)component;
                     //replace empty tile with mda
                     // 2 row
-                    for(int i = selectedTile.Row; i <= selectedTile.Row + 1; i++)
+                    for (int i = selectedTile.Row; i <= selectedTile.Row + 1; i++)
                     {
                         // 17 column
-                        for(int j = selectedTile.Column; j <= selectedTile.Column + 17; j++)
+                        for(int j = selectedTile.Column; j < selectedTile.Column + 17; j++)
                         {
                             replace = FindTileInRowColumnCoordinates(j, i);
-                            this.gridTiles.Remove(replace);
-                            MDATilePart p = new MDATilePart(j, i, tileWidth, tileHeight, m);
-                            m.AddTilePart(p);
-                            this.gridTiles.Add(p);
+                            if(replace is EmptyTile)
+                            {
+                                this.gridTiles.Remove(replace);
+                                MDATilePart p = new MDATilePart(j, i, tileWidth, tileHeight, m);
+                                m.AddTilePart(p);
+                                this.gridTiles.Add(p);
+                            }
                         }
                     }
                 }
@@ -179,14 +183,18 @@ namespace ProCP.Visuals
             {
                 if(!(tile is EmptyTile))
                 {
-                    if(tile.NextTiles.Count == 0 || tile.PreviousTile == null)
+                    if (tile is MDATilePart p)
+                    {
+                        this.ConnectMda(currentTile, p);
+                        //temporary solution, somehow the mda tile keep adding 2 mda tile(adding its own) with 1 conveyor to its tileparts 
+                        //this temporary solution fix that problem but need to change it later on for efficiency
+                        p.GetMainTile().NextTiles.RemoveAll(x => x is MDATile);
+                        continue;
+                    }
+                    if (tile.NextTiles.Count == 0 || tile.PreviousTile == null)
                     {
                         tile.SetNextTile(currentTile);
                         currentTile.SetPreviousTile(tile);
-                    }
-                    if(tile is MDATilePart p)
-                    {
-                        this.ConnectMda(currentTile, p);
                     }
                 }
             }
@@ -195,8 +203,17 @@ namespace ProCP.Visuals
 
         public void ConnectMda(GridTile current, MDATilePart tilePart)
         {
-            current.SetNextTile(tilePart.GetMainTile());
-            tilePart.GetMainTile().SetPreviousTile(current);
+            //connect to the main MDA which is sent to the backend
+            //check if the conveyor is before or after the mda
+            if(current.Row < tilePart.Row)
+            {
+                current.SetNextTile(tilePart.GetMainTile());
+            }
+            else
+            {
+                current.SetPreviousTile(tilePart.GetMainTile());
+                tilePart.GetMainTile().SetNextTile(current);
+            }
         }
     }
 }

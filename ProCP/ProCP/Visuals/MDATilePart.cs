@@ -9,7 +9,7 @@ namespace ProCP.Visuals
 {
     public class MDATilePart: GridTile
     {
-        MDATile mainTile;
+        private MDATile _mainTile;
         public MDATilePart(int column, int row, int tileWidth, int tileHeight, MDATile mainTile): base(column, row, tileWidth, tileHeight)
         {
             clickableColor = Brushes.Purple;
@@ -19,12 +19,12 @@ namespace ProCP.Visuals
             img = loadImage(imgpath, img, this.tileWidth, this.tileHeight);
 
             fillBrush = Brushes.Purple;
-            this.mainTile = mainTile;
+            this._mainTile = mainTile;
         }
 
         public MDATile GetMainTile()
         {
-            return this.mainTile;
+            return this._mainTile;
         }
     }
 }
