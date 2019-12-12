@@ -50,13 +50,16 @@ namespace ProCP.Services
 
         public void ConnectNodes(IChainNode node, List<IChainNode> nextNodes)
         {
-            if (node is ISingleNextNode single)
+            foreach (var chainNode in nextNodes)
             {
-                single.SetSingleNextNode(nextNodes.FirstOrDefault());
-            }
-            else if (node is IMultiNextNode multi)
-            {
-                multi.AddNextNodes(nextNodes);
+                if (node is ISingleNextNode single)
+                {
+                    single.SetSingleNextNode(chainNode);
+                }
+                else if (node is IMultiNextNode multi)
+                {
+                    multi.AddNextNodes(chainNode);
+                }
             }
         }
 
@@ -87,7 +90,7 @@ namespace ProCP.Services
             {
                 return CreateDropoff(frontNode.NodeId);
             }
-                throw new ArgumentException("Unsupported node type");
+            throw new ArgumentException("Unsupported node type");
         }
 
         public void SetSimulationSettings(ISimulationSettings settings)

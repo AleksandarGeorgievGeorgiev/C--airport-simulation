@@ -253,7 +253,7 @@ namespace ProCP
         private void btnMain_Click(object sender, EventArgs e)
         {
             this.buildType = BuildType.Mda;
-        }
+        }   
 
         private void btnAdd_Click(object sender, EventArgs e)
         {

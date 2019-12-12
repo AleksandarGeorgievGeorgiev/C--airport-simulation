@@ -13,7 +13,7 @@ namespace ProCP.Abstractions
 {
     public abstract class ProcessingNode : ChainNode, IProcessingNode
     {
-        protected IEnumerable<IChainNode> nextNodes;
+        protected List<IChainNode> nextNodes;
         protected IBaggage currentBag;
 
         public ProcessingNode(string nodeId, ITimerTracker timer) : base(nodeId, timer)
@@ -22,9 +22,9 @@ namespace ProCP.Abstractions
         }
 
 
-        public void AddNextNodes(IEnumerable<IChainNode> nodes)
+        public void AddNextNodes(IChainNode node)
         {
-            nextNodes = nodes.ToList();
+            nextNodes.Add(node);
         }
 
         public override string Destination => GetType().Name;
@@ -64,7 +64,7 @@ namespace ProCP.Abstractions
 
         private void Move()
         {
-            if (NextNode.NodeStatus == NodeStatus.Free && currentBag != null)
+            if (currentBag != null && NextNode.NodeStatus == NodeStatus.Free)
             {
                 NextNode.OnNodeStatusChangedToFree -= Move;
                 NextNode.PassBaggage(currentBag);

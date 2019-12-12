@@ -8,6 +8,6 @@ namespace ProCP.Contracts
 {
     public interface IMultiNextNode
     {
-        void AddNextNodes(IEnumerable<IChainNode> node);
+        void AddNextNodes(IChainNode node);
     }
 }

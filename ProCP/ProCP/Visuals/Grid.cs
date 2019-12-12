@@ -66,6 +66,12 @@ namespace ProCP.Visuals
             }
         }
 
+        public List<GridTile> CheckTheConnection()
+        {
+            return this._simulationSettings.FrontNodes;
+        }
+
+
         public void DrawGrid(PaintEventArgs e)
         {
             Graphics g = e.Graphics;

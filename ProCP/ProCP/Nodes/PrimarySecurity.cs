@@ -36,11 +36,12 @@ namespace ProCP.Nodes
 
             if (!isFail)
             {
-                b.Destination = typeof(SecondSecurity).Name;
+                b.Destination = typeof(Mda).Name;
             }
             else
             {
-                b.Destination = typeof(Mda).Name;
+                bagsTaken.Add(b);
+                currentBag = null;
             }
         }
     }

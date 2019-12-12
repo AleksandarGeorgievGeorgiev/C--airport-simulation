@@ -27,7 +27,6 @@ namespace ProCP.Nodes
             _listOfNextNode.Add(node.Destination, node);
             _transporterQueues.Add(node.Destination, new Queue<IBaggage>());
 
-
             Task.Run(() =>
             {
                 DistributeBaggage(node.Destination);
