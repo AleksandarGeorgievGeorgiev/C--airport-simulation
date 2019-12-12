@@ -107,6 +107,16 @@ namespace ProCP.Visuals
             return foundTile;
         }
 
+        //hide all rows
+        public bool HideAllRowsButOne(GridTile component, int visibleRow)
+        {
+            if(component.Row != visibleRow)
+            {
+                return false;
+            }
+            return true;
+        }
+
         //my changes
         public bool DrawAComponent(GridTile component, GridTile selectedTile)
         {
@@ -121,8 +131,13 @@ namespace ProCP.Visuals
                     for (int i = selectedTile.Row; i <= selectedTile.Row + 1; i++)
                     {
                         // 17 column
+                        if(selectedTile.Column != 0)
+                        {
+                            selectedTile.Column = 0;
+                        }
                         for(int j = selectedTile.Column; j < selectedTile.Column + 17; j++)
                         {
+
                             replace = FindTileInRowColumnCoordinates(j, i);
                             if(replace is EmptyTile)
                             {
@@ -136,6 +151,20 @@ namespace ProCP.Visuals
                 }
                 else
                 {
+                    if(component is CheckInTile)
+                    {
+                        if(!this.HideAllRowsButOne(component, 0))
+                        {
+                            return false;
+                        }
+                    }
+                    else if(component is DropOffTile)
+                    {
+                        if(!this.HideAllRowsButOne(component, 11))
+                        {
+                            return false;
+                        }
+                    }
                     this.gridTiles.Remove(selectedTile);
                     this.gridTiles.Add(component);
                 }
@@ -204,6 +233,41 @@ namespace ProCP.Visuals
                 }
             }
             return false;
+        }
+
+        public bool ConnectingComponentValidaion(GridTile current, GridTile selectedTile)
+        {
+            GridTile check;
+            List<GridTile> temp;
+            if(current is CheckInTile)
+            {
+                check = this.gridTiles.Find(x => x.Row == current.Row + 1);
+                if(!(check is ConveyorTile || check is EmptyTile))
+                {
+                    return false;
+                }
+            }
+            else if(current is SecurityTile)
+            {
+                temp = this.FindTilesFromCurrentLocation(current);
+                foreach(var t in temp)
+                {
+                    if(!(t is ConveyorTile || t is EmptyTile))
+                    {
+                        return false;
+                    }
+                }
+            }
+            else if(current is DropOffTile)
+            {
+                check = this.gridTiles.Find(x => x.Row == current.Row - 1);
+                if (!(check is ConveyorTile || check is EmptyTile))
+                {
+                    return false;
+                }
+            }
+            this.DrawAComponent(current, selectedTile);
+            return true;
         }
 
         public void ConnectMda(GridTile current, MDATilePart tilePart)
