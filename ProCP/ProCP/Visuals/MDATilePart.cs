@@ -15,7 +15,7 @@ namespace ProCP.Visuals
             clickableColor = Brushes.Purple;
             unclickableColour = Brushes.MediumPurple;
 
-            imgpath = "../../Resources/loader.png";
+            imgpath = "../../Resources/Mda.png";
             img = loadImage(imgpath, img, this.tileWidth, this.tileHeight);
 
             fillBrush = Brushes.Purple;

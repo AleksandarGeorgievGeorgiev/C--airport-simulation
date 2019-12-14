@@ -36,6 +36,10 @@ namespace ProCP
             _timer.Tick += _timer_Tick;
             _timer.Interval = 5000;
             _grid = new Grid(animationBox.Width, animationBox.Height, _simulationSettings);
+            gbFlightInfo.Visible = false;
+            gbSettings.Visible = false;
+            MapImportExportgroupBox.Visible = false;
+            gbStartStop.Visible = false;
             //create flight
             //var flight = new Flight()
             //{
@@ -93,6 +97,12 @@ namespace ProCP
             //primariySecurityChart.Series[1].Values.Add(12d);
 
             SetupGeneralStatsTable();
+
+            ///Mda has to be created first
+            btnCheckin.Enabled = false;
+            btnDropoff.Enabled = false;
+            btnConveyor.Enabled = false;
+            btnSecurity.Enabled = false;
         }
 
         private void _timer_Tick(object sender, EventArgs e)
@@ -183,10 +193,12 @@ namespace ProCP
         //inform about drawing component fail or not
         public void DrawAndConnectComponentHelper(GridTile t, GridTile selectedTile)
         {
-            if(!this._grid.DrawAComponent(t, selectedTile))
+            if(!this._grid.ConnectingComponentValidaion(t, selectedTile))
             {
                 MessageBox.Show("Cant draw a component here");
+                return;
             }
+            this._grid.ConnectTile(t);
         }
 
         private void animationBox_MouseDown(object sender, MouseEventArgs e)
@@ -198,32 +210,32 @@ namespace ProCP
             {
                 currentTile = new CheckInTile(t.Column, t.Row, this._grid.GetTileWidth(), this._grid.GetTileHeight());
                 this.DrawAndConnectComponentHelper(currentTile, t);
-                this._grid.ConnectTile(currentTile);
             } 
             else if(this.buildType == BuildType.Conveyor)
             {
                 currentTile = new ConveyorTile(t.Column, t.Row, this._grid.GetTileWidth(), this._grid.GetTileHeight());
                 this.DrawAndConnectComponentHelper(currentTile, t);
-                this._grid.ConnectTile(currentTile);
             }
             else if(this.buildType == BuildType.Mda)
             {
                 //mda later on
                 currentTile = new MDATile(t.Column, t.Row, this._grid.GetTileWidth(), this._grid.GetTileHeight());
                 this.DrawAndConnectComponentHelper(currentTile, t);
-                this._grid.ConnectTile(currentTile);
+                //enable other component
+                btnCheckin.Enabled = true;
+                btnConveyor.Enabled = true;
+                btnDropoff.Enabled = true;
+                btnSecurity.Enabled = true;
             }
             else if(this.buildType == BuildType.Security)
             {
                 currentTile = new SecurityTile(t.Column, t.Row, this._grid.GetTileWidth(), this._grid.GetTileHeight());
                 this.DrawAndConnectComponentHelper(currentTile, t);
-                this._grid.ConnectTile(currentTile);
             }
             else if(this.buildType == BuildType.DropOff)
             {
                 currentTile = new DropOffTile(t.Column, t.Row, this._grid.GetTileWidth(), this._grid.GetTileHeight());
                 this.DrawAndConnectComponentHelper(currentTile, t);
-                this._grid.ConnectTile(currentTile);
             }
 
             //redraw the grid
@@ -257,16 +269,21 @@ namespace ProCP
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            List<GridTile> temp = this._grid.CheckTheConnection();
-            foreach(var tile in temp)
-            {
-                var t = tile;
-                while(t != null)
-                {
-                    MessageBox.Show("current Id: " + t.NodeId + " Type: " + t.GetType().ToString() + " next node id: " + t.NextTiles[0].NodeId);
-                    t = t.NextTiles[0];
-                }
-            }
+            // if the number of currently made flights is bigger than the number of currently created checkins just return and show a message 
+            // else create flights
+
+
+
+            //List<GridTile> temp = this._grid.CheckTheConnection();
+            //foreach(var tile in temp)
+            //{
+            //    var t = tile;
+            //    while(t != null)
+            //    {
+            //        MessageBox.Show("current Id: " + t.NodeId + " Type: " + t.GetType().ToString() + " next node id: " + t.NextTiles[0].NodeId);
+            //        t = t.NextTiles[0];
+            //    }
+            //}
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
