@@ -351,5 +351,10 @@ namespace ProCP
             //    }
             //}
         }
+
+        private void cartesianChart1_ChildChanged(object sender, System.Windows.Forms.Integration.ChildChangedEventArgs e)
+        {
+
+        }
     }
 }
