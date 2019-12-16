@@ -1,5 +1,6 @@
 ﻿using ProCP.Abstractions;
 using ProCP.Contracts;
+using ProCP.FlightAndBaggage;
 using ProCP.Nodes;
 using ProCP.Visuals;
 using System;
@@ -31,18 +32,16 @@ namespace ProCP.Services
             foreach (var node in nodes ?? Enumerable.Empty<GridTile>())
             {
                 var existingNode = Nodes.FirstOrDefault(n => n.NodeId == node.NodeId.ToString());
-                IChainNode currentNode = null;
 
                 if (existingNode == null)
                 {
-                    currentNode = CreateNode(node);
+                    existingNode = CreateNode(node);
                 }
 
-                createdNodes.Add(currentNode);
+                createdNodes.Add(existingNode);
 
                 var chiledNodes = CreateNodes(node.NextTiles).ToList();
-
-                ConnectNodes(currentNode, chiledNodes);
+                ConnectNodes(existingNode, chiledNodes);
             }
 
             return createdNodes;
@@ -102,6 +101,21 @@ namespace ProCP.Services
             ValidateSettings();
             var checkin = new CheckInDesk(nodeId.ToString(), _timerService);
             Nodes.Add(checkin);
+            var sortedFlights = _settings.Flights.OrderBy(f => f.DipartureTime);
+            foreach (var flight in sortedFlights)
+            {
+                if (checkin.Flight != null)
+                {
+                    continue;
+                }
+                if (flight.HasCheckin == true)
+                {
+                    continue;
+                }
+                checkin.AssignFlight(flight);
+                flight.HasCheckin = true;
+            }
+
             return checkin;
         }
         public IPrimarySecurity CreatePrimarySecurity(int nodeId)
@@ -137,6 +151,20 @@ namespace ProCP.Services
             ValidateSettings();
             var dropoff = new DropOff(nodeId.ToString(), _timerService, _settings.DropOffSettings);
             Nodes.Add(dropoff);
+            var sortedFlights = _settings.Flights.OrderBy(f => f.DipartureTime);
+            foreach (var flight in sortedFlights)
+            {
+                if (dropoff.Flight != null)
+                {
+                    continue;
+                }
+                if (flight.HasDropOff == true)
+                {
+                    continue;
+                }
+                dropoff.AssignFlight(flight);
+                flight.HasDropOff = true;
+            }
             return dropoff;
         }
 

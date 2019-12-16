@@ -24,6 +24,10 @@ namespace ProCP.Nodes
 
         public void AddNextNodes(IChainNode node)
         {
+            if (_listOfNextNode.ContainsKey(node.Destination))
+            {
+                return;
+            }
             _listOfNextNode.Add(node.Destination, node);
             _transporterQueues.Add(node.Destination, new Queue<IBaggage>());
 

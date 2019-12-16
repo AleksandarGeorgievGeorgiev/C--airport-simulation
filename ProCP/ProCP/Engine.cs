@@ -32,7 +32,6 @@ namespace ProCP
             //create nodes
             var dispatcher = _nodeCreationService.CreateCheckinDispatcher(Guid.NewGuid().ToString());
             var nodes = _nodeCreationService.CreateNodes(_settings.FrontNodes).ToList();
-            AssignFlightsToCheckInAndDropOff();
             dispatcher.SetCheckIns(NodeCreationService.Nodes.OfType<ICheckInDesk>().ToList());
             _startStopNodes = NodeCreationService.Nodes.OfType<IStartStop>().ToList();
 
@@ -41,17 +40,7 @@ namespace ProCP
             _startStopNodes.ForEach(n => n.Start());
         }
 
-        public void AssignFlightsToCheckInAndDropOff()
-        {
-            var sortedFlights = _settings.Flights.OrderBy(f => f.DipartureTime);
-            foreach (var flight in sortedFlights)
-            {
-                var freeCheckin = NodeCreationService.Nodes.OfType<ICheckInDesk>().FirstOrDefault(c => c.Flight is null);
-                freeCheckin.AssignFlight(flight);
-                var freeDropoff = NodeCreationService.Nodes.OfType<IDropOff>().FirstOrDefault(d => d.Flight is null);
-                freeDropoff.AssignFlight(flight);
-            }
-        }
+        
 
         public Func<StatisticsData> GetStatisticsCalculator() => () => StatisticsCalculator.CalculateStatistics();
     }

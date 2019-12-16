@@ -115,7 +115,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ITimerTracker.cs" />
     <Compile Include="Services\NodeCreationService.cs" />
-    <Compile Include="Services\NodesConnectorService.cs" />
     <Compile Include="Services\StatisticsCalculator.cs" />
     <Compile Include="Services\StatisticsData.cs" />
     <Compile Include="Services\TimerTracker.cs" />

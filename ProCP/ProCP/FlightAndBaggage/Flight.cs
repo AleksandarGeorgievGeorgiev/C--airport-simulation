@@ -11,7 +11,8 @@ namespace ProCP.FlightAndBaggage
         public TimeSpan DipartureTime { get; set; }
         public int BaggageCount { get; set; }
         public string FlightNumber { get; set; }
-        public string Gate { get; set; }
         public int DispatchedBaggageCount { get; set; } = 0;
+        public bool HasCheckin { get; set; } = false;
+        public bool HasDropOff { get; set; } = false;
     }
 }

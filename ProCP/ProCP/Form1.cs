@@ -49,12 +49,6 @@ namespace ProCP
             //};
 
             //_simulationSettings.Flights.Add(flight);
-            _simulationSettings.Flights.Add(new Flight()
-            {
-                BaggageCount = 20,
-                DipartureTime = new TimeSpan(5, 55, 00),
-                FlightNumber = "1234",
-            });
 
             //
             cartesianChart1.Series.Add(new ColumnSeries() { Title = "2132", Values = new ChartValues<int> { 20 } });
@@ -88,7 +82,7 @@ namespace ProCP
             PrimarySecurityChart.LegendLocation = LegendLocation.Right;
 
             //pie chart
-            pieChartBagsSecurity.Series.Add(new PieSeries() { Title = "Succeeded", Values = new ChartValues<int> {30 }, DataLabels = true });
+            pieChartBagsSecurity.Series.Add(new PieSeries() { Title = "Succeeded", Values = new ChartValues<int> { 30 }, DataLabels = true });
             pieChartBagsSecurity.Series.Add(new PieSeries() { Title = "Failed", Values = new ChartValues<int> { 20 }, DataLabels = true });
             pieChartBagsSecurity.LegendLocation = LegendLocation.Right;
 
@@ -121,7 +115,7 @@ namespace ProCP
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+
         }
 
 
@@ -146,13 +140,13 @@ namespace ProCP
             //column chart
             foreach (var flight in data.BagsPerFlight)
             {
-                PrimarySecurityChart.Series.Add(new ColumnSeries() { Title ="Flight number " + flight.Key, Values = new ChartValues<int> { flight.Value }} );
+                PrimarySecurityChart.Series.Add(new ColumnSeries() { Title = "Flight number " + flight.Key, Values = new ChartValues<int> { flight.Value } });
             }
 
             //cartesian chart
             foreach (var flight in data.ElapsedTimesPerFlight)
             {
-                cartesianChart1.Series.Add(new ColumnSeries() { Title = "Flight number " + flight.Key, Values = new ChartValues<int> { int.Parse(flight.Value)} });
+                cartesianChart1.Series.Add(new ColumnSeries() { Title = "Flight number " + flight.Key, Values = new ChartValues<int> { int.Parse(flight.Value) } });
             }
         }
 
@@ -178,7 +172,7 @@ namespace ProCP
         {
             generalStatsTable.Rows.Clear();
 
-            string[] row0 = { data.SimulationTimeElapsed, Baggage.AllBaggage.Count().ToString(), _simulationSettings.Flights.Count().ToString()};
+            string[] row0 = { data.SimulationTimeElapsed, Baggage.AllBaggage.Count().ToString(), _simulationSettings.Flights.Count().ToString() };
 
             generalStatsTable.Rows.Add(row0);
             generalStatsTable.Columns[0].DisplayIndex = 0;
@@ -193,7 +187,7 @@ namespace ProCP
         //inform about drawing component fail or not
         public void DrawAndConnectComponentHelper(GridTile t, GridTile selectedTile)
         {
-            if(!this._grid.ConnectingComponentValidaion(t, selectedTile))
+            if (!this._grid.ConnectingComponentValidaion(t, selectedTile))
             {
                 MessageBox.Show("Cant draw a component here");
                 return;
@@ -206,17 +200,17 @@ namespace ProCP
             //for drawing the checkins, drop-off, mda,...
             GridTile t = this._grid.FindTileInPixelCoordinates(e.X, e.Y);
             GridTile currentTile;
-            if(this.buildType == BuildType.CheckIn)
+            if (this.buildType == BuildType.CheckIn)
             {
                 currentTile = new CheckInTile(t.Column, t.Row, this._grid.GetTileWidth(), this._grid.GetTileHeight());
                 this.DrawAndConnectComponentHelper(currentTile, t);
-            } 
-            else if(this.buildType == BuildType.Conveyor)
+            }
+            else if (this.buildType == BuildType.Conveyor)
             {
                 currentTile = new ConveyorTile(t.Column, t.Row, this._grid.GetTileWidth(), this._grid.GetTileHeight());
                 this.DrawAndConnectComponentHelper(currentTile, t);
             }
-            else if(this.buildType == BuildType.Mda)
+            else if (this.buildType == BuildType.Mda)
             {
                 //mda later on
                 currentTile = new MDATile(t.Column, t.Row, this._grid.GetTileWidth(), this._grid.GetTileHeight());
@@ -227,15 +221,20 @@ namespace ProCP
                 btnDropoff.Enabled = true;
                 btnSecurity.Enabled = true;
             }
-            else if(this.buildType == BuildType.Security)
+            else if (this.buildType == BuildType.Security)
             {
                 currentTile = new SecurityTile(t.Column, t.Row, this._grid.GetTileWidth(), this._grid.GetTileHeight());
                 this.DrawAndConnectComponentHelper(currentTile, t);
             }
-            else if(this.buildType == BuildType.DropOff)
+            else if (this.buildType == BuildType.DropOff)
             {
                 currentTile = new DropOffTile(t.Column, t.Row, this._grid.GetTileWidth(), this._grid.GetTileHeight());
                 this.DrawAndConnectComponentHelper(currentTile, t);
+                if (currentTile.NextTiles != null)
+                {
+                    gbFlightInfo.Visible = true;
+                    MapImportExportgroupBox.Visible = true;
+                }
             }
 
             //redraw the grid
@@ -265,15 +264,44 @@ namespace ProCP
         private void btnMain_Click(object sender, EventArgs e)
         {
             this.buildType = BuildType.Mda;
-        }   
+        }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
             // if the number of currently made flights is bigger than the number of currently created checkins just return and show a message 
             // else create flights
 
+            var checkinTiles = _simulationSettings.FrontNodes.Where(n => n is CheckInTile);
 
+            var newFlight = new Flight()
+            {
+                BaggageCount = int.Parse(textBoxNumberOfBags.Text),
+                DipartureTime = new TimeSpan(departureTime.Value.Ticks),
+                FlightNumber = textBoxFlightNumber.Text,
+            };
 
+            if (_simulationSettings.Flights.Any(f => f.FlightNumber == newFlight.FlightNumber))
+            {
+                MessageBox.Show("This flight already exists");
+                return;
+            }
+
+            _simulationSettings.Flights.Add(newFlight);
+
+            if (checkinTiles.Count() < _simulationSettings.Flights.Count())
+            {
+                _simulationSettings.Flights.Remove(newFlight);
+                MessageBox.Show("You exceeded the number of flights. Create more checkins and dropoffs");
+                return;
+            }
+
+            lbFlights.Items.Add("Flight number: " + newFlight.FlightNumber.ToString());
+
+            if (_simulationSettings.Flights.Count() == 1)
+            {
+                gbSettings.Visible = true;
+                gbStartStop.Visible = true;
+            }
             //List<GridTile> temp = this._grid.CheckTheConnection();
             //foreach(var tile in temp)
             //{
@@ -288,21 +316,40 @@ namespace ProCP
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            List<GridTile> temp = this._grid.CheckTheConnection();
-            foreach (var tile in temp)
+            var selectedFlightNumber = lbFlights.SelectedItem.ToString().Split(' ')[2];
+            var flight = _simulationSettings.Flights.FirstOrDefault(f => f.FlightNumber == selectedFlightNumber);
+            if (selectedFlightNumber != null)
             {
-                var t = tile;
-                while (t != null)
+                lbFlights.Items.Remove(flight);
+                _simulationSettings.Flights.Remove(flight);
+
+                foreach (var existingflight in _simulationSettings.Flights)
                 {
-                    if(t is MDATile m)
-                    {
-                        //some problem in the constructor that might cause the mdatile to connect to itself
-                        MessageBox.Show(m.NextTiles.Count.ToString() + " type 1: " + m.NextTiles[0].GetType().ToString() + " type2: " + m.NextTiles[1].GetType().ToString());
-                        break;
-                    }
-                    t = t.NextTiles[0];
-                }
+                    lbFlights.Items.Add("Flight number: " + existingflight.FlightNumber.ToString());
+                };
             }
+            else
+            {
+                MessageBox.Show("First select a flight");
+            }
+
+
+
+            //List<GridTile> temp = this._grid.CheckTheConnection();
+            //foreach (var tile in temp)
+            //{
+            //    var t = tile;
+            //    while (t != null)
+            //    {
+            //        if(t is MDATile m)
+            //        {
+            //            //some problem in the constructor that might cause the mdatile to connect to itself
+            //            MessageBox.Show(m.NextTiles.Count.ToString() + " type 1: " + m.NextTiles[0].GetType().ToString() + " type2: " + m.NextTiles[1].GetType().ToString());
+            //            break;
+            //        }
+            //        t = t.NextTiles[0];
+            //    }
+            //}
         }
     }
 }
