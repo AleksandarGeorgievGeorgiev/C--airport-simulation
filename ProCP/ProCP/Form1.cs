@@ -174,5 +174,10 @@ namespace ProCP
         {
             theGrid.DrawGrid(e);
         }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -291,6 +291,7 @@
             this.btnAdd.TabIndex = 10;
             this.btnAdd.Text = "Add Flight ";
             this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // cmbDropOffPoint
             // 
@@ -507,7 +508,6 @@
             this.generalStatsTable.ReadOnly = true;
             this.generalStatsTable.RowHeadersWidth = 51;
             this.generalStatsTable.RowTemplate.Height = 24;
-            this.generalStatsTable.Size = new System.Drawing.Size(240, 150);
             this.generalStatsTable.RowTemplate.ReadOnly = true;
             this.generalStatsTable.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.generalStatsTable.Size = new System.Drawing.Size(653, 65);
