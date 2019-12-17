@@ -204,15 +204,6 @@ namespace ProCP.Visuals
         public bool ConnectTile(GridTile currentTile)
         {
             List<GridTile> tileList = this.FindTilesFromCurrentLocation(currentTile);
-            if(tileList.Count == 1)
-            {
-                if(!(tileList[0] is EmptyTile))
-                {
-                    tileList[0].SetNextTile(currentTile);
-                    currentTile.SetPreviousTile(tileList[0]);
-                    return true;
-                }
-            }
             foreach(var tile in tileList)
             {
                 if(!(tile is EmptyTile))
@@ -225,10 +216,22 @@ namespace ProCP.Visuals
                         p.GetMainTile().NextTiles.RemoveAll(x => x is MDATile);
                         continue;
                     }
-                    if (tile.NextTiles.Count == 0 || tile.PreviousTile == null)
+                    // connecting 
+                    if (tile.NextTiles.Count == 0)
                     {
-                        tile.SetNextTile(currentTile);
-                        currentTile.SetPreviousTile(tile);
+                        if(currentTile.Row > tile.Row || currentTile.Column > tile.Column)
+                        {
+                            tile.SetNextTile(currentTile);
+                            currentTile.SetPreviousTile(tile);
+                        }
+                    }
+                    else if(tile.PreviousTile == null)
+                    {
+                        if(currentTile.Row < tile.Row || currentTile.Column < tile.Column)
+                        {
+                            currentTile.SetNextTile(tile);
+                            tile.SetPreviousTile(currentTile);
+                        }
                     }
                 }
             }
@@ -282,6 +285,15 @@ namespace ProCP.Visuals
             {
                 current.SetPreviousTile(tilePart.GetMainTile());
                 tilePart.GetMainTile().SetNextTile(current);
+            }
+        }
+
+        public void DeleteNode(GridTile current)
+        {
+            if(!(current is EmptyTile))
+            {
+                this.gridTiles.Remove(current);
+                this.gridTiles.Add(new EmptyTile(current.Column, current.Row, tileWidth, tileHeight));
             }
         }
     }
