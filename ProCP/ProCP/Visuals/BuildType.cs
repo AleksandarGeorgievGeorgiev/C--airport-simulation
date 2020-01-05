@@ -8,6 +8,7 @@ namespace ProCP.Visuals
 {
     enum BuildType
     {
+        Empty,
         CheckIn,
         Conveyor,
         Security,
