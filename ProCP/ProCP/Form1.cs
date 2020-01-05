@@ -36,10 +36,10 @@ namespace ProCP
             _timer.Tick += _timer_Tick;
             _timer.Interval = 5000;
             _grid = new Grid(animationBox.Width, animationBox.Height, _simulationSettings);
-            gbFlightInfo.Visible = false;
-            gbSettings.Visible = false;
-            MapImportExportgroupBox.Visible = false;
-            gbStartStop.Visible = false;
+            gbFlightInfo.Enabled = false;
+            gbSettings.Enabled = false;
+            MapImportExportgroupBox.Enabled = false;
+            gbStartStop.Enabled = false;
             //create flight
             //var flight = new Flight()
             //{
@@ -232,8 +232,9 @@ namespace ProCP
                 this.DrawAndConnectComponentHelper(currentTile, t);
                 if (currentTile.NextTiles != null)
                 {
-                    gbFlightInfo.Visible = true;
-                    MapImportExportgroupBox.Visible = true;
+                    gbSettings.Enabled = true;
+                    gbFlightInfo.Enabled = true;
+                    MapImportExportgroupBox.Enabled = true;
                 }
             }
 
@@ -299,7 +300,6 @@ namespace ProCP
 
             if (_simulationSettings.Flights.Count() == 1)
             {
-                gbSettings.Visible = true;
                 gbStartStop.Visible = true;
             }
             //List<GridTile> temp = this._grid.CheckTheConnection();
