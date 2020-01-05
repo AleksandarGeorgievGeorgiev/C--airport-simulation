@@ -55,7 +55,7 @@ namespace ProCP.Visuals
             this.Row = row;
             this.tileWidth = tileWidth;
             this.tileHeight = tileHeight;
-            arrowImgPath = "..\\Resources\\arrow.png";
+            arrowImgPath = "../../Resources/arrow.png";
             arrowImg = Image.FromFile(arrowImgPath);
             this.previousTile = null;
             this.nextTiles = new List<GridTile>();
@@ -82,6 +82,8 @@ namespace ProCP.Visuals
 
         public GridTile PreviousTile { get { return this.previousTile; } }
 
+        public int Length { get; internal set; }
+
         protected Image loadImage(string path, Image img, int tileWidth, int tileHeight)
         {
             using (var srce = new Bitmap(path))
@@ -104,7 +106,7 @@ namespace ProCP.Visuals
             RectangleF r = new RectangleF(column * tileWidth, row * tileHeight, tileWidth, tileHeight);
 
             DrawBackground(p, g, r, tileWidth, tileHeight);
-  //          DrawArrowNext(p, g, tileWidth, tileHeight);
+            //DrawArrowNext(p, g, tileWidth, tileHeight);
             DrawBaggage(g, tileWidth, tileHeight);
             DrawTileInfo(g, r, tileHeight);
         }
@@ -162,7 +164,7 @@ namespace ProCP.Visuals
         {
             if (nodeInGrid != null)
             {
-                if (nodeInGrid.NodeNodeStatus == NodeStatus.Busy)
+                if (nodeInGrid.NodeStatus == NodeStatus.Busy)
                 {
                     RectangleF baggageRec = new RectangleF(column * tileWidth + 10, row * tileHeight + 10, tileWidth - 20, tileHeight - 20);
                     g.DrawImage(baggageImg, baggageRec);

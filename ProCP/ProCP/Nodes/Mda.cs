@@ -22,11 +22,14 @@ namespace ProCP.Nodes
 
         public override string Destination => this.GetType().Name;
 
-        public void AddNextNodes(IConveyorOneToOne node)
+        public void AddNextNodes(IChainNode node)
         {
+            if (_listOfNextNode.ContainsKey(node.Destination))
+            {
+                return;
+            }
             _listOfNextNode.Add(node.Destination, node);
             _transporterQueues.Add(node.Destination, new Queue<IBaggage>());
-
 
             Task.Run(() =>
             {
@@ -42,7 +45,7 @@ namespace ProCP.Nodes
             {
                 if (_transporterQueues[destination].Count > 0)
                 {
-                    if (nextNode.NodeNodeStatus == NodeStatus.Free)
+                    if (nextNode.NodeStatus == NodeStatus.Free)
                     {
                         var tempBag = _transporterQueues[destination].Dequeue();
 

@@ -17,10 +17,10 @@ namespace ProCP.Visuals
             clickableColor = Brushes.White;
             unclickableColour = Brushes.LightGray;
 
-            imgpath = "../Resources/counter.png";
+            imgpath = "../../Resources/counter.png";
             img = loadImage(imgpath, img, tileWidth, tileHeight);
 
-            //img = Image.FromFile(imgpath);
+            img = Image.FromFile(imgpath);
                 
             fillBrush = clickableColor;
         }

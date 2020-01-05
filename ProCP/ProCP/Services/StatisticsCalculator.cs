@@ -15,7 +15,6 @@ namespace ProCP.Services
         public static StatisticsData CalculateStatistics()
         {
             var baggages = Baggage.AllBaggage;
-
             var statisticsData = new StatisticsData();
 
             try
@@ -88,19 +87,19 @@ namespace ProCP.Services
 
         public static void BagsTimesDispatchedAndCollectedStats(StatisticsData data, ConcurrentBag<Baggage> baggages)
         {
-            if (baggages == null)
-            {
-                return;
-            }
+            //if (baggages == null)
+            //{
+            //    return;
+            //}
 
-            var bagsOrderedbyFirstCreation = baggages.OrderBy(b => b.Logs.FirstOrDefault().LogCreated).ToList();
+            //var bagsOrderedbyFirstCreation = baggages.OrderBy(b => b.Logs.FirstOrDefault().LogCreated).ToList();
 
-            data.FirstDispatchedBag = bagsOrderedbyFirstCreation.FirstOrDefault().Logs.FirstOrDefault().LogCreated.TotalSeconds;
-            data.LastCollectedBag = bagsOrderedbyFirstCreation.LastOrDefault().Logs.LastOrDefault().LogCreated.TotalSeconds;
+            //data.FirstDispatchedBag = bagsOrderedbyFirstCreation.FirstOrDefault().Logs.FirstOrDefault().LogCreated.TotalSeconds;
+            //data.LastCollectedBag = bagsOrderedbyFirstCreation.LastOrDefault().Logs.LastOrDefault().LogCreated.TotalSeconds;
 
-            data.SimulationTimeElapsed = (data.LastCollectedBag - data.FirstDispatchedBag).ToString().Split(new Char[] { '.' })[0];
+            //data.SimulationTimeElapsed = (data.LastCollectedBag - data.FirstDispatchedBag).ToString().Split(new Char[] { '.' })[0];
         }
-        
+
         public static void ElapsedTimeForeachFlight(StatisticsData data, ConcurrentBag<Baggage> baggages)
         {
 
@@ -114,7 +113,7 @@ namespace ProCP.Services
             foreach (var group in data.ElapsedTimesGroupedPerFlight)
             {
                 var orderedByFirstBag = group.OrderBy(b => b.Logs.FirstOrDefault().LogCreated).ToList();
-                
+
                 var firstBagDispached = orderedByFirstBag.FirstOrDefault().Logs.FirstOrDefault().LogCreated.TotalSeconds;
                 var lastBagCollected = orderedByFirstBag.LastOrDefault().Logs.LastOrDefault().LogCreated.TotalSeconds;
 
@@ -122,6 +121,8 @@ namespace ProCP.Services
 
                 data.ElapsedTimesPerFlight.Add(group.Key, timeElapsed);
             }
+
+            data.SimulationTimeElapsed = data.ElapsedTimesPerFlight.Max(b => b.Value);
         }
     }
 }
