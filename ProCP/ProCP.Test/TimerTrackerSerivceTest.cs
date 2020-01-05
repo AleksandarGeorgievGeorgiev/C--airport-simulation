@@ -1,14 +1,7 @@
-﻿using Moq;
-using NUnit.Framework;
-using ProCP.FlightAndBaggage;
+﻿using NUnit.Framework;
 using ProCP.Services;
 using Shouldly;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace ProCP.Test
 {
