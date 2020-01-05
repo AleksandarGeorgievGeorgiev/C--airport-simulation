@@ -113,11 +113,6 @@ namespace ProCP
             MessageBox.Show("You clicked (" + chartPoint.X + "," + chartPoint.Y + ")");
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
 
         private void BtnStart_Click(object sender, EventArgs e)
         {
@@ -352,9 +347,24 @@ namespace ProCP
             //}
         }
 
-        private void cartesianChart1_ChildChanged(object sender, System.Windows.Forms.Integration.ChildChangedEventArgs e)
+        private void btnSpeed1_Click(object sender, EventArgs e)
         {
+            _simulationSettings.Cs.Speed = 1600;
+        }
 
+        private void btnSpeed2_Click(object sender, EventArgs e)
+        {
+            _simulationSettings.Cs.Speed = 1400;
+        }
+
+        private void btnSpeed3_Click(object sender, EventArgs e)
+        {
+            _simulationSettings.Cs.Speed = 1200;
+        }
+
+        private void btnSpeed4_Click(object sender, EventArgs e)
+        {
+            _simulationSettings.Cs.Speed = 1000;
         }
     }
 }
