@@ -75,6 +75,7 @@
             this.labelNoOfBags = new System.Windows.Forms.Label();
             this.textBoxFlightNumber = new System.Windows.Forms.TextBox();
             this.labelFlightNo = new System.Windows.Forms.Label();
+            this.buttonDeleteTile = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -120,7 +121,7 @@
             this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.tabControl1.ItemSize = new System.Drawing.Size(141, 35);
-            this.tabControl1.Location = new System.Drawing.Point(402, 2);
+            this.tabControl1.Location = new System.Drawing.Point(402, 3);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -141,6 +142,7 @@
             // 
             // animationBox
             // 
+            this.animationBox.BackColor = System.Drawing.Color.Aqua;
             this.animationBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.animationBox.Location = new System.Drawing.Point(3, 2);
             this.animationBox.Name = "animationBox";
@@ -424,6 +426,7 @@
             // 
             // gbBuild
             // 
+            this.gbBuild.Controls.Add(this.buttonDeleteTile);
             this.gbBuild.Controls.Add(this.btnSecurity);
             this.gbBuild.Controls.Add(this.btnConveyor);
             this.gbBuild.Controls.Add(this.btnDropoff);
@@ -434,7 +437,7 @@
             this.gbBuild.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gbBuild.Name = "gbBuild";
             this.gbBuild.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.gbBuild.Size = new System.Drawing.Size(391, 117);
+            this.gbBuild.Size = new System.Drawing.Size(391, 169);
             this.gbBuild.TabIndex = 0;
             this.gbBuild.TabStop = false;
             this.gbBuild.Text = "Build Type";
@@ -537,11 +540,11 @@
             this.gbFlightInfo.Controls.Add(this.labelFlightNo);
             this.gbFlightInfo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.gbFlightInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbFlightInfo.Location = new System.Drawing.Point(5, 123);
+            this.gbFlightInfo.Location = new System.Drawing.Point(1, 175);
             this.gbFlightInfo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gbFlightInfo.Name = "gbFlightInfo";
             this.gbFlightInfo.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.gbFlightInfo.Size = new System.Drawing.Size(395, 461);
+            this.gbFlightInfo.Size = new System.Drawing.Size(395, 370);
             this.gbFlightInfo.TabIndex = 1;
             this.gbFlightInfo.TabStop = false;
             this.gbFlightInfo.Text = "Flight Information";
@@ -667,6 +670,18 @@
             this.labelFlightNo.TabIndex = 0;
             this.labelFlightNo.Text = "Flight Number";
             // 
+            // buttonDeleteTile
+            // 
+            this.buttonDeleteTile.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("buttonDeleteTile.BackgroundImage")));
+            this.buttonDeleteTile.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.buttonDeleteTile.FlatAppearance.BorderSize = 0;
+            this.buttonDeleteTile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonDeleteTile.Location = new System.Drawing.Point(11, 105);
+            this.buttonDeleteTile.Name = "buttonDeleteTile";
+            this.buttonDeleteTile.Size = new System.Drawing.Size(68, 50);
+            this.buttonDeleteTile.TabIndex = 5;
+            this.buttonDeleteTile.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -748,6 +763,7 @@
         private System.Windows.Forms.Button buttonExport;
         private System.Windows.Forms.Button buttonImport;
         private System.Windows.Forms.PictureBox animationBox;
+        private System.Windows.Forms.Button buttonDeleteTile;
     }
 }
 
