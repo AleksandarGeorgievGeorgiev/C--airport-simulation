@@ -475,7 +475,7 @@
             this.btnConveyor.FlatAppearance.BorderSize = 0;
             this.btnConveyor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnConveyor.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConveyor.Location = new System.Drawing.Point(232, 41);
+            this.btnConveyor.Location = new System.Drawing.Point(232, 39);
             this.btnConveyor.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnConveyor.Name = "btnConveyor";
             this.btnConveyor.Size = new System.Drawing.Size(68, 61);
@@ -651,7 +651,6 @@
             this.Name = "Form1";
             this.ShowInTaskbar = false;
             this.Text = "ProCp";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
