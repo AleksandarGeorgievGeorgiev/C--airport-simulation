@@ -1,20 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Windows.Controls;
-using System.Windows.Media;
-using LiveCharts;
+﻿using LiveCharts;
 using LiveCharts.Wpf;
-using Brushes = System.Windows.Media.Brushes;
 using ProCP.FlightAndBaggage;
 using ProCP.Services;
 using ProCP.Visuals;
+using System;
+using System.Data;
+using System.Linq;
+using System.Windows.Forms;
 using Grid = ProCP.Visuals.Grid;
 
 namespace ProCP
@@ -36,10 +28,10 @@ namespace ProCP
             _timer.Tick += _timer_Tick;
             _timer.Interval = 5000;
             _grid = new Grid(animationBox.Width, animationBox.Height, _simulationSettings);
-            gbFlightInfo.Visible = false;
-            gbSettings.Visible = false;
-            MapImportExportgroupBox.Visible = false;
-            gbStartStop.Visible = false;
+            gbFlightInfo.Enabled = false;
+            gbSettings.Enabled = false;
+            MapImportExportgroupBox.Enabled = false;
+            gbStartStop.Enabled = false;
             //create flight
             //var flight = new Flight()
             //{
@@ -54,7 +46,8 @@ namespace ProCP
             cartesianChart1.Series.Add(new ColumnSeries() { Title = "2132", Values = new ChartValues<int> { 20 } });
             cartesianChart1.AxisY.Add(new Axis()
             {
-                Title = "Time (min)"
+                Title = "Time elapsed per flight",
+                
             });
             cartesianChart1.AxisX.Add(new Axis()
             {
@@ -72,8 +65,9 @@ namespace ProCP
             PrimarySecurityChart.Series.Add(new ColumnSeries() { Title = "85", Values = new ChartValues<int> { 20 } });
             PrimarySecurityChart.AxisY.Add(new Axis()
             {
-                Title = "Baggage amount"
+                Title = "Baggage transferred per flight"
             });
+
             PrimarySecurityChart.AxisX.Add(new Axis()
             {
                 Title = "Flight"
@@ -113,15 +107,9 @@ namespace ProCP
             MessageBox.Show("You clicked (" + chartPoint.X + "," + chartPoint.Y + ")");
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-
         private void BtnStart_Click(object sender, EventArgs e)
         {
-            _engine.RunDemo(_simulationSettings);
+            _engine.Run(_simulationSettings);
             _timer.Start();
         }
 
@@ -178,7 +166,6 @@ namespace ProCP
             generalStatsTable.Columns[0].DisplayIndex = 0;
         }
 
-
         private void animationBox_Paint_1(object sender, PaintEventArgs e)
         {
             _grid.DrawGrid(e);
@@ -232,8 +219,9 @@ namespace ProCP
                 this.DrawAndConnectComponentHelper(currentTile, t);
                 if (currentTile.NextTiles != null)
                 {
-                    gbFlightInfo.Visible = true;
-                    MapImportExportgroupBox.Visible = true;
+                    gbSettings.Enabled = true;
+                    gbFlightInfo.Enabled = true;
+                    MapImportExportgroupBox.Enabled = true;
                 }
             }
 
@@ -276,7 +264,7 @@ namespace ProCP
             var newFlight = new Flight()
             {
                 BaggageCount = int.Parse(textBoxNumberOfBags.Text),
-                DipartureTime = new TimeSpan(departureTime.Value.Ticks),
+                DipartureTime = departureTime.Value,
                 FlightNumber = textBoxFlightNumber.Text,
             };
 
@@ -299,8 +287,7 @@ namespace ProCP
 
             if (_simulationSettings.Flights.Count() == 1)
             {
-                gbSettings.Visible = true;
-                gbStartStop.Visible = true;
+                gbStartStop.Enabled = true;
             }
             //List<GridTile> temp = this._grid.CheckTheConnection();
             //foreach(var tile in temp)
@@ -352,19 +339,5 @@ namespace ProCP
             //}
         }
 
-        private void cartesianChart1_ChildChanged(object sender, System.Windows.Forms.Integration.ChildChangedEventArgs e)
-        {
-
-        }
-
-        private void buttonImport_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void buttonExport_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
