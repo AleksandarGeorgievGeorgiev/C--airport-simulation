@@ -9,7 +9,8 @@ using ProCP.Visuals;
 
 namespace ProCP.Visuals
 {
-     public class SecurityTile : GridTile
+    [Serializable]
+    public class SecurityTile : GridTile
     {
         public SecurityTile(int column, int row, int tileWidth, int tileHeight) : base(column, row, tileWidth, tileHeight)
         {

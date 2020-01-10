@@ -15,6 +15,7 @@ using Brushes = System.Windows.Media.Brushes;
 using ProCP.FlightAndBaggage;
 using ProCP.Services;
 using ProCP.Visuals;
+using ProCP.Data;
 using Grid = ProCP.Visuals.Grid;
 
 namespace ProCP
@@ -27,6 +28,7 @@ namespace ProCP
         private StatisticsData dataStats = new StatisticsData();
         private Grid _grid;
         BuildType buildType;
+        IData readAndWrite;
         public Form1()
         {
             InitializeComponent();
@@ -185,7 +187,7 @@ namespace ProCP
         }
 
         //inform about drawing component fail or not
-        public void DrawAndConnectComponentHelper(GridTile t, GridTile selectedTile)
+        public void ConnectComponentHelper(GridTile t, GridTile selectedTile)
         {
             if (!this._grid.ConnectingComponentValidaion(t, selectedTile))
             {
@@ -203,18 +205,18 @@ namespace ProCP
             if (this.buildType == BuildType.CheckIn)
             {
                 currentTile = new CheckInTile(t.Column, t.Row, this._grid.GetTileWidth(), this._grid.GetTileHeight());
-                this.DrawAndConnectComponentHelper(currentTile, t);
+                this.ConnectComponentHelper(currentTile, t);
             }
             else if (this.buildType == BuildType.Conveyor)
             {
                 currentTile = new ConveyorTile(t.Column, t.Row, this._grid.GetTileWidth(), this._grid.GetTileHeight());
-                this.DrawAndConnectComponentHelper(currentTile, t);
+                this.ConnectComponentHelper(currentTile, t);
             }
             else if (this.buildType == BuildType.Mda)
             {
                 //mda later on
                 currentTile = new MDATile(t.Column, t.Row, this._grid.GetTileWidth(), this._grid.GetTileHeight());
-                this.DrawAndConnectComponentHelper(currentTile, t);
+                this.ConnectComponentHelper(currentTile, t);
                 //enable other component
                 btnCheckin.Enabled = true;
                 btnConveyor.Enabled = true;
@@ -224,12 +226,12 @@ namespace ProCP
             else if (this.buildType == BuildType.Security)
             {
                 currentTile = new SecurityTile(t.Column, t.Row, this._grid.GetTileWidth(), this._grid.GetTileHeight());
-                this.DrawAndConnectComponentHelper(currentTile, t);
+                this.ConnectComponentHelper(currentTile, t);
             }
             else if (this.buildType == BuildType.DropOff)
             {
                 currentTile = new DropOffTile(t.Column, t.Row, this._grid.GetTileWidth(), this._grid.GetTileHeight());
-                this.DrawAndConnectComponentHelper(currentTile, t);
+                this.ConnectComponentHelper(currentTile, t);
                 if (currentTile.NextTiles != null)
                 {
                     gbFlightInfo.Visible = true;
@@ -335,26 +337,63 @@ namespace ProCP
 
 
 
-            //List<GridTile> temp = this._grid.CheckTheConnection();
-            //foreach (var tile in temp)
-            //{
-            //    var t = tile;
-            //    while (t != null)
-            //    {
-            //        if(t is MDATile m)
-            //        {
-            //            //some problem in the constructor that might cause the mdatile to connect to itself
-            //            MessageBox.Show(m.NextTiles.Count.ToString() + " type 1: " + m.NextTiles[0].GetType().ToString() + " type2: " + m.NextTiles[1].GetType().ToString());
-            //            break;
-            //        }
-            //        t = t.NextTiles[0];
-            //    }
-            //}
+            
         }
 
         private void cartesianChart1_ChildChanged(object sender, System.Windows.Forms.Integration.ChildChangedEventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            List<GridTile> temp = this._grid.CheckTheConnection();
+            foreach (var tile in temp)
+            {
+                var t = tile;
+                while (t != null)
+                {
+                    MessageBox.Show("current Id: " + t.NodeId + " Type: " + t.GetType().ToString() + " next node id: " + t.NextTiles[0].NodeId);
+                    t = t.NextTiles[0];
+                    if(t is DropOffTile)
+                    {
+                        MessageBox.Show("current Id: " + t.NodeId + " Type: " + t.GetType().ToString());
+                        break;
+                    }
+                }
+            }
+        }
+
+        private void buttonImport_Click(object sender, EventArgs e)
+        {
+            string filePath = "";
+            if (!this.ImportExportHelper(ref filePath, ref readAndWrite))
+            {
+                MessageBox.Show("Choose file");
+            }
+            this._grid = readAndWrite.ReadData(filePath);
+            this.animationBox.Invalidate();
+        }
+
+        private void buttonExport_Click(object sender, EventArgs e)
+        {
+            string filePath = "";
+            if(!this.ImportExportHelper(ref filePath, ref readAndWrite))
+            {
+                MessageBox.Show("Choose file");
+            }
+            readAndWrite.WriteData(filePath, this._grid);
+        }
+
+        public bool ImportExportHelper(ref string filePath, ref IData readAndWrite)
+        {
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                filePath = openFileDialog1.FileName;
+                readAndWrite = new ReadFromImageFile();
+                return true;
+            }
+            return false;
         }
     }
 }

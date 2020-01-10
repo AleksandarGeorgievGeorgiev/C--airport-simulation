@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace ProCP
 {
+    [Serializable]
     public class SimulationSettings: ISimulationSettings
     {
         public PrimarySecuritySettings Ps { get; set; }
@@ -27,18 +28,18 @@ namespace ProCP
 
         }
     }
-
+    [Serializable]
     public class PrimarySecuritySettings : IPrimarySecuritySettings
     {
         public double PercentageFailedBags { get; set; } = 10;
         public int ProcessingSpeed { get; set; } = 1000;
     }
-
+    [Serializable]
     public class ConveyorSettings : IConveyorSettings
     {
         public long Speed { get; set; } = 1000;
     }
-
+    [Serializable]
     public class DropOffSettings : IDropoffSettings
     {
         public int NumberOfWorker { get; set; } = 1;

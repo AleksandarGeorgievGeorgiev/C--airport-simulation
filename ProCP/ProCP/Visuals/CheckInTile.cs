@@ -7,6 +7,7 @@ using System.Drawing;
 using ProCP.Nodes;
 namespace ProCP.Visuals
 {
+    [Serializable]
     public class CheckInTile : GridTile
     {
         public CheckInTile(int column, int row, int tileWidth, int tileHeight) : base(column,row,tileWidth,tileHeight)

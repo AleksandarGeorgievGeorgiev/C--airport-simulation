@@ -10,7 +10,7 @@ using ProCP.Contracts;
 
 namespace ProCP.Visuals
 {
-    
+    [Serializable]
     public class GridTile
     {
         protected int column;

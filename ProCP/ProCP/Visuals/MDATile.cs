@@ -7,6 +7,7 @@ using System.Drawing;
 
 namespace ProCP.Visuals
 {
+    [Serializable]
     public class MDATile: GridTile
     {
         List<MDATilePart> tileParts = new List<MDATilePart>();

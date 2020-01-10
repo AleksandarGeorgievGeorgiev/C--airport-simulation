@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProCP.FlightAndBaggage
 {
+    [Serializable]
     public class Flight : IFlight
     {
         public TimeSpan DipartureTime { get; set; }
