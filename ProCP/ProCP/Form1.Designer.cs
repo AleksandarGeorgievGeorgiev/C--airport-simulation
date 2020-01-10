@@ -364,6 +364,7 @@
             this.buttonExport.Size = new System.Drawing.Size(61, 63);
             this.buttonExport.TabIndex = 4;
             this.buttonExport.UseVisualStyleBackColor = true;
+            this.buttonExport.Click += new System.EventHandler(this.buttonExport_Click);
             // 
             // buttonImport
             // 
@@ -378,6 +379,7 @@
             this.buttonImport.Size = new System.Drawing.Size(51, 50);
             this.buttonImport.TabIndex = 6;
             this.buttonImport.UseVisualStyleBackColor = true;
+            this.buttonImport.Click += new System.EventHandler(this.buttonImport_Click);
             // 
             // gbStartStop
             // 
