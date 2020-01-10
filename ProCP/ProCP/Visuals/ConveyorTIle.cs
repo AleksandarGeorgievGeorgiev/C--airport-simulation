@@ -10,8 +10,6 @@ namespace ProCP.Visuals
 {
     class ConveyorTile : GridTile
     {
-        public int Length { get; set; }
-
         public ConveyorTile(int column, int row, int tileWidth, int tileHeight) : base(column, row, tileWidth, tileHeight)
         {
             this.Column = column;
@@ -20,7 +18,7 @@ namespace ProCP.Visuals
             clickableColor = Brushes.White;
             unclickableColour = Brushes.LightGray;
 
-            imgpath = "../Resources/back.png";
+            imgpath = "../../Resources/conveyor.png";
             img = loadImage(imgpath, img, tileWidth, tileHeight);
 
             fillBrush = clickableColor;

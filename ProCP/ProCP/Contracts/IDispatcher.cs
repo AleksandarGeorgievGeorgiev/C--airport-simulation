@@ -8,6 +8,6 @@ namespace ProCP.Contracts
 {
     public interface IDispatcher: IChainNode, IStartStop
     {
-        void SetCheckIns(IChainNode node);
+        void SetCheckIns(List<ICheckInDesk> nodes);
     }
 }

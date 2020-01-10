@@ -12,11 +12,10 @@ namespace ProCP.Visuals
         private MDATile _mainTile;
         public MDATilePart(int column, int row, int tileWidth, int tileHeight, MDATile mainTile): base(column, row, tileWidth, tileHeight)
         {
-
             clickableColor = Brushes.Purple;
             unclickableColour = Brushes.MediumPurple;
 
-            imgpath = "../Resources/loader.png";
+            imgpath = "../../Resources/Mda.png";
             img = loadImage(imgpath, img, this.tileWidth, this.tileHeight);
 
             fillBrush = Brushes.Purple;

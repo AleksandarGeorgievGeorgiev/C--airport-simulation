@@ -53,7 +53,7 @@ namespace ProCP.Nodes
 
         public IFlight Flight { get; set; }
 
-        public void AssighFlight(IFlight flight)
+        public void AssignFlight(IFlight flight)
         {
             Flight = flight;
         }

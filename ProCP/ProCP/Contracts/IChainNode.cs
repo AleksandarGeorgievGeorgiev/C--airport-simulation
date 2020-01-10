@@ -13,7 +13,7 @@ namespace ProCP.Contracts
         string Destination { get; }
         string NodeId { get; set; }
         Action OnNodeStatusChangedToFree { get; set; }
-        NodeStatus NodeNodeStatus { get; set; }
+        NodeStatus NodeStatus { get; set; }
         void PassBaggage(IBaggage b);
     }
 }
