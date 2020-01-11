@@ -56,6 +56,7 @@
             this.btnStop = new System.Windows.Forms.Button();
             this.btnStart = new System.Windows.Forms.Button();
             this.gbBuild = new System.Windows.Forms.GroupBox();
+            this.buttonDeleteTile = new System.Windows.Forms.Button();
             this.btnSecurity = new System.Windows.Forms.Button();
             this.btnConveyor = new System.Windows.Forms.Button();
             this.btnDropoff = new System.Windows.Forms.Button();
@@ -65,10 +66,6 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.lbFlights = new System.Windows.Forms.ListBox();
             this.btnAdd = new System.Windows.Forms.Button();
-            this.cmbDropOffPoint = new System.Windows.Forms.ComboBox();
-            this.labelDropOffPoint = new System.Windows.Forms.Label();
-            this.cmbCheckInDesk = new System.Windows.Forms.ComboBox();
-            this.labelCheckInDesk = new System.Windows.Forms.Label();
             this.departureTime = new System.Windows.Forms.DateTimePicker();
             this.labelDate = new System.Windows.Forms.Label();
             this.textBoxNumberOfBags = new System.Windows.Forms.TextBox();
@@ -120,7 +117,7 @@
             this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.tabControl1.ItemSize = new System.Drawing.Size(141, 35);
-            this.tabControl1.Location = new System.Drawing.Point(402, 2);
+            this.tabControl1.Location = new System.Drawing.Point(402, 3);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -141,7 +138,10 @@
             // 
             // animationBox
             // 
-            this.animationBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.animationBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.animationBox.BackColor = System.Drawing.Color.LightGray;
             this.animationBox.Location = new System.Drawing.Point(3, 2);
             this.animationBox.Name = "animationBox";
             this.animationBox.Size = new System.Drawing.Size(1063, 815);
@@ -381,7 +381,6 @@
             // 
             // gbStartStop
             // 
-            this.gbStartStop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.gbStartStop.Controls.Add(this.btnStop);
             this.gbStartStop.Controls.Add(this.btnStart);
             this.gbStartStop.Location = new System.Drawing.Point(3, 802);
@@ -424,6 +423,7 @@
             // 
             // gbBuild
             // 
+            this.gbBuild.Controls.Add(this.buttonDeleteTile);
             this.gbBuild.Controls.Add(this.btnSecurity);
             this.gbBuild.Controls.Add(this.btnConveyor);
             this.gbBuild.Controls.Add(this.btnDropoff);
@@ -434,10 +434,22 @@
             this.gbBuild.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gbBuild.Name = "gbBuild";
             this.gbBuild.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.gbBuild.Size = new System.Drawing.Size(391, 117);
+            this.gbBuild.Size = new System.Drawing.Size(391, 169);
             this.gbBuild.TabIndex = 0;
             this.gbBuild.TabStop = false;
             this.gbBuild.Text = "Build Type";
+            // 
+            // buttonDeleteTile
+            // 
+            this.buttonDeleteTile.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("buttonDeleteTile.BackgroundImage")));
+            this.buttonDeleteTile.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.buttonDeleteTile.FlatAppearance.BorderSize = 0;
+            this.buttonDeleteTile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonDeleteTile.Location = new System.Drawing.Point(11, 105);
+            this.buttonDeleteTile.Name = "buttonDeleteTile";
+            this.buttonDeleteTile.Size = new System.Drawing.Size(68, 50);
+            this.buttonDeleteTile.TabIndex = 5;
+            this.buttonDeleteTile.UseVisualStyleBackColor = true;
             // 
             // btnSecurity
             // 
@@ -463,7 +475,7 @@
             this.btnConveyor.FlatAppearance.BorderSize = 0;
             this.btnConveyor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnConveyor.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConveyor.Location = new System.Drawing.Point(232, 41);
+            this.btnConveyor.Location = new System.Drawing.Point(232, 39);
             this.btnConveyor.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnConveyor.Name = "btnConveyor";
             this.btnConveyor.Size = new System.Drawing.Size(68, 61);
@@ -525,10 +537,6 @@
             this.gbFlightInfo.Controls.Add(this.btnDelete);
             this.gbFlightInfo.Controls.Add(this.lbFlights);
             this.gbFlightInfo.Controls.Add(this.btnAdd);
-            this.gbFlightInfo.Controls.Add(this.cmbDropOffPoint);
-            this.gbFlightInfo.Controls.Add(this.labelDropOffPoint);
-            this.gbFlightInfo.Controls.Add(this.cmbCheckInDesk);
-            this.gbFlightInfo.Controls.Add(this.labelCheckInDesk);
             this.gbFlightInfo.Controls.Add(this.departureTime);
             this.gbFlightInfo.Controls.Add(this.labelDate);
             this.gbFlightInfo.Controls.Add(this.textBoxNumberOfBags);
@@ -537,11 +545,11 @@
             this.gbFlightInfo.Controls.Add(this.labelFlightNo);
             this.gbFlightInfo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.gbFlightInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbFlightInfo.Location = new System.Drawing.Point(5, 123);
+            this.gbFlightInfo.Location = new System.Drawing.Point(1, 175);
             this.gbFlightInfo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gbFlightInfo.Name = "gbFlightInfo";
             this.gbFlightInfo.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.gbFlightInfo.Size = new System.Drawing.Size(395, 461);
+            this.gbFlightInfo.Size = new System.Drawing.Size(395, 370);
             this.gbFlightInfo.TabIndex = 1;
             this.gbFlightInfo.TabStop = false;
             this.gbFlightInfo.Text = "Flight Information";
@@ -577,42 +585,6 @@
             this.btnAdd.Text = "Add Flight ";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // cmbDropOffPoint
-            // 
-            this.cmbDropOffPoint.FormattingEnabled = true;
-            this.cmbDropOffPoint.Location = new System.Drawing.Point(147, 146);
-            this.cmbDropOffPoint.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cmbDropOffPoint.Name = "cmbDropOffPoint";
-            this.cmbDropOffPoint.Size = new System.Drawing.Size(164, 26);
-            this.cmbDropOffPoint.TabIndex = 9;
-            // 
-            // labelDropOffPoint
-            // 
-            this.labelDropOffPoint.AutoSize = true;
-            this.labelDropOffPoint.Location = new System.Drawing.Point(5, 148);
-            this.labelDropOffPoint.Name = "labelDropOffPoint";
-            this.labelDropOffPoint.Size = new System.Drawing.Size(101, 18);
-            this.labelDropOffPoint.TabIndex = 8;
-            this.labelDropOffPoint.Text = "Drop-off Point";
-            // 
-            // cmbCheckInDesk
-            // 
-            this.cmbCheckInDesk.FormattingEnabled = true;
-            this.cmbCheckInDesk.Location = new System.Drawing.Point(147, 114);
-            this.cmbCheckInDesk.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cmbCheckInDesk.Name = "cmbCheckInDesk";
-            this.cmbCheckInDesk.Size = new System.Drawing.Size(164, 26);
-            this.cmbCheckInDesk.TabIndex = 7;
-            // 
-            // labelCheckInDesk
-            // 
-            this.labelCheckInDesk.AutoSize = true;
-            this.labelCheckInDesk.Location = new System.Drawing.Point(5, 118);
-            this.labelCheckInDesk.Name = "labelCheckInDesk";
-            this.labelCheckInDesk.Size = new System.Drawing.Size(106, 18);
-            this.labelCheckInDesk.TabIndex = 6;
-            this.labelCheckInDesk.Text = "Check-in Desk";
             // 
             // departureTime
             // 
@@ -679,7 +651,6 @@
             this.Name = "Form1";
             this.ShowInTaskbar = false;
             this.Text = "ProCp";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
@@ -730,10 +701,6 @@
         private System.Windows.Forms.TextBox textBoxFlightNumber;
         private System.Windows.Forms.DateTimePicker departureTime;
         private System.Windows.Forms.Label labelDate;
-        private System.Windows.Forms.ComboBox cmbCheckInDesk;
-        private System.Windows.Forms.Label labelCheckInDesk;
-        private System.Windows.Forms.ComboBox cmbDropOffPoint;
-        private System.Windows.Forms.Label labelDropOffPoint;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.ListBox lbFlights;
         private System.Windows.Forms.Button btnAdd;
@@ -748,6 +715,7 @@
         private System.Windows.Forms.Button buttonExport;
         private System.Windows.Forms.Button buttonImport;
         private System.Windows.Forms.PictureBox animationBox;
+        private System.Windows.Forms.Button buttonDeleteTile;
     }
 }
 

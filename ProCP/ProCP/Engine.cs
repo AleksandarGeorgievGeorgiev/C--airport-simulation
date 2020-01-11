@@ -24,7 +24,7 @@ namespace ProCP
             _calculator = new StatisticsCalculator();
         }
 
-        public void RunDemo(SimulationSettings settings)
+        public void Run(SimulationSettings settings)
         {
             _settings = settings;
             _nodeCreationService.SetSimulationSettings(_settings);

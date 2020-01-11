@@ -8,7 +8,7 @@ namespace ProCP.FlightAndBaggage
 {
     public interface IFlight
     {
-        TimeSpan DipartureTime { get; set; }
+        DateTime DipartureTime { get; set; }
         int BaggageCount { get; set; }
         string FlightNumber { get; set; }
         int DispatchedBaggageCount { get; set; } 
