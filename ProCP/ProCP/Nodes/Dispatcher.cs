@@ -129,18 +129,19 @@ namespace ProCP.Nodes
 
         private int FindMostSuitableCheckin(Baggage baggage)
         {
-            int chosenIndex = 0;
+            var chosenIndex = 0;
+            var shortestQueue = checkinQueues[0].Count;
 
-            foreach (var checkIn in Enumerable.Range(0, checkins.Count))
+            foreach (var index in Enumerable.Range(0, checkins.Count))
             {
-                if (checkins.ElementAt(checkIn).Flight.FlightNumber == baggage.Flight.FlightNumber)
+                if (checkins[index].NodeStatus == NodeStatus.Free)
                 {
-                    if (checkins.ElementAt(checkIn).NodeStatus == NodeStatus.Free)
-                    {
-                        chosenIndex = checkIn;
-                        return chosenIndex;
-                    }
-                    chosenIndex = checkIn;
+                    return index;
+                }
+                if (checkinQueues[index].Count < shortestQueue)
+                {
+                    shortestQueue = checkinQueues[index].Count;
+                    chosenIndex = index;
                 }
             }
             return chosenIndex;

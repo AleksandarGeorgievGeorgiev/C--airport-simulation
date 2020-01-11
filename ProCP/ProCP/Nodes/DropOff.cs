@@ -35,7 +35,7 @@ namespace ProCP.Nodes
             {
                 switch (_dropoffSettings.NumberOfWorker)
                 {
-                    case 1:
+                    case 2:
                         _processingSpeed = 1200;
                         break;
                     case 5:
@@ -57,7 +57,8 @@ namespace ProCP.Nodes
         {
             Flight = flight;
         }
-        public override string Destination => Flight.FlightNumber;
+
+        public override string Destination => this.NodeId;
 
         public override void PassBaggage(IBaggage b)
         {
