@@ -356,5 +356,25 @@ namespace ProCP
         {
 
         }
+
+        private void btnSpeed1_Click(object sender, EventArgs e)
+        {
+            _simulationSettings.Cs.Speed = 1600;
+        }
+
+        private void btnSpeed2_Click(object sender, EventArgs e)
+        {
+            _simulationSettings.Cs.Speed = 1400;
+        }
+
+        private void btnSpeed3_Click(object sender, EventArgs e)
+        {
+            _simulationSettings.Cs.Speed = 1200;
+        }
+
+        private void btnSpeed4_Click(object sender, EventArgs e)
+        {
+            _simulationSettings.Cs.Speed = 1000;
+        }
     }
 }
