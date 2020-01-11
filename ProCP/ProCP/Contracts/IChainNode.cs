@@ -9,11 +9,13 @@ namespace ProCP.Contracts
 {
     public interface IChainNode
     {
+
         IChainNode NextNode { get; set; }
         string Destination { get; }
         string NodeId { get; set; }
         Action OnNodeStatusChangedToFree { get; set; }
         NodeStatus NodeStatus { get; set; }
         void PassBaggage(IBaggage b);
+
     }
 }

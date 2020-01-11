@@ -9,7 +9,7 @@ using ProCP.Visuals;
 
 namespace ProCP.Visuals
 {
-    class DropOffTile : GridTile 
+    public class DropOffTile : GridTile 
     {
         public DropOffTile(int column, int row, int tileWidth, int tileHeight) : base(column, row, tileWidth, tileHeight)
         {

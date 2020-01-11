@@ -9,7 +9,7 @@ using System.Drawing;
 namespace ProCP.Visuals
 {
     [Serializable]
-    class EmptyTile : GridTile
+    public class EmptyTile : GridTile
     {
         public EmptyTile(int column, int row, int tileWidth, int tileHeight)
         : base(column, row, tileWidth, tileHeight)

@@ -105,14 +105,8 @@ namespace ProCp_test
         [Test]
         public void CreateNodes_Create()
         {
-            GridTile frontNode = new GridTile(3, 3, 1, 1);
-            TimerTracker timer = new TimerTracker();
-            ITimerTracker itimer = timer;
-            SimulationSettings simsettings = new SimulationSettings();
-            ISimulationSettings isimsettings = simsettings;
-            var NodeCreation = new NodeCreationService(itimer);
-            NodeCreation.CreateNode(frontNode);
-            //Assert.ThrowsException();
+            
+
         }
 
         [Test]

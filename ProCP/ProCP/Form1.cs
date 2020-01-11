@@ -276,7 +276,7 @@ namespace ProCP
             var newFlight = new Flight()
             {
                 BaggageCount = int.Parse(textBoxNumberOfBags.Text),
-                DipartureTime = new TimeSpan(departureTime.Value.Ticks),
+                DipartureTime = new DateTime(departureTime.Value.Ticks),
                 FlightNumber = textBoxFlightNumber.Text,
             };
 

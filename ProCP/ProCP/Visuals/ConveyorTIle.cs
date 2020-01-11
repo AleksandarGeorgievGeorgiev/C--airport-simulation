@@ -8,7 +8,7 @@ using ProCP.Nodes;
 
 namespace ProCP.Visuals
 {
-    class ConveyorTile : GridTile
+    public class ConveyorTile : GridTile
     {
         public ConveyorTile(int column, int row, int tileWidth, int tileHeight) : base(column, row, tileWidth, tileHeight)
         {
