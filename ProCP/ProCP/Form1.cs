@@ -1,20 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Windows.Controls;
-using System.Windows.Media;
-using LiveCharts;
+﻿using LiveCharts;
 using LiveCharts.Wpf;
-using Brushes = System.Windows.Media.Brushes;
 using ProCP.FlightAndBaggage;
 using ProCP.Services;
 using ProCP.Visuals;
+using System;
+using System.Data;
+using System.Linq;
+using System.Windows.Forms;
 using Grid = ProCP.Visuals.Grid;
 
 namespace ProCP
@@ -54,7 +46,8 @@ namespace ProCP
             cartesianChart1.Series.Add(new ColumnSeries() { Title = "2132", Values = new ChartValues<int> { 20 } });
             cartesianChart1.AxisY.Add(new Axis()
             {
-                Title = "Time (min)"
+                Title = "Time elapsed per flight",
+                
             });
             cartesianChart1.AxisX.Add(new Axis()
             {
@@ -72,8 +65,9 @@ namespace ProCP
             PrimarySecurityChart.Series.Add(new ColumnSeries() { Title = "85", Values = new ChartValues<int> { 20 } });
             PrimarySecurityChart.AxisY.Add(new Axis()
             {
-                Title = "Baggage amount"
+                Title = "Baggage transferred per flight"
             });
+
             PrimarySecurityChart.AxisX.Add(new Axis()
             {
                 Title = "Flight"
@@ -113,10 +107,9 @@ namespace ProCP
             MessageBox.Show("You clicked (" + chartPoint.X + "," + chartPoint.Y + ")");
         }
 
-
         private void BtnStart_Click(object sender, EventArgs e)
         {
-            _engine.RunDemo(_simulationSettings);
+            _engine.Run(_simulationSettings);
             _timer.Start();
         }
 
@@ -172,7 +165,6 @@ namespace ProCP
             generalStatsTable.Rows.Add(row0);
             generalStatsTable.Columns[0].DisplayIndex = 0;
         }
-
 
         private void animationBox_Paint_1(object sender, PaintEventArgs e)
         {
@@ -272,7 +264,7 @@ namespace ProCP
             var newFlight = new Flight()
             {
                 BaggageCount = int.Parse(textBoxNumberOfBags.Text),
-                DipartureTime = new TimeSpan(departureTime.Value.Ticks),
+                DipartureTime = departureTime.Value,
                 FlightNumber = textBoxFlightNumber.Text,
             };
 
@@ -347,24 +339,5 @@ namespace ProCP
             //}
         }
 
-        private void btnSpeed1_Click(object sender, EventArgs e)
-        {
-            _simulationSettings.Cs.Speed = 1600;
-        }
-
-        private void btnSpeed2_Click(object sender, EventArgs e)
-        {
-            _simulationSettings.Cs.Speed = 1400;
-        }
-
-        private void btnSpeed3_Click(object sender, EventArgs e)
-        {
-            _simulationSettings.Cs.Speed = 1200;
-        }
-
-        private void btnSpeed4_Click(object sender, EventArgs e)
-        {
-            _simulationSettings.Cs.Speed = 1000;
-        }
     }
 }
