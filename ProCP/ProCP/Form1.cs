@@ -295,7 +295,7 @@ namespace ProCP
 
             if (_simulationSettings.Flights.Count() == 1)
             {
-                gbStartStop.Visible = true;
+                gbStartStop.Enabled = true;
             }
             //List<GridTile> temp = this._grid.CheckTheConnection();
             //foreach(var tile in temp)

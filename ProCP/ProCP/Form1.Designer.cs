@@ -651,7 +651,6 @@
             this.Name = "Form1";
             this.ShowInTaskbar = false;
             this.Text = "ProCp";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
