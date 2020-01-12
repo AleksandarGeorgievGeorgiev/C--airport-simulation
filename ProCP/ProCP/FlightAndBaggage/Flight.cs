@@ -14,6 +14,6 @@ namespace ProCP.FlightAndBaggage
         public int DispatchedBaggageCount { get; set; } = 0;
         public bool HasCheckin { get; set; } = false;
         public bool HasDropOff { get; set; } = false;
-        public string DropOff { get; set; }
+        public string DropoffId { get; set; }
     }
 }

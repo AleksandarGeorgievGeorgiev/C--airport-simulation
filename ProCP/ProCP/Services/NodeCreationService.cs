@@ -111,6 +111,7 @@ namespace ProCP.Services
             //    checkin.AssignFlight(flight);
             //    flight.HasCheckin = true;
             //}
+
             return checkin;
         }
         public IPrimarySecurity CreatePrimarySecurity(int nodeId)

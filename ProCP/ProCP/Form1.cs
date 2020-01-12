@@ -32,6 +32,9 @@ namespace ProCP
             gbSettings.Enabled = false;
             MapImportExportgroupBox.Enabled = false;
             gbStartStop.Enabled = false;
+            departureTimePicker.Value = DateTime.Now;
+            departureTimePicker.Format = DateTimePickerFormat.Time;
+            departureTimePicker.ShowUpDown = true;
             //create flight
             //var flight = new Flight()
             //{
@@ -47,7 +50,7 @@ namespace ProCP
             cartesianChart1.AxisY.Add(new Axis()
             {
                 Title = "Time elapsed per flight",
-                
+
             });
             cartesianChart1.AxisX.Add(new Axis()
             {
@@ -159,9 +162,13 @@ namespace ProCP
         private void PopulateTable(StatisticsData data)
         {
             generalStatsTable.Rows.Clear();
+            var simulationElapsedTime = "0";
+            if (data.SimulationTimeElapsed != null)
+            {
+                simulationElapsedTime = data.SimulationTimeElapsed.Max().ToString();
+            }
 
-            string[] row0 = { data.SimulationTimeElapsed, Baggage.AllBaggage.Count().ToString(), _simulationSettings.Flights.Count().ToString() };
-
+            string[] row0 = {simulationElapsedTime, Baggage.AllBaggage.Count().ToString(), _simulationSettings.Flights.Count().ToString() };
             generalStatsTable.Rows.Add(row0);
             generalStatsTable.Columns[0].DisplayIndex = 0;
         }
@@ -217,6 +224,7 @@ namespace ProCP
             {
                 currentTile = new DropOffTile(t.Column, t.Row, this._grid.GetTileWidth(), this._grid.GetTileHeight());
                 this.DrawAndConnectComponentHelper(currentTile, t);
+                comboBoxCurrentDropOffs.Items.Add(currentTile.NodeId);
                 if (currentTile.NextTiles != null)
                 {
                     gbSettings.Enabled = true;
@@ -258,14 +266,25 @@ namespace ProCP
         {
             // if the number of currently made flights is bigger than the number of currently created checkins just return and show a message 
             // else create flights
+            if (String.IsNullOrEmpty(textBoxFlightNumber.Text) || String.IsNullOrEmpty(textBoxNumberOfBags.Text))
+            {
+                MessageBox.Show("Fill in all the required fields!");
+                return;
+            }
+            if (comboBoxCurrentDropOffs.SelectedItem == null)
+            {
+                MessageBox.Show("Gate selection is necessary!");
+                return;
+            }
 
             var checkinTiles = _simulationSettings.FrontNodes.Where(n => n is CheckInTile);
 
             var newFlight = new Flight()
             {
                 BaggageCount = int.Parse(textBoxNumberOfBags.Text),
-                DipartureTime = departureTime.Value,
+                DipartureTime = departureTimePicker.Value,
                 FlightNumber = textBoxFlightNumber.Text,
+                DropoffId = comboBoxCurrentDropOffs.SelectedItem.ToString()
             };
 
             if (_simulationSettings.Flights.Any(f => f.FlightNumber == newFlight.FlightNumber))
@@ -276,12 +295,6 @@ namespace ProCP
 
             _simulationSettings.Flights.Add(newFlight);
 
-            if (checkinTiles.Count() < _simulationSettings.Flights.Count())
-            {
-                _simulationSettings.Flights.Remove(newFlight);
-                MessageBox.Show("You exceeded the number of flights. Create more checkins and dropoffs");
-                return;
-            }
 
             lbFlights.Items.Add("Flight number: " + newFlight.FlightNumber.ToString());
 
@@ -309,11 +322,7 @@ namespace ProCP
             {
                 lbFlights.Items.Remove(flight);
                 _simulationSettings.Flights.Remove(flight);
-
-                foreach (var existingflight in _simulationSettings.Flights)
-                {
-                    lbFlights.Items.Add("Flight number: " + existingflight.FlightNumber.ToString());
-                };
+                lbFlights.Items.Remove(lbFlights.SelectedItem);
             }
             else
             {
@@ -337,31 +346,6 @@ namespace ProCP
             //        t = t.NextTiles[0];
             //    }
             //}
-        }
-
-        private void cartesianChart1_ChildChanged(object sender, System.Windows.Forms.Integration.ChildChangedEventArgs e)
-        {
-
-        }
-
-        private void btnSpeed1_Click(object sender, EventArgs e)
-        {
-            _simulationSettings.Cs.Speed = 1600;
-        }
-
-        private void btnSpeed2_Click(object sender, EventArgs e)
-        {
-            _simulationSettings.Cs.Speed = 1400;
-        }
-
-        private void btnSpeed3_Click(object sender, EventArgs e)
-        {
-            _simulationSettings.Cs.Speed = 1200;
-        }
-
-        private void btnSpeed4_Click(object sender, EventArgs e)
-        {
-            _simulationSettings.Cs.Speed = 1000;
         }
     }
 }

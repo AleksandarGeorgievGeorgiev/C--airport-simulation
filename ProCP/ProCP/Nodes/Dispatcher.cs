@@ -68,7 +68,7 @@ namespace ProCP.Nodes
             {
                 var timer = new Timer();
                 _flightTimers.Add(timer);
-                timer.Interval = 1000;
+                timer.Interval = CalculateDispatchTime(flight);
 
                 timer.Elapsed += (sender, args) =>
                 {
@@ -138,14 +138,26 @@ namespace ProCP.Nodes
                 {
                     return index;
                 }
+
                 if (checkinQueues[index].Count < shortestQueue)
                 {
                     shortestQueue = checkinQueues[index].Count;
                     chosenIndex = index;
                 }
             }
-            return chosenIndex;
 
+            return chosenIndex;
+        }
+
+        public int CalculateDispatchTime(Flight flight)
+        {
+            var currentTime = DateTime.Now;
+            var interval = new TimeSpan();
+            interval = currentTime - flight.DipartureTime;
+            interval = flight.DipartureTime - currentTime;
+            var dispatchRate = (interval.Seconds) * 1000;
+
+            return dispatchRate;
         }
 
         public override void PassBaggage(IBaggage b)

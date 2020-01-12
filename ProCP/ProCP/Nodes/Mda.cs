@@ -76,7 +76,7 @@ namespace ProCP.Nodes
         {
             foreach (var node in _listOfNextNode)
             {
-                if (node.Value.NextNode.Destination == b.Flight.FlightNumber)
+                if (node.Value.NextNode.Destination == b.Flight.DropoffId)
                 {
                     b.Destination = node.Value.NextNode.Destination;
                 }
