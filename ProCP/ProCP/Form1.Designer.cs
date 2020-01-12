@@ -66,12 +66,14 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.lbFlights = new System.Windows.Forms.ListBox();
             this.btnAdd = new System.Windows.Forms.Button();
-            this.departureTime = new System.Windows.Forms.DateTimePicker();
+            this.departureTimePicker = new System.Windows.Forms.DateTimePicker();
             this.labelDate = new System.Windows.Forms.Label();
             this.textBoxNumberOfBags = new System.Windows.Forms.TextBox();
             this.labelNoOfBags = new System.Windows.Forms.Label();
             this.textBoxFlightNumber = new System.Windows.Forms.TextBox();
             this.labelFlightNo = new System.Windows.Forms.Label();
+            this.comboBoxCurrentDropOffs = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -445,9 +447,9 @@
             this.buttonDeleteTile.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.buttonDeleteTile.FlatAppearance.BorderSize = 0;
             this.buttonDeleteTile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonDeleteTile.Location = new System.Drawing.Point(11, 105);
+            this.buttonDeleteTile.Location = new System.Drawing.Point(348, 12);
             this.buttonDeleteTile.Name = "buttonDeleteTile";
-            this.buttonDeleteTile.Size = new System.Drawing.Size(68, 50);
+            this.buttonDeleteTile.Size = new System.Drawing.Size(43, 35);
             this.buttonDeleteTile.TabIndex = 5;
             this.buttonDeleteTile.UseVisualStyleBackColor = true;
             // 
@@ -459,7 +461,7 @@
             this.btnSecurity.FlatAppearance.BorderSize = 0;
             this.btnSecurity.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSecurity.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSecurity.Location = new System.Drawing.Point(84, 39);
+            this.btnSecurity.Location = new System.Drawing.Point(317, 66);
             this.btnSecurity.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSecurity.Name = "btnSecurity";
             this.btnSecurity.Size = new System.Drawing.Size(68, 61);
@@ -475,7 +477,7 @@
             this.btnConveyor.FlatAppearance.BorderSize = 0;
             this.btnConveyor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnConveyor.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConveyor.Location = new System.Drawing.Point(232, 39);
+            this.btnConveyor.Location = new System.Drawing.Point(239, 66);
             this.btnConveyor.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnConveyor.Name = "btnConveyor";
             this.btnConveyor.Size = new System.Drawing.Size(68, 61);
@@ -491,7 +493,7 @@
             this.btnDropoff.FlatAppearance.BorderSize = 0;
             this.btnDropoff.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDropoff.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDropoff.Location = new System.Drawing.Point(158, 39);
+            this.btnDropoff.Location = new System.Drawing.Point(89, 66);
             this.btnDropoff.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnDropoff.Name = "btnDropoff";
             this.btnDropoff.Size = new System.Drawing.Size(68, 61);
@@ -507,7 +509,7 @@
             this.btnMain.FlatAppearance.BorderSize = 0;
             this.btnMain.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMain.Location = new System.Drawing.Point(306, 39);
+            this.btnMain.Location = new System.Drawing.Point(163, 66);
             this.btnMain.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnMain.Name = "btnMain";
             this.btnMain.Size = new System.Drawing.Size(68, 61);
@@ -523,7 +525,7 @@
             this.btnCheckin.FlatAppearance.BorderSize = 0;
             this.btnCheckin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCheckin.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCheckin.Location = new System.Drawing.Point(11, 39);
+            this.btnCheckin.Location = new System.Drawing.Point(11, 66);
             this.btnCheckin.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCheckin.Name = "btnCheckin";
             this.btnCheckin.Size = new System.Drawing.Size(68, 61);
@@ -534,10 +536,12 @@
             // gbFlightInfo
             // 
             this.gbFlightInfo.BackColor = System.Drawing.Color.Transparent;
+            this.gbFlightInfo.Controls.Add(this.label2);
+            this.gbFlightInfo.Controls.Add(this.comboBoxCurrentDropOffs);
             this.gbFlightInfo.Controls.Add(this.btnDelete);
             this.gbFlightInfo.Controls.Add(this.lbFlights);
             this.gbFlightInfo.Controls.Add(this.btnAdd);
-            this.gbFlightInfo.Controls.Add(this.departureTime);
+            this.gbFlightInfo.Controls.Add(this.departureTimePicker);
             this.gbFlightInfo.Controls.Add(this.labelDate);
             this.gbFlightInfo.Controls.Add(this.textBoxNumberOfBags);
             this.gbFlightInfo.Controls.Add(this.labelNoOfBags);
@@ -586,15 +590,15 @@
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
-            // departureTime
+            // departureTimePicker
             // 
-            this.departureTime.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.departureTime.Location = new System.Drawing.Point(147, 85);
-            this.departureTime.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.departureTime.Name = "departureTime";
-            this.departureTime.Size = new System.Drawing.Size(164, 24);
-            this.departureTime.TabIndex = 5;
-            this.departureTime.Value = new System.DateTime(2019, 10, 14, 0, 0, 0, 0);
+            this.departureTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.departureTimePicker.Location = new System.Drawing.Point(147, 85);
+            this.departureTimePicker.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.departureTimePicker.Name = "departureTimePicker";
+            this.departureTimePicker.Size = new System.Drawing.Size(164, 24);
+            this.departureTimePicker.TabIndex = 5;
+            this.departureTimePicker.Value = new System.DateTime(2019, 10, 14, 0, 0, 0, 0);
             // 
             // labelDate
             // 
@@ -638,6 +642,23 @@
             this.labelFlightNo.Size = new System.Drawing.Size(100, 18);
             this.labelFlightNo.TabIndex = 0;
             this.labelFlightNo.Text = "Flight Number";
+            // 
+            // comboBoxCurrentDropOffs
+            // 
+            this.comboBoxCurrentDropOffs.FormattingEnabled = true;
+            this.comboBoxCurrentDropOffs.Location = new System.Drawing.Point(147, 114);
+            this.comboBoxCurrentDropOffs.Name = "comboBoxCurrentDropOffs";
+            this.comboBoxCurrentDropOffs.Size = new System.Drawing.Size(164, 26);
+            this.comboBoxCurrentDropOffs.TabIndex = 13;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(5, 117);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(40, 18);
+            this.label2.TabIndex = 15;
+            this.label2.Text = "Gate";
             // 
             // Form1
             // 
@@ -699,7 +720,7 @@
         private System.Windows.Forms.TextBox textBoxNumberOfBags;
         private System.Windows.Forms.Label labelNoOfBags;
         private System.Windows.Forms.TextBox textBoxFlightNumber;
-        private System.Windows.Forms.DateTimePicker departureTime;
+        private System.Windows.Forms.DateTimePicker departureTimePicker;
         private System.Windows.Forms.Label labelDate;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.ListBox lbFlights;
@@ -716,6 +737,8 @@
         private System.Windows.Forms.Button buttonImport;
         private System.Windows.Forms.PictureBox animationBox;
         private System.Windows.Forms.Button buttonDeleteTile;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox comboBoxCurrentDropOffs;
     }
 }
 
