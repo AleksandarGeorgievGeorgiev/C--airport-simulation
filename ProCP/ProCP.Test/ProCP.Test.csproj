@@ -70,6 +70,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="TransportingNodeTest.cs" />
     <Compile Include="StatisticsTest.cs" />
     <Compile Include="NodeCreationTest.cs" />
     <Compile Include="TimerTrackerSerivceTest.cs" />
