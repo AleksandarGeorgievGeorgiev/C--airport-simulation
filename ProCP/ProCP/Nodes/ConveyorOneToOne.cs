@@ -51,10 +51,7 @@ namespace ProCP.Nodes
         {
             NodeStatus = NodeStatus.Busy;
             b.TransporterId = NodeId;
-            lock (_conveyorBelt)
-            {
-                Add(b);
-            }
+            Add(b);
         }
     }
 }

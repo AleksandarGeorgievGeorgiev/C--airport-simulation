@@ -23,7 +23,7 @@ namespace ProCP.Visuals
 
             fillBrush = clickableColor;
 
-            this.Length = 3;
+            this.Length = 2;
         }
         protected override void DrawTileInfo(Graphics g, RectangleF r, int tileHeight)
         {

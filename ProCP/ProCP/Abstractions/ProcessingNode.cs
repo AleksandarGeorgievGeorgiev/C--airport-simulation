@@ -37,11 +37,6 @@ namespace ProCP.Abstractions
             NodeStatus = NodeStatus.Busy;
             currentBag = b;
 
-            if (b == null)
-            {
-                return;
-            }
-
             if (b.TransportationStartTime != null)
             {
                 var transportationStart = b.TransportationStartTime ?? 0;
@@ -69,13 +64,17 @@ namespace ProCP.Abstractions
 
         private void Move()
         {
-            if (currentBag != null && NextNode.NodeStatus == NodeStatus.Free)
+            if (currentBag == null)
             {
-                NextNode.OnNodeStatusChangedToFree -= Move;
+                return;
+            }
+            if (NextNode.NodeStatus == NodeStatus.Free)
+            {
                 NextNode.PassBaggage(currentBag);
+                NextNode.OnNodeStatusChangedToFree -= Move;
                 NodeStatus = NodeStatus.Free;
             }
-            else if (NextNode.NodeStatus == NodeStatus.Busy)
+            else
             {
                 NextNode.OnNodeStatusChangedToFree += Move;
             }

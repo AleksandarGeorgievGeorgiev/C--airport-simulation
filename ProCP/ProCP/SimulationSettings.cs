@@ -31,12 +31,12 @@ namespace ProCP
     public class PrimarySecuritySettings : IPrimarySecuritySettings
     {
         public double PercentageFailedBags { get; set; } = 10;
-        public int ProcessingSpeed { get; set; } = 1000;
+        public int ProcessingSpeed { get; set; } = 500;
     }
 
     public class ConveyorSettings : IConveyorSettings
     {
-        public long Speed { get; set; } = 1000;
+        public long Speed { get; set; } = 500;
     }
 
     public class DropOffSettings : IDropoffSettings
