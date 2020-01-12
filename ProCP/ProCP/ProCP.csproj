@@ -82,7 +82,6 @@
     <Compile Include="Data\IData.cs" />
     <Compile Include="Data\ReadFromDatabase.cs" />
     <Compile Include="Data\ReadFromImageFile.cs" />
-    <Compile Include="Data\ReadTextFile.cs" />
     <Compile Include="Engine.cs" />
     <Compile Include="FlightAndBaggage\Baggage.cs" />
     <Compile Include="FlightAndBaggage\BaggageEventLog.cs" />

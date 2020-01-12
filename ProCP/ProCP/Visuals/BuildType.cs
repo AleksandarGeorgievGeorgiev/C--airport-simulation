@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProCP.Visuals
 {
+    [Serializable]
     enum BuildType
     {
         Empty,

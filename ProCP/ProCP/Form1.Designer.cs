@@ -72,6 +72,8 @@
             this.labelNoOfBags = new System.Windows.Forms.Label();
             this.textBoxFlightNumber = new System.Windows.Forms.TextBox();
             this.labelFlightNo = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.comboBoxCurrentDropOffs = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
@@ -101,10 +103,10 @@
             this.panel1.Controls.Add(this.gbStartStop);
             this.panel1.Controls.Add(this.gbBuild);
             this.panel1.Controls.Add(this.gbFlightInfo);
-            this.panel1.Location = new System.Drawing.Point(4, 11);
-            this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panel1.Location = new System.Drawing.Point(3, 9);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1482, 867);
+            this.panel1.Size = new System.Drawing.Size(1112, 704);
             this.panel1.TabIndex = 0;
             // 
             // tabControl1
@@ -123,17 +125,17 @@
             this.tabControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1077, 862);
+            this.tabControl1.Size = new System.Drawing.Size(808, 700);
             this.tabControl1.TabIndex = 1;
             // 
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.animationBox);
             this.tabPage1.Location = new System.Drawing.Point(4, 39);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabPage1.Size = new System.Drawing.Size(1069, 819);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage1.Size = new System.Drawing.Size(800, 657);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Simulation Map";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -317,7 +319,7 @@
             this.labelEmployees.AutoSize = true;
             this.labelEmployees.Location = new System.Drawing.Point(181, 30);
             this.labelEmployees.Name = "labelEmployees";
-            this.labelEmployees.Size = new System.Drawing.Size(82, 18);
+            this.labelEmployees.Size = new System.Drawing.Size(68, 15);
             this.labelEmployees.TabIndex = 2;
             this.labelEmployees.Text = "Employees";
             // 
@@ -366,6 +368,7 @@
             this.buttonExport.Size = new System.Drawing.Size(61, 63);
             this.buttonExport.TabIndex = 4;
             this.buttonExport.UseVisualStyleBackColor = true;
+            this.buttonExport.Click += new System.EventHandler(this.buttonExport_Click);
             // 
             // buttonImport
             // 
@@ -380,6 +383,7 @@
             this.buttonImport.Size = new System.Drawing.Size(51, 50);
             this.buttonImport.TabIndex = 6;
             this.buttonImport.UseVisualStyleBackColor = true;
+            this.buttonImport.Click += new System.EventHandler(this.buttonImport_Click);
             // 
             // gbStartStop
             // 

@@ -20,7 +20,6 @@ namespace ProCP.Visuals
         private int verticalTileCount = 12;
 
         int bottomRow;
-        int topRow;
 
         public List<GridTile> gridTiles;
         private SimulationSettings _simulationSettings;
@@ -166,6 +165,13 @@ namespace ProCP.Visuals
                             return false;
                         }
                     }
+                    else
+                    {
+                        if(component.Row == 0 || component.Row == bottomRow)
+                        {
+                            return false;
+                        }
+                    }
                     this.gridTiles.Remove(selectedTile);
                     this.gridTiles.Add(component);
                 }
@@ -186,8 +192,8 @@ namespace ProCP.Visuals
             if(!(current is CheckInTile) && !(current is DropOffTile)) 
             {
                 temp.Add(FindTileInRowColumnCoordinates(current.Column, current.Row - 1));
-                temp.Add(FindTileInRowColumnCoordinates(current.Column + 1, current.Row));
                 temp.Add(FindTileInRowColumnCoordinates(current.Column - 1, current.Row));
+                temp.Add(FindTileInRowColumnCoordinates(current.Column + 1, current.Row));
                 temp.Add(FindTileInRowColumnCoordinates(current.Column, current.Row + 1));
             } 
             else if(current is CheckInTile)
@@ -198,45 +204,37 @@ namespace ProCP.Visuals
             {
                 temp.Add(FindTileInRowColumnCoordinates(current.Column, current.Row - 1));
             }
-            
+            temp.RemoveAll(x => x is EmptyTile);
             return temp;
         }
 
-        public bool ConnectTile(GridTile currentTile)
+        public void ConnectTile(GridTile currentTile)
         {
             List<GridTile> tileList = this.FindTilesFromCurrentLocation(currentTile);
-            foreach(var tile in tileList)
+            foreach (var tile in tileList)
             {
-                if(!(tile is EmptyTile))
+                if (tile is MDATilePart p)
                 {
-                    if (tile is MDATilePart p)
-                    {
-                        this.ConnectMda(currentTile, p);
-                        //temporary solution, somehow the mda tile keep adding 2 mda tile(adding its own) with 1 conveyor to its tileparts 
-                        //this temporary solution fix that problem but need to change it later on for efficiency
-                        p.GetMainTile().NextTiles.RemoveAll(x => x is MDATile);
-                        continue;
-                    }
-                    // connecting 
-                    if (tile.NextTiles.Count == 0)
-                    {
-                        if(currentTile.Row > tile.Row || currentTile.Column > tile.Column)
-                        {
-                            tile.SetNextTile(currentTile);
-                            currentTile.SetPreviousTile(tile);
-                        }
-                    }
-                    else if(tile.PreviousTile == null)
-                    {
-                        if(currentTile.Row < tile.Row || currentTile.Column < tile.Column)
-                        {
-                            currentTile.SetNextTile(tile);
-                            tile.SetPreviousTile(currentTile);
-                        }
-                    }
+                    this.ConnectMda(currentTile, p);
+                    //temporary solution, somehow the mda tile keep adding 2 mda tile(adding its own) with 1 conveyor to its tileparts 
+                    //this temporary solution fix that problem but need to change it later on for efficiency
+                    p.GetMainTile().NextTiles.RemoveAll(x => x is MDATile);
+                    continue;
+                }
+                // connecting 
+                if (tile.Row < currentTile.Row || tile.Column < currentTile.Column)
+                {
+                    tile.SetNextTile(currentTile);
+                    currentTile.SetPreviousTile(tile);
+                    continue;
+                }
+                if(tile.Row > currentTile.Row || tile.Column > currentTile.Column)
+                {
+                    currentTile.SetNextTile(tile);
+                    tile.SetPreviousTile(currentTile);
+                    continue;
                 }
             }
-            return false;
         }
 
         public bool ConnectingComponentValidaion(GridTile current, GridTile selectedTile)
@@ -270,7 +268,10 @@ namespace ProCP.Visuals
                     return false;
                 }
             }
-            this.DrawAComponent(current, selectedTile);
+            if(!this.DrawAComponent(current, selectedTile))
+            {
+                MessageBox.Show("Cant draw this component here");
+            }
             return true;
         }
 
@@ -293,6 +294,8 @@ namespace ProCP.Visuals
         {
             if(!(current is EmptyTile))
             {
+                current.PreviousTile.NextTiles.Clear();
+                current.NextTiles[0].SetPreviousTile(null);
                 this.gridTiles.Remove(current);
                 this.gridTiles.Add(new EmptyTile(current.Column, current.Row, tileWidth, tileHeight));
             }

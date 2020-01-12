@@ -10,6 +10,7 @@ using ProCP.Services;
 
 namespace ProCP.Abstractions
 {
+    [Serializable]
     public abstract class ChainNode : IChainNode
     {
         private NodeStatus _NodeStatus;

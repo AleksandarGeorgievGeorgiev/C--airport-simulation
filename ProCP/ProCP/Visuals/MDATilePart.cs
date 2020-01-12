@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace ProCP.Visuals
 {
+    [Serializable]
     public class MDATilePart: GridTile
     {
         private MDATile _mainTile;
