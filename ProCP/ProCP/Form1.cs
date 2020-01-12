@@ -347,7 +347,7 @@ namespace ProCP
 
         private void button1_Click(object sender, EventArgs e)
         {
-            List<GridTile> temp = this._grid.CheckTheConnection();
+            List<GridTile> temp = this._simulationSettings.FrontNodes;
             foreach (var tile in temp)
             {
                 var t = tile;
@@ -372,6 +372,7 @@ namespace ProCP
                 MessageBox.Show("Choose file");
             }
             this._grid = readAndWrite.ReadData(filePath);
+            this._simulationSettings.FrontNodes = this._grid.GetFrontNodeList();
             this.animationBox.Invalidate();
         }
 

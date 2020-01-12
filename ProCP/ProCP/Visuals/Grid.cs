@@ -65,7 +65,7 @@ namespace ProCP.Visuals
             }
         }
 
-        public List<GridTile> CheckTheConnection()
+        public List<GridTile> GetFrontNodeList()
         {
             return this._simulationSettings.FrontNodes;
         }
