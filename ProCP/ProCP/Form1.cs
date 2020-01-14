@@ -1,9 +1,11 @@
 ﻿using LiveCharts;
 using LiveCharts.Wpf;
+using ProCP.Data;
 using ProCP.FlightAndBaggage;
 using ProCP.Services;
 using ProCP.Visuals;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
@@ -31,7 +33,6 @@ namespace ProCP
             _grid = new Grid(animationBox.Width, animationBox.Height, _simulationSettings);
             gbFlightInfo.Enabled = false;
             gbSettings.Enabled = false;
-            MapImportExportgroupBox.Enabled = false;
             gbStartStop.Enabled = false;
             departureTimePicker.Value = DateTime.Now;
             departureTimePicker.Format = DateTimePickerFormat.Time;
@@ -169,7 +170,7 @@ namespace ProCP
                 simulationElapsedTime = data.SimulationTimeElapsed.Max().ToString();
             }
 
-            string[] row0 = {simulationElapsedTime, Baggage.AllBaggage.Count().ToString(), _simulationSettings.Flights.Count().ToString() };
+            string[] row0 = { simulationElapsedTime, Baggage.AllBaggage.Count().ToString(), _simulationSettings.Flights.Count().ToString() };
             generalStatsTable.Rows.Add(row0);
             generalStatsTable.Columns[0].DisplayIndex = 0;
         }
@@ -230,6 +231,7 @@ namespace ProCP
                     gbSettings.Enabled = true;
                     gbFlightInfo.Enabled = true;
                     MapImportExportgroupBox.Enabled = true;
+                    comboBoxCurrentDropOffs.Items.Add(currentTile.NodeId.ToString());
                 }
             }
 
@@ -331,7 +333,7 @@ namespace ProCP
 
 
 
-            
+
         }
 
         private void cartesianChart1_ChildChanged(object sender, System.Windows.Forms.Integration.ChildChangedEventArgs e)
@@ -349,7 +351,7 @@ namespace ProCP
                 {
                     MessageBox.Show("current Id: " + t.NodeId + " Type: " + t.GetType().ToString() + " next node id: " + t.NextTiles[0].NodeId);
                     t = t.NextTiles[0];
-                    if(t is DropOffTile)
+                    if (t is DropOffTile)
                     {
                         MessageBox.Show("current Id: " + t.NodeId + " Type: " + t.GetType().ToString());
                         break;
@@ -364,17 +366,21 @@ namespace ProCP
             if (!this.ImportExportHelper(ref filePath, ref readAndWrite))
             {
                 MessageBox.Show("Choose file");
+                return;
             }
             this._grid = readAndWrite.ReadData(filePath);
+            this._simulationSettings.FrontNodes = _grid.CheckTheConnection();
+            this.FindDropOffsAfterGridImport(_simulationSettings.FrontNodes);
             this.animationBox.Invalidate();
-        }
+        }       
 
         private void buttonExport_Click(object sender, EventArgs e)
         {
             string filePath = "";
-            if(!this.ImportExportHelper(ref filePath, ref readAndWrite))
+            if (!this.ImportExportHelper(ref filePath, ref readAndWrite))
             {
                 MessageBox.Show("Choose file");
+                return;
             }
             readAndWrite.WriteData(filePath, this._grid);
         }
@@ -385,9 +391,25 @@ namespace ProCP
             {
                 filePath = openFileDialog1.FileName;
                 readAndWrite = new ReadFromImageFile();
+                gbFlightInfo.Enabled = true;
+                gbSettings.Enabled = true;
+                gbStartStop.Enabled = true;
                 return true;
             }
             return false;
+        }
+
+        public void FindDropOffsAfterGridImport(List<GridTile> tiles)
+        {
+            foreach (var tile in tiles)
+            {
+                if (tile is DropOffTile)
+                {
+                    comboBoxCurrentDropOffs.Items.Add(tile.NodeId.ToString());
+                }
+
+                FindDropOffsAfterGridImport(tile.NextTiles);
+            }
         }
     }
 }

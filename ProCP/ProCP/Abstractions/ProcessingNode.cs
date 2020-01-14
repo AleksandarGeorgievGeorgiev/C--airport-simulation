@@ -52,13 +52,13 @@ namespace ProCP.Abstractions
         private void ProcessInternal(IBaggage b)
         {
             Process(b);
-            if (currentBag == null) 
-            {
-                NodeStatus = NodeStatus.Free;
-                return;
-            }
+            //if (currentBag == null)
+            //{
+            //    NodeStatus = NodeStatus.Free;
+            //    return;
+            //}
             NextNode = nextNodes.FirstOrDefault(n => n.Destination == b.Destination);
-            currentBag.TransportationStartTime = TimerService.GetTicksSinceSimulationStart();
+            b.TransportationStartTime = TimerService.GetTicksSinceSimulationStart();
             Move();
         }
 
