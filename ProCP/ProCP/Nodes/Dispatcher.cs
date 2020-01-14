@@ -102,15 +102,15 @@ namespace ProCP.Nodes
             if (checkIn.NodeStatus == NodeStatus.Free)
             {
                 checkIn.PassBaggage(baggage);
-                if (OnNodeStatusChangedToFree != null)
-                {
-                    checkIn.OnNodeStatusChangedToFree -= () => PassQueuedBaggage(chosen);
-                }
+                checkIn.OnNodeStatusChangedToFree -= () => PassQueuedBaggage(chosen);
             }
             else
             {
                 queue.Enqueue(baggage);
-                checkIn.OnNodeStatusChangedToFree += () => PassQueuedBaggage(chosen);
+                if (checkIn.OnNodeStatusChangedToFree == null)
+                {
+                    checkIn.OnNodeStatusChangedToFree += () => PassQueuedBaggage(chosen);
+                }
             }
 
             flight.DispatchedBaggageCount++;
@@ -152,12 +152,11 @@ namespace ProCP.Nodes
         public int CalculateDispatchTime(Flight flight)
         {
             var currentTime = DateTime.Now;
-            var interval = new TimeSpan();
-            interval = currentTime - flight.DipartureTime;
-            interval = flight.DipartureTime - currentTime;
-            var dispatchRate = (interval.Seconds) * 1000;
+            var interval = flight.DipartureTime - currentTime;
+            var dispatchRate = interval.TotalMilliseconds / flight.BaggageCount;
+            
 
-            return dispatchRate;
+            return (int)dispatchRate;
         }
 
         public override void PassBaggage(IBaggage b)

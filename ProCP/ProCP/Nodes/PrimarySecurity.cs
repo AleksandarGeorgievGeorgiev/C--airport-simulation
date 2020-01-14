@@ -27,8 +27,6 @@ namespace ProCP.Nodes
         //this must be done in the Process()
         public override void Process(IBaggage b)
         {
-            System.Diagnostics.Debug.WriteLine("psc" + b.Destination);
-
             var isFail = _randomGen.Next(0, 101) < _psSettings.PercentageFailedBags;
 
             b.AddLog(TimerService.GetTimeSinceSimulationStart(), TimerService.ConvertMillisecondsToTimeSpan(_psSettings.ProcessingSpeed),
@@ -42,7 +40,10 @@ namespace ProCP.Nodes
             {
                 bagsTaken.Add(b);
                 currentBag = null;
+                System.Diagnostics.Debug.WriteLine("psc failed");
+                return;
             }
+            System.Diagnostics.Debug.WriteLine("psc " + b.Destination);
         }
     }
 }

@@ -43,6 +43,7 @@ namespace ProCP.Nodes
             }
             else
             {
+                NextNode.OnNodeStatusChangedToFree -= Move;
                 NextNode.OnNodeStatusChangedToFree += Move;
             }
         }
@@ -51,6 +52,7 @@ namespace ProCP.Nodes
         {
             NodeStatus = NodeStatus.Busy;
             b.TransporterId = NodeId;
+
             Add(b);
         }
     }

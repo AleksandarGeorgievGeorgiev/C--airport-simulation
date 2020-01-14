@@ -372,7 +372,7 @@ namespace ProCP
             this._simulationSettings.FrontNodes = _grid.CheckTheConnection();
             this.FindDropOffsAfterGridImport(_simulationSettings.FrontNodes);
             this.animationBox.Invalidate();
-        }       
+        }
 
         private void buttonExport_Click(object sender, EventArgs e)
         {
@@ -405,7 +405,10 @@ namespace ProCP
             {
                 if (tile is DropOffTile)
                 {
-                    comboBoxCurrentDropOffs.Items.Add(tile.NodeId.ToString());
+                    if (!comboBoxCurrentDropOffs.Items.Contains(tile.NodeId.ToString()))
+                    {
+                        comboBoxCurrentDropOffs.Items.Add(tile.NodeId.ToString());
+                    }
                 }
 
                 FindDropOffsAfterGridImport(tile.NextTiles);
