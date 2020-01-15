@@ -24,6 +24,7 @@ namespace ProCP.Services
                 BagsPerFlight(statisticsData, baggages);
                 BagsTimesDispatchedAndCollectedStats(statisticsData, baggages);
                 ElapsedTimeForeachFlight(statisticsData, baggages);
+                PscFailedAndSucceededBagsPerFlight(statisticsData, baggages);
             }
             catch (Exception e)
             {
@@ -45,9 +46,30 @@ namespace ProCP.Services
 
         public static void SetPscFailedAndSucceededBags(StatisticsData data, ConcurrentBag<Baggage> baggages)
         {
-            data.BagsFailedPsc = baggages.Where(bag => bag.Logs.Any(log => log.Description.Contains(LoggingConstants.PrimarySecurityCheckFailed))).ToList();
             data.BagsSucceededPsc = baggages.Where(bag => bag.Logs.Any(log => log.Description.Contains(LoggingConstants.PrimarySecurityCheckSucceeded))).ToList();
+            data.BagsFailedPsc = baggages.Where(bag => bag.Logs.Any(log => log.Description.Contains(LoggingConstants.PrimarySecurityCheckFailed))).ToList();
         }
+
+        public static void PscFailedAndSucceededBagsPerFlight(StatisticsData data, ConcurrentBag<Baggage> baggages)
+        {
+            var bagsGroupedPerFlight = baggages.GroupBy(b => b.Flight.FlightNumber);
+            foreach (var group in bagsGroupedPerFlight)
+            {
+                if (data.PscSucceededBagsPerFlight.Count() > 0 || data.PscFailedBagsPerFlight.Count() > 0)
+                {
+                    data.PscSucceededBagsPerFlight.Clear();
+                    data.PscFailedBagsPerFlight.Clear();
+                }
+
+                var succeededBagsPerFlight = group.Where(b => b.Logs.Any(log => log.Description.Contains(LoggingConstants.PrimarySecurityCheckSucceeded))).ToList();
+                var failedBagsPerFlight = group.Where(b => b.Logs.Any(log => log.Description.Contains(LoggingConstants.PrimarySecurityCheckFailed))).ToList();
+
+                data.PscSucceededBagsPerFlight.Add(group.Key, succeededBagsPerFlight.Count());
+                data.PscFailedBagsPerFlight.Add(group.Key, failedBagsPerFlight.Count());
+            }
+        }
+
+        //not in use
         public static void AverageTimeCheckInDropOff(StatisticsData data, ConcurrentBag<Baggage> baggages)
         {
             List<long?> timeList = new List<long?>();
@@ -77,7 +99,7 @@ namespace ProCP.Services
 
         public static void BagsPerFlight(StatisticsData data, ConcurrentBag<Baggage> baggages)
         {
-            data.BagsGroupedPerFlight = data.TotalBagsTransfered.GroupBy(b => b.Flight.FlightNumber);
+            data.BagsGroupedPerFlight = data.TotalBagsTransfered.GroupBy(b => b.Flight.DropoffId);
 
             foreach (var group in data.BagsGroupedPerFlight)
             {

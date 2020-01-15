@@ -130,13 +130,14 @@ namespace ProCP
             pieChartBagsSecurity.Series.Add(new PieSeries() { Title = "Failed", Values = new ChartValues<int> { data.BagsFailedPsc.Count }, DataLabels = true });
             pieChartBagsSecurity.LegendLocation = LegendLocation.Right;
 
-            //column chart
+            //column chart bags per dropOff
             foreach (var flight in data.BagsPerFlight)
             {
-                PrimarySecurityChart.Series.Add(new ColumnSeries() { Title = "Flight number " + flight.Key, Values = new ChartValues<int> { flight.Value } });
+                PrimarySecurityChart.Series.Add(new ColumnSeries() { Title = "DropOff number " + flight.Key, Values = new ChartValues<int> { flight.Value } });
+                pieChartBagsSecurity.LegendLocation = LegendLocation.Right;
             }
 
-            //cartesian chart
+            //cartesian chart elapsed times per flight
             foreach (var flight in data.ElapsedTimesPerFlight)
             {
                 cartesianChart1.Series.Add(new ColumnSeries() { Title = "Flight number " + flight.Key, Values = new ChartValues<int> { int.Parse(flight.Value) } });

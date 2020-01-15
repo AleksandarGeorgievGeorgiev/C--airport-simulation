@@ -10,8 +10,14 @@ namespace ProCP.Visuals
     [Serializable]
     public class MDATile: GridTile
     {
-        List<MDATilePart> tileParts = new List<MDATilePart>();
-        public MDATile(int column, int row, int tileWidth, int tileHeight) : base(column, row, tileWidth, tileHeight) { }
+        public static int nodeId = 0;
+
+        List<MDATilePart> tileParts;
+        public MDATile(int column, int row, int tileWidth, int tileHeight) : base(column, row, tileWidth, tileHeight) {
+            tileParts = new List<MDATilePart>();
+            nodeId++;
+            NodeId = nodeId;
+        }
 
         public List<MDATilePart> GetTileParts()
         {
