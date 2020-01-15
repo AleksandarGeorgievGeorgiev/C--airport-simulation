@@ -157,19 +157,23 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\add-file-64.png" />
     <Content Include="Resources\arrow.png" />
     <Content Include="Resources\back.png" />
     <Content Include="Resources\check-in.png" />
     <Content Include="Resources\chevron.png" />
     <Content Include="Resources\conveyor.png" />
-    <Content Include="Resources\conveyor.svg" />
     <Content Include="Resources\counter.png" />
+    <Content Include="Resources\delete.png" />
     <Content Include="Resources\empty.png" />
+    <Content Include="Resources\export-50.png" />
     <Content Include="Resources\hotel-cart.png" />
     <Content Include="Resources\loader.png" />
     <Content Include="Resources\luggage-cart.png" />
     <Content Include="Resources\Mda.png" />
     <Content Include="Resources\scan.png" />
+    <Content Include="Resources\start-50.png" />
+    <Content Include="Resources\stop-50.png" />
     <Content Include="Resources\trolley %281%29.png" />
     <Content Include="Resources\trolley.png" />
   </ItemGroup>
