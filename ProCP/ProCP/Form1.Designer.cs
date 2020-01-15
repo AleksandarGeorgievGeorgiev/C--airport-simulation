@@ -102,10 +102,10 @@
             this.panel1.Controls.Add(this.gbStartStop);
             this.panel1.Controls.Add(this.gbBuild);
             this.panel1.Controls.Add(this.gbFlightInfo);
-            this.panel1.Location = new System.Drawing.Point(3, 9);
+            this.panel1.Location = new System.Drawing.Point(2, 7);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(6012, 1726);
+            this.panel1.Size = new System.Drawing.Size(4509, 1402);
             this.panel1.TabIndex = 0;
             // 
             // tabControl1
@@ -120,11 +120,11 @@
             this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.tabControl1.ItemSize = new System.Drawing.Size(141, 35);
-            this.tabControl1.Location = new System.Drawing.Point(402, 14);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabControl1.Location = new System.Drawing.Point(302, 11);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1080, 850);
+            this.tabControl1.Size = new System.Drawing.Size(810, 691);
             this.tabControl1.TabIndex = 1;
             // 
             // tabPage1
@@ -134,7 +134,7 @@
             this.tabPage1.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPage1.Size = new System.Drawing.Size(1072, 807);
+            this.tabPage1.Size = new System.Drawing.Size(802, 648);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Simulation Map";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -146,6 +146,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.animationBox.BackColor = System.Drawing.Color.LightGray;
             this.animationBox.Location = new System.Drawing.Point(2, 2);
+            this.animationBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.animationBox.Name = "animationBox";
             this.animationBox.Size = new System.Drawing.Size(1068, 803);
             this.animationBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -159,9 +160,9 @@
             this.tabPage3.Controls.Add(this.generalStatsTable);
             this.tabPage3.Controls.Add(this.pieChartBagsSecurity);
             this.tabPage3.Location = new System.Drawing.Point(4, 39);
-            this.tabPage3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabPage3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(1072, 807);
+            this.tabPage3.Size = new System.Drawing.Size(802, 648);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "General Statistics Overview";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -170,23 +171,23 @@
             // 
             this.generalStatsTable.AllowUserToAddRows = false;
             this.generalStatsTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.generalStatsTable.Location = new System.Drawing.Point(23, 16);
-            this.generalStatsTable.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.generalStatsTable.Location = new System.Drawing.Point(17, 13);
+            this.generalStatsTable.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.generalStatsTable.Name = "generalStatsTable";
             this.generalStatsTable.ReadOnly = true;
             this.generalStatsTable.RowHeadersWidth = 51;
             this.generalStatsTable.RowTemplate.Height = 24;
             this.generalStatsTable.RowTemplate.ReadOnly = true;
             this.generalStatsTable.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.generalStatsTable.Size = new System.Drawing.Size(653, 65);
+            this.generalStatsTable.Size = new System.Drawing.Size(490, 53);
             this.generalStatsTable.TabIndex = 4;
             // 
             // pieChartBagsSecurity
             // 
-            this.pieChartBagsSecurity.Location = new System.Drawing.Point(743, 16);
-            this.pieChartBagsSecurity.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pieChartBagsSecurity.Location = new System.Drawing.Point(557, 13);
+            this.pieChartBagsSecurity.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pieChartBagsSecurity.Name = "pieChartBagsSecurity";
-            this.pieChartBagsSecurity.Size = new System.Drawing.Size(260, 276);
+            this.pieChartBagsSecurity.Size = new System.Drawing.Size(195, 224);
             this.pieChartBagsSecurity.TabIndex = 3;
             this.pieChartBagsSecurity.Text = "Bags in security";
             // 
@@ -196,29 +197,29 @@
             this.tabPage2.Controls.Add(this.cartesianChart1);
             this.tabPage2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabPage2.Location = new System.Drawing.Point(4, 39);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabPage2.Size = new System.Drawing.Size(1072, 807);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage2.Size = new System.Drawing.Size(802, 648);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Statistics";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // PrimarySecurityChart
             // 
-            this.PrimarySecurityChart.Location = new System.Drawing.Point(61, 405);
-            this.PrimarySecurityChart.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.PrimarySecurityChart.Location = new System.Drawing.Point(46, 329);
+            this.PrimarySecurityChart.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.PrimarySecurityChart.Name = "PrimarySecurityChart";
-            this.PrimarySecurityChart.Size = new System.Drawing.Size(645, 314);
+            this.PrimarySecurityChart.Size = new System.Drawing.Size(484, 255);
             this.PrimarySecurityChart.TabIndex = 1;
             this.PrimarySecurityChart.Text = "cartesianChart2";
             // 
             // cartesianChart1
             // 
-            this.cartesianChart1.Location = new System.Drawing.Point(61, 50);
-            this.cartesianChart1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cartesianChart1.Location = new System.Drawing.Point(46, 41);
+            this.cartesianChart1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cartesianChart1.Name = "cartesianChart1";
-            this.cartesianChart1.Size = new System.Drawing.Size(645, 314);
+            this.cartesianChart1.Size = new System.Drawing.Size(484, 255);
             this.cartesianChart1.TabIndex = 0;
             this.cartesianChart1.Text = "cartesianChart1";
             // 
@@ -234,11 +235,11 @@
             this.gbSettings.Controls.Add(this.labelConveyorSpeed);
             this.gbSettings.Controls.Add(this.labelCapacity);
             this.gbSettings.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbSettings.Location = new System.Drawing.Point(5, 588);
-            this.gbSettings.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.gbSettings.Location = new System.Drawing.Point(4, 478);
+            this.gbSettings.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.gbSettings.Name = "gbSettings";
-            this.gbSettings.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.gbSettings.Size = new System.Drawing.Size(393, 145);
+            this.gbSettings.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gbSettings.Size = new System.Drawing.Size(295, 118);
             this.gbSettings.TabIndex = 5;
             this.gbSettings.TabStop = false;
             this.gbSettings.Text = "Settings";
@@ -248,10 +249,10 @@
             this.btnSpeed4.BackColor = System.Drawing.Color.SkyBlue;
             this.btnSpeed4.FlatAppearance.BorderSize = 0;
             this.btnSpeed4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSpeed4.Location = new System.Drawing.Point(319, 110);
-            this.btnSpeed4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnSpeed4.Location = new System.Drawing.Point(239, 89);
+            this.btnSpeed4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnSpeed4.Name = "btnSpeed4";
-            this.btnSpeed4.Size = new System.Drawing.Size(67, 28);
+            this.btnSpeed4.Size = new System.Drawing.Size(50, 23);
             this.btnSpeed4.TabIndex = 8;
             this.btnSpeed4.Text = "4";
             this.btnSpeed4.UseVisualStyleBackColor = false;
@@ -261,10 +262,10 @@
             this.btnSpeed3.BackColor = System.Drawing.Color.SkyBlue;
             this.btnSpeed3.FlatAppearance.BorderSize = 0;
             this.btnSpeed3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSpeed3.Location = new System.Drawing.Point(217, 110);
-            this.btnSpeed3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnSpeed3.Location = new System.Drawing.Point(163, 89);
+            this.btnSpeed3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnSpeed3.Name = "btnSpeed3";
-            this.btnSpeed3.Size = new System.Drawing.Size(67, 28);
+            this.btnSpeed3.Size = new System.Drawing.Size(50, 23);
             this.btnSpeed3.TabIndex = 7;
             this.btnSpeed3.Text = "3";
             this.btnSpeed3.UseVisualStyleBackColor = false;
@@ -274,10 +275,10 @@
             this.btnSpeed2.BackColor = System.Drawing.Color.SkyBlue;
             this.btnSpeed2.FlatAppearance.BorderSize = 0;
             this.btnSpeed2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSpeed2.Location = new System.Drawing.Point(115, 110);
-            this.btnSpeed2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnSpeed2.Location = new System.Drawing.Point(86, 89);
+            this.btnSpeed2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnSpeed2.Name = "btnSpeed2";
-            this.btnSpeed2.Size = new System.Drawing.Size(67, 28);
+            this.btnSpeed2.Size = new System.Drawing.Size(50, 23);
             this.btnSpeed2.TabIndex = 6;
             this.btnSpeed2.Text = "2";
             this.btnSpeed2.UseVisualStyleBackColor = false;
@@ -287,10 +288,10 @@
             this.btnSpeed1.BackColor = System.Drawing.Color.SkyBlue;
             this.btnSpeed1.FlatAppearance.BorderSize = 0;
             this.btnSpeed1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSpeed1.Location = new System.Drawing.Point(11, 110);
-            this.btnSpeed1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnSpeed1.Location = new System.Drawing.Point(8, 89);
+            this.btnSpeed1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnSpeed1.Name = "btnSpeed1";
-            this.btnSpeed1.Size = new System.Drawing.Size(67, 28);
+            this.btnSpeed1.Size = new System.Drawing.Size(50, 23);
             this.btnSpeed1.TabIndex = 5;
             this.btnSpeed1.Text = "1";
             this.btnSpeed1.UseVisualStyleBackColor = false;
@@ -298,45 +299,48 @@
             // cmbEmployees
             // 
             this.cmbEmployees.FormattingEnabled = true;
-            this.cmbEmployees.Location = new System.Drawing.Point(275, 30);
-            this.cmbEmployees.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cmbEmployees.Location = new System.Drawing.Point(206, 24);
+            this.cmbEmployees.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cmbEmployees.Name = "cmbEmployees";
-            this.cmbEmployees.Size = new System.Drawing.Size(73, 26);
+            this.cmbEmployees.Size = new System.Drawing.Size(56, 23);
             this.cmbEmployees.TabIndex = 4;
             // 
             // cmbCapacity
             // 
             this.cmbCapacity.FormattingEnabled = true;
-            this.cmbCapacity.Location = new System.Drawing.Point(84, 30);
-            this.cmbCapacity.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cmbCapacity.Location = new System.Drawing.Point(63, 24);
+            this.cmbCapacity.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cmbCapacity.Name = "cmbCapacity";
-            this.cmbCapacity.Size = new System.Drawing.Size(73, 26);
+            this.cmbCapacity.Size = new System.Drawing.Size(56, 23);
             this.cmbCapacity.TabIndex = 3;
             // 
             // labelEmployees
             // 
             this.labelEmployees.AutoSize = true;
-            this.labelEmployees.Location = new System.Drawing.Point(181, 30);
+            this.labelEmployees.Location = new System.Drawing.Point(136, 24);
+            this.labelEmployees.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelEmployees.Name = "labelEmployees";
-            this.labelEmployees.Size = new System.Drawing.Size(82, 18);
+            this.labelEmployees.Size = new System.Drawing.Size(68, 15);
             this.labelEmployees.TabIndex = 2;
             this.labelEmployees.Text = "Employees";
             // 
             // labelConveyorSpeed
             // 
             this.labelConveyorSpeed.AutoSize = true;
-            this.labelConveyorSpeed.Location = new System.Drawing.Point(7, 81);
+            this.labelConveyorSpeed.Location = new System.Drawing.Point(5, 66);
+            this.labelConveyorSpeed.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelConveyorSpeed.Name = "labelConveyorSpeed";
-            this.labelConveyorSpeed.Size = new System.Drawing.Size(118, 18);
+            this.labelConveyorSpeed.Size = new System.Drawing.Size(96, 15);
             this.labelConveyorSpeed.TabIndex = 1;
             this.labelConveyorSpeed.Text = "Conveyor Speed";
             // 
             // labelCapacity
             // 
             this.labelCapacity.AutoSize = true;
-            this.labelCapacity.Location = new System.Drawing.Point(7, 31);
+            this.labelCapacity.Location = new System.Drawing.Point(5, 25);
+            this.labelCapacity.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelCapacity.Name = "labelCapacity";
-            this.labelCapacity.Size = new System.Drawing.Size(65, 18);
+            this.labelCapacity.Size = new System.Drawing.Size(53, 15);
             this.labelCapacity.TabIndex = 0;
             this.labelCapacity.Text = "Capacity";
             // 
@@ -344,11 +348,11 @@
             // 
             this.MapImportExportgroupBox.Controls.Add(this.buttonExport);
             this.MapImportExportgroupBox.Controls.Add(this.buttonImport);
-            this.MapImportExportgroupBox.Location = new System.Drawing.Point(1, 737);
-            this.MapImportExportgroupBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.MapImportExportgroupBox.Location = new System.Drawing.Point(1, 599);
+            this.MapImportExportgroupBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.MapImportExportgroupBox.Name = "MapImportExportgroupBox";
-            this.MapImportExportgroupBox.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.MapImportExportgroupBox.Size = new System.Drawing.Size(395, 62);
+            this.MapImportExportgroupBox.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.MapImportExportgroupBox.Size = new System.Drawing.Size(296, 50);
             this.MapImportExportgroupBox.TabIndex = 7;
             this.MapImportExportgroupBox.TabStop = false;
             this.MapImportExportgroupBox.Tag = "";
@@ -361,10 +365,10 @@
             this.buttonExport.FlatAppearance.BorderSize = 0;
             this.buttonExport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonExport.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonExport.Location = new System.Drawing.Point(201, 6);
-            this.buttonExport.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.buttonExport.Location = new System.Drawing.Point(151, 5);
+            this.buttonExport.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonExport.Name = "buttonExport";
-            this.buttonExport.Size = new System.Drawing.Size(61, 63);
+            this.buttonExport.Size = new System.Drawing.Size(46, 51);
             this.buttonExport.TabIndex = 4;
             this.buttonExport.UseVisualStyleBackColor = true;
             this.buttonExport.Click += new System.EventHandler(this.buttonExport_Click);
@@ -376,10 +380,10 @@
             this.buttonImport.FlatAppearance.BorderSize = 0;
             this.buttonImport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonImport.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonImport.Location = new System.Drawing.Point(131, 12);
-            this.buttonImport.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.buttonImport.Location = new System.Drawing.Point(98, 10);
+            this.buttonImport.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonImport.Name = "buttonImport";
-            this.buttonImport.Size = new System.Drawing.Size(51, 50);
+            this.buttonImport.Size = new System.Drawing.Size(38, 41);
             this.buttonImport.TabIndex = 6;
             this.buttonImport.UseVisualStyleBackColor = true;
             this.buttonImport.Click += new System.EventHandler(this.buttonImport_Click);
@@ -388,11 +392,11 @@
             // 
             this.gbStartStop.Controls.Add(this.btnStop);
             this.gbStartStop.Controls.Add(this.btnStart);
-            this.gbStartStop.Location = new System.Drawing.Point(3, 802);
-            this.gbStartStop.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.gbStartStop.Location = new System.Drawing.Point(2, 652);
+            this.gbStartStop.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.gbStartStop.Name = "gbStartStop";
-            this.gbStartStop.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.gbStartStop.Size = new System.Drawing.Size(395, 62);
+            this.gbStartStop.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gbStartStop.Size = new System.Drawing.Size(296, 50);
             this.gbStartStop.TabIndex = 6;
             this.gbStartStop.TabStop = false;
             this.gbStartStop.Text = "Start/Stop";
@@ -404,10 +408,10 @@
             this.btnStop.FlatAppearance.BorderSize = 0;
             this.btnStop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnStop.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStop.Location = new System.Drawing.Point(199, 8);
-            this.btnStop.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnStop.Location = new System.Drawing.Point(149, 6);
+            this.btnStop.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnStop.Name = "btnStop";
-            this.btnStop.Size = new System.Drawing.Size(64, 69);
+            this.btnStop.Size = new System.Drawing.Size(48, 56);
             this.btnStop.TabIndex = 4;
             this.btnStop.UseVisualStyleBackColor = true;
             // 
@@ -418,10 +422,10 @@
             this.btnStart.FlatAppearance.BorderSize = 0;
             this.btnStart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStart.Location = new System.Drawing.Point(123, 8);
-            this.btnStart.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnStart.Location = new System.Drawing.Point(92, 6);
+            this.btnStart.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(61, 60);
+            this.btnStart.Size = new System.Drawing.Size(46, 49);
             this.btnStart.TabIndex = 6;
             this.btnStart.UseVisualStyleBackColor = true;
             this.btnStart.Click += new System.EventHandler(this.BtnStart_Click);
@@ -435,11 +439,11 @@
             this.gbBuild.Controls.Add(this.btnMain);
             this.gbBuild.Controls.Add(this.btnCheckin);
             this.gbBuild.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbBuild.Location = new System.Drawing.Point(5, 2);
-            this.gbBuild.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.gbBuild.Location = new System.Drawing.Point(4, 2);
+            this.gbBuild.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.gbBuild.Name = "gbBuild";
-            this.gbBuild.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.gbBuild.Size = new System.Drawing.Size(391, 169);
+            this.gbBuild.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gbBuild.Size = new System.Drawing.Size(293, 137);
             this.gbBuild.TabIndex = 0;
             this.gbBuild.TabStop = false;
             this.gbBuild.Text = "Build Type";
@@ -450,11 +454,13 @@
             this.buttonDeleteTile.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.buttonDeleteTile.FlatAppearance.BorderSize = 0;
             this.buttonDeleteTile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonDeleteTile.Location = new System.Drawing.Point(348, 12);
+            this.buttonDeleteTile.Location = new System.Drawing.Point(261, 10);
+            this.buttonDeleteTile.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonDeleteTile.Name = "buttonDeleteTile";
-            this.buttonDeleteTile.Size = new System.Drawing.Size(43, 35);
+            this.buttonDeleteTile.Size = new System.Drawing.Size(32, 28);
             this.buttonDeleteTile.TabIndex = 5;
             this.buttonDeleteTile.UseVisualStyleBackColor = true;
+            this.buttonDeleteTile.Click += new System.EventHandler(this.buttonDeleteTile_Click);
             // 
             // btnSecurity
             // 
@@ -464,10 +470,10 @@
             this.btnSecurity.FlatAppearance.BorderSize = 0;
             this.btnSecurity.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSecurity.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSecurity.Location = new System.Drawing.Point(317, 66);
-            this.btnSecurity.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnSecurity.Location = new System.Drawing.Point(238, 54);
+            this.btnSecurity.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnSecurity.Name = "btnSecurity";
-            this.btnSecurity.Size = new System.Drawing.Size(68, 61);
+            this.btnSecurity.Size = new System.Drawing.Size(51, 50);
             this.btnSecurity.TabIndex = 4;
             this.btnSecurity.UseVisualStyleBackColor = false;
             this.btnSecurity.Click += new System.EventHandler(this.btnSecurity_Click);
@@ -480,10 +486,10 @@
             this.btnConveyor.FlatAppearance.BorderSize = 0;
             this.btnConveyor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnConveyor.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConveyor.Location = new System.Drawing.Point(239, 66);
-            this.btnConveyor.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnConveyor.Location = new System.Drawing.Point(179, 54);
+            this.btnConveyor.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnConveyor.Name = "btnConveyor";
-            this.btnConveyor.Size = new System.Drawing.Size(68, 61);
+            this.btnConveyor.Size = new System.Drawing.Size(51, 50);
             this.btnConveyor.TabIndex = 3;
             this.btnConveyor.UseVisualStyleBackColor = false;
             this.btnConveyor.Click += new System.EventHandler(this.btnConveyor_Click);
@@ -496,10 +502,10 @@
             this.btnDropoff.FlatAppearance.BorderSize = 0;
             this.btnDropoff.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDropoff.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDropoff.Location = new System.Drawing.Point(89, 66);
-            this.btnDropoff.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnDropoff.Location = new System.Drawing.Point(67, 54);
+            this.btnDropoff.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnDropoff.Name = "btnDropoff";
-            this.btnDropoff.Size = new System.Drawing.Size(68, 61);
+            this.btnDropoff.Size = new System.Drawing.Size(51, 50);
             this.btnDropoff.TabIndex = 2;
             this.btnDropoff.UseVisualStyleBackColor = false;
             this.btnDropoff.Click += new System.EventHandler(this.btnDropoff_Click);
@@ -512,10 +518,10 @@
             this.btnMain.FlatAppearance.BorderSize = 0;
             this.btnMain.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMain.Location = new System.Drawing.Point(163, 66);
-            this.btnMain.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnMain.Location = new System.Drawing.Point(122, 54);
+            this.btnMain.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnMain.Name = "btnMain";
-            this.btnMain.Size = new System.Drawing.Size(68, 61);
+            this.btnMain.Size = new System.Drawing.Size(51, 50);
             this.btnMain.TabIndex = 1;
             this.btnMain.UseVisualStyleBackColor = false;
             this.btnMain.Click += new System.EventHandler(this.btnMain_Click);
@@ -528,10 +534,10 @@
             this.btnCheckin.FlatAppearance.BorderSize = 0;
             this.btnCheckin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCheckin.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCheckin.Location = new System.Drawing.Point(11, 66);
-            this.btnCheckin.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnCheckin.Location = new System.Drawing.Point(8, 54);
+            this.btnCheckin.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnCheckin.Name = "btnCheckin";
-            this.btnCheckin.Size = new System.Drawing.Size(68, 61);
+            this.btnCheckin.Size = new System.Drawing.Size(51, 50);
             this.btnCheckin.TabIndex = 0;
             this.btnCheckin.UseVisualStyleBackColor = false;
             this.btnCheckin.Click += new System.EventHandler(this.btnCheckin_Click);
@@ -552,11 +558,11 @@
             this.gbFlightInfo.Controls.Add(this.labelFlightNo);
             this.gbFlightInfo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.gbFlightInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbFlightInfo.Location = new System.Drawing.Point(1, 175);
-            this.gbFlightInfo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.gbFlightInfo.Location = new System.Drawing.Point(1, 142);
+            this.gbFlightInfo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.gbFlightInfo.Name = "gbFlightInfo";
-            this.gbFlightInfo.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.gbFlightInfo.Size = new System.Drawing.Size(395, 370);
+            this.gbFlightInfo.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gbFlightInfo.Size = new System.Drawing.Size(296, 301);
             this.gbFlightInfo.TabIndex = 1;
             this.gbFlightInfo.TabStop = false;
             this.gbFlightInfo.Text = "Flight Information";
@@ -564,26 +570,28 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(5, 117);
+            this.label2.Location = new System.Drawing.Point(4, 95);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(40, 18);
+            this.label2.Size = new System.Drawing.Size(33, 15);
             this.label2.TabIndex = 15;
             this.label2.Text = "Gate";
             // 
             // comboBoxCurrentDropOffs
             // 
             this.comboBoxCurrentDropOffs.FormattingEnabled = true;
-            this.comboBoxCurrentDropOffs.Location = new System.Drawing.Point(147, 114);
+            this.comboBoxCurrentDropOffs.Location = new System.Drawing.Point(110, 93);
+            this.comboBoxCurrentDropOffs.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.comboBoxCurrentDropOffs.Name = "comboBoxCurrentDropOffs";
-            this.comboBoxCurrentDropOffs.Size = new System.Drawing.Size(164, 26);
+            this.comboBoxCurrentDropOffs.Size = new System.Drawing.Size(124, 23);
             this.comboBoxCurrentDropOffs.TabIndex = 13;
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(203, 324);
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnDelete.Location = new System.Drawing.Point(152, 263);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(184, 34);
+            this.btnDelete.Size = new System.Drawing.Size(138, 28);
             this.btnDelete.TabIndex = 12;
             this.btnDelete.Text = "Delete Flight";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -592,19 +600,19 @@
             // lbFlights
             // 
             this.lbFlights.FormattingEnabled = true;
-            this.lbFlights.ItemHeight = 18;
-            this.lbFlights.Location = new System.Drawing.Point(8, 195);
-            this.lbFlights.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.lbFlights.ItemHeight = 15;
+            this.lbFlights.Location = new System.Drawing.Point(6, 158);
+            this.lbFlights.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.lbFlights.Name = "lbFlights";
-            this.lbFlights.Size = new System.Drawing.Size(381, 112);
+            this.lbFlights.Size = new System.Drawing.Size(287, 79);
             this.lbFlights.TabIndex = 11;
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(8, 323);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnAdd.Location = new System.Drawing.Point(6, 262);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(189, 35);
+            this.btnAdd.Size = new System.Drawing.Size(142, 28);
             this.btnAdd.TabIndex = 10;
             this.btnAdd.Text = "Add Flight ";
             this.btnAdd.UseVisualStyleBackColor = true;
@@ -613,53 +621,56 @@
             // departureTimePicker
             // 
             this.departureTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.departureTimePicker.Location = new System.Drawing.Point(147, 85);
-            this.departureTimePicker.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.departureTimePicker.Location = new System.Drawing.Point(110, 69);
+            this.departureTimePicker.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.departureTimePicker.Name = "departureTimePicker";
-            this.departureTimePicker.Size = new System.Drawing.Size(164, 24);
+            this.departureTimePicker.Size = new System.Drawing.Size(124, 21);
             this.departureTimePicker.TabIndex = 5;
             this.departureTimePicker.Value = new System.DateTime(2019, 10, 14, 0, 0, 0, 0);
             // 
             // labelDate
             // 
             this.labelDate.AutoSize = true;
-            this.labelDate.Location = new System.Drawing.Point(5, 87);
+            this.labelDate.Location = new System.Drawing.Point(4, 71);
+            this.labelDate.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelDate.Name = "labelDate";
-            this.labelDate.Size = new System.Drawing.Size(110, 18);
+            this.labelDate.Size = new System.Drawing.Size(93, 15);
             this.labelDate.TabIndex = 4;
             this.labelDate.Text = "Departure Time";
             // 
             // textBoxNumberOfBags
             // 
-            this.textBoxNumberOfBags.Location = new System.Drawing.Point(147, 57);
-            this.textBoxNumberOfBags.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBoxNumberOfBags.Location = new System.Drawing.Point(110, 46);
+            this.textBoxNumberOfBags.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBoxNumberOfBags.Name = "textBoxNumberOfBags";
-            this.textBoxNumberOfBags.Size = new System.Drawing.Size(164, 24);
+            this.textBoxNumberOfBags.Size = new System.Drawing.Size(124, 21);
             this.textBoxNumberOfBags.TabIndex = 3;
             // 
             // labelNoOfBags
             // 
             this.labelNoOfBags.AutoSize = true;
-            this.labelNoOfBags.Location = new System.Drawing.Point(5, 58);
+            this.labelNoOfBags.Location = new System.Drawing.Point(4, 47);
+            this.labelNoOfBags.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelNoOfBags.Name = "labelNoOfBags";
-            this.labelNoOfBags.Size = new System.Drawing.Size(116, 18);
+            this.labelNoOfBags.Size = new System.Drawing.Size(96, 15);
             this.labelNoOfBags.TabIndex = 2;
             this.labelNoOfBags.Text = "Number of Bags";
             // 
             // textBoxFlightNumber
             // 
-            this.textBoxFlightNumber.Location = new System.Drawing.Point(147, 27);
-            this.textBoxFlightNumber.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBoxFlightNumber.Location = new System.Drawing.Point(110, 22);
+            this.textBoxFlightNumber.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBoxFlightNumber.Name = "textBoxFlightNumber";
-            this.textBoxFlightNumber.Size = new System.Drawing.Size(164, 24);
+            this.textBoxFlightNumber.Size = new System.Drawing.Size(124, 21);
             this.textBoxFlightNumber.TabIndex = 1;
             // 
             // labelFlightNo
             // 
             this.labelFlightNo.AutoSize = true;
-            this.labelFlightNo.Location = new System.Drawing.Point(5, 30);
+            this.labelFlightNo.Location = new System.Drawing.Point(4, 24);
+            this.labelFlightNo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelFlightNo.Name = "labelFlightNo";
-            this.labelFlightNo.Size = new System.Drawing.Size(100, 18);
+            this.labelFlightNo.Size = new System.Drawing.Size(85, 15);
             this.labelFlightNo.TabIndex = 0;
             this.labelFlightNo.Text = "Flight Number";
             // 
@@ -669,13 +680,13 @@
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(1487, 877);
+            this.ClientSize = new System.Drawing.Size(1115, 713);
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.MinimumSize = new System.Drawing.Size(800, 600);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.MinimumSize = new System.Drawing.Size(604, 495);
             this.Name = "Form1";
             this.ShowInTaskbar = false;
             this.Text = "ProCp";

@@ -235,6 +235,10 @@ namespace ProCP
                     comboBoxCurrentDropOffs.Items.Add(currentTile.NodeId.ToString());
                 }
             }
+            else if(this.buildType == BuildType.Delete)
+            {
+                this._grid.DeleteNode(t);
+            }
 
             //redraw the grid
             this.animationBox.Invalidate();
@@ -414,6 +418,11 @@ namespace ProCP
 
                 FindDropOffsAfterGridImport(tile.NextTiles);
             }
+        }
+
+        private void buttonDeleteTile_Click(object sender, EventArgs e)
+        {
+            this.buildType = BuildType.Delete;
         }
     }
 }
