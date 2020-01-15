@@ -235,8 +235,14 @@ namespace ProCP
                 if (currentTile.NextTiles != null)
                 {
                     gbFlightInfo.Visible = true;
+                    btnDel.Enabled = true;
+                    btnDel.Visible = true;
                     MapImportExportgroupBox.Visible = true;
                 }
+            }
+            else if(this.buildType == BuildType.DeleteTile)
+            {
+                this._grid.DeleteNode(t);
             }
 
             //redraw the grid
@@ -347,21 +353,7 @@ namespace ProCP
 
         private void button1_Click(object sender, EventArgs e)
         {
-            List<GridTile> temp = this._simulationSettings.FrontNodes;
-            foreach (var tile in temp)
-            {
-                var t = tile;
-                while (t != null)
-                {
-                    MessageBox.Show("current Id: " + t.NodeId + " Type: " + t.GetType().ToString() + " next node id: " + t.NextTiles[0].NodeId);
-                    t = t.NextTiles[0];
-                    if(t is DropOffTile)
-                    {
-                        MessageBox.Show("current Id: " + t.NodeId + " Type: " + t.GetType().ToString());
-                        break;
-                    }
-                }
-            }
+            this.buildType = BuildType.DeleteTile;
         }
 
         private void buttonImport_Click(object sender, EventArgs e)

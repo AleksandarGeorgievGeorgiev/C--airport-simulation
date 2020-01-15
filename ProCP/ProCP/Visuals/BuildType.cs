@@ -14,6 +14,7 @@ namespace ProCP.Visuals
         Conveyor,
         Security,
         Mda,
-        DropOff
+        DropOff,
+        DeleteTile
     }
 }

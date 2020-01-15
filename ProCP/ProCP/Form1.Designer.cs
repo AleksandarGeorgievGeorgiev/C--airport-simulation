@@ -62,6 +62,7 @@
             this.btnMain = new System.Windows.Forms.Button();
             this.btnCheckin = new System.Windows.Forms.Button();
             this.gbFlightInfo = new System.Windows.Forms.GroupBox();
+            this.btnDel = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.lbFlights = new System.Windows.Forms.ListBox();
             this.btnAdd = new System.Windows.Forms.Button();
@@ -75,7 +76,6 @@
             this.labelNoOfBags = new System.Windows.Forms.Label();
             this.textBoxFlightNumber = new System.Windows.Forms.TextBox();
             this.labelFlightNo = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -105,7 +105,7 @@
             this.panel1.Controls.Add(this.gbBuild);
             this.panel1.Controls.Add(this.gbFlightInfo);
             this.panel1.Location = new System.Drawing.Point(3, 9);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1112, 704);
             this.panel1.TabIndex = 0;
@@ -123,7 +123,7 @@
             this.tabControl1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.tabControl1.ItemSize = new System.Drawing.Size(141, 35);
             this.tabControl1.Location = new System.Drawing.Point(302, 2);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(808, 700);
@@ -133,9 +133,9 @@
             // 
             this.tabPage1.Controls.Add(this.animationBox);
             this.tabPage1.Location = new System.Drawing.Point(4, 39);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(2);
             this.tabPage1.Size = new System.Drawing.Size(800, 657);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Simulation Map";
@@ -145,7 +145,7 @@
             // 
             this.animationBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.animationBox.Location = new System.Drawing.Point(2, 2);
-            this.animationBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.animationBox.Margin = new System.Windows.Forms.Padding(2);
             this.animationBox.Name = "animationBox";
             this.animationBox.Size = new System.Drawing.Size(796, 653);
             this.animationBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -159,7 +159,7 @@
             this.tabPage3.Controls.Add(this.generalStatsTable);
             this.tabPage3.Controls.Add(this.pieChartBagsSecurity);
             this.tabPage3.Location = new System.Drawing.Point(4, 39);
-            this.tabPage3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage3.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Size = new System.Drawing.Size(800, 657);
             this.tabPage3.TabIndex = 2;
@@ -171,7 +171,7 @@
             this.generalStatsTable.AllowUserToAddRows = false;
             this.generalStatsTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.generalStatsTable.Location = new System.Drawing.Point(17, 13);
-            this.generalStatsTable.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.generalStatsTable.Margin = new System.Windows.Forms.Padding(2);
             this.generalStatsTable.Name = "generalStatsTable";
             this.generalStatsTable.ReadOnly = true;
             this.generalStatsTable.RowHeadersWidth = 51;
@@ -184,7 +184,7 @@
             // pieChartBagsSecurity
             // 
             this.pieChartBagsSecurity.Location = new System.Drawing.Point(557, 13);
-            this.pieChartBagsSecurity.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pieChartBagsSecurity.Margin = new System.Windows.Forms.Padding(2);
             this.pieChartBagsSecurity.Name = "pieChartBagsSecurity";
             this.pieChartBagsSecurity.Size = new System.Drawing.Size(195, 224);
             this.pieChartBagsSecurity.TabIndex = 3;
@@ -196,9 +196,9 @@
             this.tabPage2.Controls.Add(this.cartesianChart1);
             this.tabPage2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabPage2.Location = new System.Drawing.Point(4, 39);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(2);
             this.tabPage2.Size = new System.Drawing.Size(800, 657);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Statistics";
@@ -207,7 +207,7 @@
             // PrimarySecurityChart
             // 
             this.PrimarySecurityChart.Location = new System.Drawing.Point(46, 329);
-            this.PrimarySecurityChart.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.PrimarySecurityChart.Margin = new System.Windows.Forms.Padding(2);
             this.PrimarySecurityChart.Name = "PrimarySecurityChart";
             this.PrimarySecurityChart.Size = new System.Drawing.Size(484, 255);
             this.PrimarySecurityChart.TabIndex = 1;
@@ -216,7 +216,7 @@
             // cartesianChart1
             // 
             this.cartesianChart1.Location = new System.Drawing.Point(46, 41);
-            this.cartesianChart1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cartesianChart1.Margin = new System.Windows.Forms.Padding(2);
             this.cartesianChart1.Name = "cartesianChart1";
             this.cartesianChart1.Size = new System.Drawing.Size(484, 255);
             this.cartesianChart1.TabIndex = 0;
@@ -235,9 +235,9 @@
             this.gbSettings.Controls.Add(this.labelCapacity);
             this.gbSettings.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbSettings.Location = new System.Drawing.Point(4, 478);
-            this.gbSettings.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gbSettings.Margin = new System.Windows.Forms.Padding(2);
             this.gbSettings.Name = "gbSettings";
-            this.gbSettings.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gbSettings.Padding = new System.Windows.Forms.Padding(2);
             this.gbSettings.Size = new System.Drawing.Size(295, 118);
             this.gbSettings.TabIndex = 5;
             this.gbSettings.TabStop = false;
@@ -249,7 +249,7 @@
             this.btnSpeed4.FlatAppearance.BorderSize = 0;
             this.btnSpeed4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSpeed4.Location = new System.Drawing.Point(239, 89);
-            this.btnSpeed4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSpeed4.Margin = new System.Windows.Forms.Padding(2);
             this.btnSpeed4.Name = "btnSpeed4";
             this.btnSpeed4.Size = new System.Drawing.Size(50, 23);
             this.btnSpeed4.TabIndex = 8;
@@ -262,7 +262,7 @@
             this.btnSpeed3.FlatAppearance.BorderSize = 0;
             this.btnSpeed3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSpeed3.Location = new System.Drawing.Point(163, 89);
-            this.btnSpeed3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSpeed3.Margin = new System.Windows.Forms.Padding(2);
             this.btnSpeed3.Name = "btnSpeed3";
             this.btnSpeed3.Size = new System.Drawing.Size(50, 23);
             this.btnSpeed3.TabIndex = 7;
@@ -275,7 +275,7 @@
             this.btnSpeed2.FlatAppearance.BorderSize = 0;
             this.btnSpeed2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSpeed2.Location = new System.Drawing.Point(86, 89);
-            this.btnSpeed2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSpeed2.Margin = new System.Windows.Forms.Padding(2);
             this.btnSpeed2.Name = "btnSpeed2";
             this.btnSpeed2.Size = new System.Drawing.Size(50, 23);
             this.btnSpeed2.TabIndex = 6;
@@ -288,7 +288,7 @@
             this.btnSpeed1.FlatAppearance.BorderSize = 0;
             this.btnSpeed1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSpeed1.Location = new System.Drawing.Point(8, 89);
-            this.btnSpeed1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSpeed1.Margin = new System.Windows.Forms.Padding(2);
             this.btnSpeed1.Name = "btnSpeed1";
             this.btnSpeed1.Size = new System.Drawing.Size(50, 23);
             this.btnSpeed1.TabIndex = 5;
@@ -299,7 +299,7 @@
             // 
             this.cmbEmployees.FormattingEnabled = true;
             this.cmbEmployees.Location = new System.Drawing.Point(206, 24);
-            this.cmbEmployees.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cmbEmployees.Margin = new System.Windows.Forms.Padding(2);
             this.cmbEmployees.Name = "cmbEmployees";
             this.cmbEmployees.Size = new System.Drawing.Size(56, 23);
             this.cmbEmployees.TabIndex = 4;
@@ -308,7 +308,7 @@
             // 
             this.cmbCapacity.FormattingEnabled = true;
             this.cmbCapacity.Location = new System.Drawing.Point(63, 24);
-            this.cmbCapacity.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cmbCapacity.Margin = new System.Windows.Forms.Padding(2);
             this.cmbCapacity.Name = "cmbCapacity";
             this.cmbCapacity.Size = new System.Drawing.Size(56, 23);
             this.cmbCapacity.TabIndex = 3;
@@ -348,9 +348,9 @@
             this.MapImportExportgroupBox.Controls.Add(this.buttonExport);
             this.MapImportExportgroupBox.Controls.Add(this.buttonImport);
             this.MapImportExportgroupBox.Location = new System.Drawing.Point(1, 599);
-            this.MapImportExportgroupBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.MapImportExportgroupBox.Margin = new System.Windows.Forms.Padding(2);
             this.MapImportExportgroupBox.Name = "MapImportExportgroupBox";
-            this.MapImportExportgroupBox.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.MapImportExportgroupBox.Padding = new System.Windows.Forms.Padding(2);
             this.MapImportExportgroupBox.Size = new System.Drawing.Size(296, 50);
             this.MapImportExportgroupBox.TabIndex = 7;
             this.MapImportExportgroupBox.TabStop = false;
@@ -365,7 +365,7 @@
             this.buttonExport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonExport.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonExport.Location = new System.Drawing.Point(151, 5);
-            this.buttonExport.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonExport.Margin = new System.Windows.Forms.Padding(2);
             this.buttonExport.Name = "buttonExport";
             this.buttonExport.Size = new System.Drawing.Size(46, 51);
             this.buttonExport.TabIndex = 4;
@@ -380,7 +380,7 @@
             this.buttonImport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonImport.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonImport.Location = new System.Drawing.Point(98, 10);
-            this.buttonImport.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonImport.Margin = new System.Windows.Forms.Padding(2);
             this.buttonImport.Name = "buttonImport";
             this.buttonImport.Size = new System.Drawing.Size(38, 41);
             this.buttonImport.TabIndex = 6;
@@ -393,9 +393,9 @@
             this.gbStartStop.Controls.Add(this.btnStop);
             this.gbStartStop.Controls.Add(this.btnStart);
             this.gbStartStop.Location = new System.Drawing.Point(2, 652);
-            this.gbStartStop.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gbStartStop.Margin = new System.Windows.Forms.Padding(2);
             this.gbStartStop.Name = "gbStartStop";
-            this.gbStartStop.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gbStartStop.Padding = new System.Windows.Forms.Padding(2);
             this.gbStartStop.Size = new System.Drawing.Size(296, 50);
             this.gbStartStop.TabIndex = 6;
             this.gbStartStop.TabStop = false;
@@ -409,7 +409,7 @@
             this.btnStop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnStop.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnStop.Location = new System.Drawing.Point(149, 6);
-            this.btnStop.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnStop.Margin = new System.Windows.Forms.Padding(2);
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(48, 56);
             this.btnStop.TabIndex = 4;
@@ -423,7 +423,7 @@
             this.btnStart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnStart.Location = new System.Drawing.Point(92, 6);
-            this.btnStart.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnStart.Margin = new System.Windows.Forms.Padding(2);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(46, 49);
             this.btnStart.TabIndex = 6;
@@ -439,9 +439,9 @@
             this.gbBuild.Controls.Add(this.btnCheckin);
             this.gbBuild.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbBuild.Location = new System.Drawing.Point(4, 2);
-            this.gbBuild.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gbBuild.Margin = new System.Windows.Forms.Padding(2);
             this.gbBuild.Name = "gbBuild";
-            this.gbBuild.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gbBuild.Padding = new System.Windows.Forms.Padding(2);
             this.gbBuild.Size = new System.Drawing.Size(293, 95);
             this.gbBuild.TabIndex = 0;
             this.gbBuild.TabStop = false;
@@ -456,7 +456,7 @@
             this.btnSecurity.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSecurity.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSecurity.Location = new System.Drawing.Point(63, 32);
-            this.btnSecurity.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSecurity.Margin = new System.Windows.Forms.Padding(2);
             this.btnSecurity.Name = "btnSecurity";
             this.btnSecurity.Size = new System.Drawing.Size(51, 50);
             this.btnSecurity.TabIndex = 4;
@@ -472,7 +472,7 @@
             this.btnConveyor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnConveyor.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConveyor.Location = new System.Drawing.Point(174, 33);
-            this.btnConveyor.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnConveyor.Margin = new System.Windows.Forms.Padding(2);
             this.btnConveyor.Name = "btnConveyor";
             this.btnConveyor.Size = new System.Drawing.Size(51, 50);
             this.btnConveyor.TabIndex = 3;
@@ -488,7 +488,7 @@
             this.btnDropoff.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDropoff.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDropoff.Location = new System.Drawing.Point(118, 32);
-            this.btnDropoff.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnDropoff.Margin = new System.Windows.Forms.Padding(2);
             this.btnDropoff.Name = "btnDropoff";
             this.btnDropoff.Size = new System.Drawing.Size(51, 50);
             this.btnDropoff.TabIndex = 2;
@@ -504,7 +504,7 @@
             this.btnMain.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMain.Location = new System.Drawing.Point(230, 32);
-            this.btnMain.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnMain.Margin = new System.Windows.Forms.Padding(2);
             this.btnMain.Name = "btnMain";
             this.btnMain.Size = new System.Drawing.Size(51, 50);
             this.btnMain.TabIndex = 1;
@@ -520,7 +520,7 @@
             this.btnCheckin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCheckin.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCheckin.Location = new System.Drawing.Point(8, 32);
-            this.btnCheckin.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCheckin.Margin = new System.Windows.Forms.Padding(2);
             this.btnCheckin.Name = "btnCheckin";
             this.btnCheckin.Size = new System.Drawing.Size(51, 50);
             this.btnCheckin.TabIndex = 0;
@@ -530,7 +530,7 @@
             // gbFlightInfo
             // 
             this.gbFlightInfo.BackColor = System.Drawing.Color.Transparent;
-            this.gbFlightInfo.Controls.Add(this.button1);
+            this.gbFlightInfo.Controls.Add(this.btnDel);
             this.gbFlightInfo.Controls.Add(this.btnDelete);
             this.gbFlightInfo.Controls.Add(this.lbFlights);
             this.gbFlightInfo.Controls.Add(this.btnAdd);
@@ -547,18 +547,28 @@
             this.gbFlightInfo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.gbFlightInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbFlightInfo.Location = new System.Drawing.Point(4, 100);
-            this.gbFlightInfo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gbFlightInfo.Margin = new System.Windows.Forms.Padding(2);
             this.gbFlightInfo.Name = "gbFlightInfo";
-            this.gbFlightInfo.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gbFlightInfo.Padding = new System.Windows.Forms.Padding(2);
             this.gbFlightInfo.Size = new System.Drawing.Size(296, 375);
             this.gbFlightInfo.TabIndex = 1;
             this.gbFlightInfo.TabStop = false;
             this.gbFlightInfo.Text = "Flight Information";
             // 
+            // btnDel
+            // 
+            this.btnDel.Location = new System.Drawing.Point(7, 312);
+            this.btnDel.Name = "btnDel";
+            this.btnDel.Size = new System.Drawing.Size(129, 23);
+            this.btnDel.TabIndex = 13;
+            this.btnDel.Text = "Delete Tiles";
+            this.btnDel.UseVisualStyleBackColor = true;
+            this.btnDel.Click += new System.EventHandler(this.button1_Click);
+            // 
             // btnDelete
             // 
             this.btnDelete.Location = new System.Drawing.Point(152, 263);
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(2);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(138, 28);
             this.btnDelete.TabIndex = 12;
@@ -571,7 +581,7 @@
             this.lbFlights.FormattingEnabled = true;
             this.lbFlights.ItemHeight = 15;
             this.lbFlights.Location = new System.Drawing.Point(6, 158);
-            this.lbFlights.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lbFlights.Margin = new System.Windows.Forms.Padding(2);
             this.lbFlights.Name = "lbFlights";
             this.lbFlights.Size = new System.Drawing.Size(287, 79);
             this.lbFlights.TabIndex = 11;
@@ -579,7 +589,7 @@
             // btnAdd
             // 
             this.btnAdd.Location = new System.Drawing.Point(6, 262);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(2);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(142, 28);
             this.btnAdd.TabIndex = 10;
@@ -591,7 +601,7 @@
             // 
             this.cmbDropOffPoint.FormattingEnabled = true;
             this.cmbDropOffPoint.Location = new System.Drawing.Point(110, 119);
-            this.cmbDropOffPoint.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cmbDropOffPoint.Margin = new System.Windows.Forms.Padding(2);
             this.cmbDropOffPoint.Name = "cmbDropOffPoint";
             this.cmbDropOffPoint.Size = new System.Drawing.Size(124, 23);
             this.cmbDropOffPoint.TabIndex = 9;
@@ -610,7 +620,7 @@
             // 
             this.cmbCheckInDesk.FormattingEnabled = true;
             this.cmbCheckInDesk.Location = new System.Drawing.Point(110, 93);
-            this.cmbCheckInDesk.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cmbCheckInDesk.Margin = new System.Windows.Forms.Padding(2);
             this.cmbCheckInDesk.Name = "cmbCheckInDesk";
             this.cmbCheckInDesk.Size = new System.Drawing.Size(124, 23);
             this.cmbCheckInDesk.TabIndex = 7;
@@ -629,7 +639,7 @@
             // 
             this.departureTime.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.departureTime.Location = new System.Drawing.Point(110, 69);
-            this.departureTime.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.departureTime.Margin = new System.Windows.Forms.Padding(2);
             this.departureTime.Name = "departureTime";
             this.departureTime.Size = new System.Drawing.Size(124, 21);
             this.departureTime.TabIndex = 5;
@@ -648,7 +658,7 @@
             // textBoxNumberOfBags
             // 
             this.textBoxNumberOfBags.Location = new System.Drawing.Point(110, 46);
-            this.textBoxNumberOfBags.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxNumberOfBags.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxNumberOfBags.Name = "textBoxNumberOfBags";
             this.textBoxNumberOfBags.Size = new System.Drawing.Size(124, 21);
             this.textBoxNumberOfBags.TabIndex = 3;
@@ -666,7 +676,7 @@
             // textBoxFlightNumber
             // 
             this.textBoxFlightNumber.Location = new System.Drawing.Point(110, 22);
-            this.textBoxFlightNumber.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxFlightNumber.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxFlightNumber.Name = "textBoxFlightNumber";
             this.textBoxFlightNumber.Size = new System.Drawing.Size(124, 21);
             this.textBoxFlightNumber.TabIndex = 1;
@@ -681,16 +691,6 @@
             this.labelFlightNo.TabIndex = 0;
             this.labelFlightNo.Text = "Flight Number";
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(7, 312);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 13;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
@@ -702,7 +702,7 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(1115, 713);
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MinimumSize = new System.Drawing.Size(604, 495);
             this.Name = "Form1";
             this.ShowInTaskbar = false;
@@ -776,7 +776,7 @@
         private System.Windows.Forms.Button buttonExport;
         private System.Windows.Forms.Button buttonImport;
         private System.Windows.Forms.PictureBox animationBox;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnDel;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
