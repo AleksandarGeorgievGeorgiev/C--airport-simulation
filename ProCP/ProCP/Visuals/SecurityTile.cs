@@ -9,12 +9,17 @@ using ProCP.Visuals;
 
 namespace ProCP.Visuals
 {
-     public class SecurityTile : GridTile
+    [Serializable]
+    public class SecurityTile : GridTile
     {
+        public static int nodeId = 0;
         public SecurityTile(int column, int row, int tileWidth, int tileHeight) : base(column, row, tileWidth, tileHeight)
         {
             this.Column = column;
             this.Row = row;
+
+            nodeId++;
+            NodeId = nodeId;
 
             clickableColor = Brushes.White;
             unclickableColour = Brushes.LightGray;

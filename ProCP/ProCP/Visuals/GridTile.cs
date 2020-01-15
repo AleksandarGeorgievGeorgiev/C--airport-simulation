@@ -10,7 +10,7 @@ using ProCP.Contracts;
 
 namespace ProCP.Visuals
 {
-    
+    [Serializable]
     public class GridTile
     {
         protected int column;
@@ -43,9 +43,7 @@ namespace ProCP.Visuals
         public int Column { get; set; }
         public int Row { get; set; }
 
-        static int nodeId = 0;
-
-        public int NodeId { get; private set; }
+        public int NodeId { get; set; }
 
         public GridTile(int column, int row, int tileWidth, int tileHeight)
         {
@@ -59,8 +57,6 @@ namespace ProCP.Visuals
             arrowImg = Image.FromFile(arrowImgPath);
             this.previousTile = null;
             this.nextTiles = new List<GridTile>();
-            nodeId++;
-            this.NodeId = nodeId;
         }
 
         public void SetNextTile(GridTile nextTile)

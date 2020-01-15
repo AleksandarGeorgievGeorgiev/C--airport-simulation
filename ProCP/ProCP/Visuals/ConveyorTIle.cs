@@ -8,12 +8,17 @@ using ProCP.Nodes;
 
 namespace ProCP.Visuals
 {
+    [Serializable]
     class ConveyorTile : GridTile
     {
+        public static int nodeId = 0;
         public ConveyorTile(int column, int row, int tileWidth, int tileHeight) : base(column, row, tileWidth, tileHeight)
         {
             this.Column = column;
             this.Row = row;
+
+            nodeId++;
+            NodeId = nodeId;
 
             clickableColor = Brushes.White;
             unclickableColour = Brushes.LightGray;
@@ -23,7 +28,7 @@ namespace ProCP.Visuals
 
             fillBrush = clickableColor;
 
-            this.Length = 1;
+            this.Length = 2;
         }
         protected override void DrawTileInfo(Graphics g, RectangleF r, int tileHeight)
         {

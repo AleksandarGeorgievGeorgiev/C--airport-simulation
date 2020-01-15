@@ -17,7 +17,7 @@ namespace ProCP.Nodes
         {
         }
 
-        
+
 
         public override void Move()
         {
@@ -27,7 +27,6 @@ namespace ProCP.Nodes
             {
                 if (LastBaggage != null)
                 {
-                    System.Diagnostics.Debug.WriteLine("conveyor " + NextNode);
                     NextNode.PassBaggage(LastBaggage);
                     _conveyorBelt[LastIndex] = null;
                 }
@@ -44,15 +43,16 @@ namespace ProCP.Nodes
             }
             else
             {
+                NextNode.OnNodeStatusChangedToFree -= Move;
                 NextNode.OnNodeStatusChangedToFree += Move;
             }
         }
 
         public override void PassBaggage(IBaggage b)
         {
-            System.Diagnostics.Debug.WriteLine("conveyor" + b.Destination);
             NodeStatus = NodeStatus.Busy;
             b.TransporterId = NodeId;
+
             Add(b);
         }
     }

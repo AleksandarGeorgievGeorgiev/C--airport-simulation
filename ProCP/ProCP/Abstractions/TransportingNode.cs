@@ -44,6 +44,8 @@ namespace ProCP.Abstractions
 
         public bool CanMove()
         {
+
+
             if (NextNode.NodeStatus == NodeStatus.Free)
             {
                 return true;
@@ -64,7 +66,12 @@ namespace ProCP.Abstractions
 
         public void Add(IBaggage bag, int index = 0)
         {
-            Condition.Requires(CanAdd(), "conveyor").IsEqualTo(true, "Trying to add to a full conveyor");
+            var canAdd = CanAdd();
+            while (!canAdd)
+            {
+                canAdd = CanAdd();
+            }
+            Condition.Requires(canAdd, "conveyor").IsEqualTo(true, "Trying to add to a full conveyor");
             _conveyorBelt[index] = bag;
         }
 

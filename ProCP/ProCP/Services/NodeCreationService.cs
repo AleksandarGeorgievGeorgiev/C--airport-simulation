@@ -97,20 +97,20 @@ namespace ProCP.Services
             ValidateSettings();
             var checkin = new CheckInDesk(nodeId.ToString(), _timerService);
             Nodes.Add(checkin);
-            var sortedFlights = _settings.Flights.OrderBy(f => f.DipartureTime);
-            foreach (var flight in sortedFlights)
-            {
-                if (checkin.Flight != null)
-                {
-                    continue;
-                }
-                if (flight.HasCheckin == true)
-                {
-                    continue;
-                }
-                checkin.AssignFlight(flight);
-                flight.HasCheckin = true;
-            }
+            //var sortedFlights = _settings.Flights.OrderBy(f => f.DipartureTime);
+            //foreach (var flight in sortedFlights)
+            //{
+            //    if (checkin.Flight != null)
+            //    {
+            //        continue;
+            //    }
+            //    if (flight.HasCheckin == true)
+            //    {
+            //        continue;
+            //    }
+            //    checkin.AssignFlight(flight);
+            //    flight.HasCheckin = true;
+            //}
 
             return checkin;
         }
@@ -147,20 +147,20 @@ namespace ProCP.Services
             ValidateSettings();
             var dropoff = new DropOff(nodeId.ToString(), _timerService, _settings.DropOffSettings);
             Nodes.Add(dropoff);
-            var sortedFlights = _settings.Flights.OrderBy(f => f.DipartureTime);
-            foreach (var flight in sortedFlights)
-            {
-                if (dropoff.Flight != null)
-                {
-                    continue;
-                }
-                if (flight.HasDropOff == true)
-                {
-                    continue;
-                }
-                dropoff.AssignFlight(flight);
-                flight.HasDropOff = true;
-            }
+            //var sortedFlights = _settings.Flights.OrderBy(f => f.DipartureTime);
+            //foreach (var flight in sortedFlights)
+            //{
+            //    if (dropoff.Flight != null)
+            //    {
+            //        continue;
+            //    }
+            //    if (flight.HasDropOff == true)
+            //    {
+            //        continue;
+            //    }
+            //    dropoff.AssignFlight(flight);
+            //    flight.HasDropOff = true;
+            //}
             return dropoff;
         }
 

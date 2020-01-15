@@ -57,7 +57,7 @@ namespace ProCP.Nodes
         {
             Flight = flight;
         }
-        public override string Destination => Flight.FlightNumber;
+        public override string Destination => this.NodeId;
 
         public override void PassBaggage(IBaggage b)
         {

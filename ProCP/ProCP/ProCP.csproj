@@ -49,6 +49,7 @@
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -81,7 +82,6 @@
     <Compile Include="Data\IData.cs" />
     <Compile Include="Data\ReadFromDatabase.cs" />
     <Compile Include="Data\ReadFromImageFile.cs" />
-    <Compile Include="Data\ReadTextFile.cs" />
     <Compile Include="Engine.cs" />
     <Compile Include="FlightAndBaggage\Baggage.cs" />
     <Compile Include="FlightAndBaggage\BaggageEventLog.cs" />

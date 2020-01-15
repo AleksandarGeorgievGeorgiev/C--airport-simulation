@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProCP.FlightAndBaggage
 {
+    [Serializable]
     public class Flight : IFlight
     {
         public DateTime DipartureTime { get; set; }
@@ -14,5 +15,6 @@ namespace ProCP.FlightAndBaggage
         public int DispatchedBaggageCount { get; set; } = 0;
         public bool HasCheckin { get; set; } = false;
         public bool HasDropOff { get; set; } = false;
+        public string DropoffId { get; set; }
     }
 }

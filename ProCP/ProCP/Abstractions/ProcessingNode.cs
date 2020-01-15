@@ -46,32 +46,33 @@ namespace ProCP.Abstractions
                     string.Format(LoggingConstants.BagReceivedInTemplate, Destination, b.TransporterId));
                 b.TransportationStartTime = null;
             }
-            ProcessInternal(b);
+            ProcessInternal(currentBag);
         }
 
         private void ProcessInternal(IBaggage b)
         {
             Process(b);
-            if (currentBag == null) 
+            if (currentBag == null)
             {
                 NodeStatus = NodeStatus.Free;
                 return;
             }
-            NextNode = nextNodes.FirstOrDefault(n => n.Destination == b.Destination);
+            NextNode = nextNodes.FirstOrDefault(n => n.Destination == currentBag.Destination);
             currentBag.TransportationStartTime = TimerService.GetTicksSinceSimulationStart();
             Move();
         }
 
         private void Move()
         {
-            if (currentBag != null && NextNode.NodeStatus == NodeStatus.Free)
+            if (NextNode.NodeStatus == NodeStatus.Free)
             {
-                NextNode.OnNodeStatusChangedToFree -= Move;
                 NextNode.PassBaggage(currentBag);
+                NextNode.OnNodeStatusChangedToFree -= Move;
                 NodeStatus = NodeStatus.Free;
             }
-            else if (NextNode.NodeStatus == NodeStatus.Busy)
+            else
             {
+                NextNode.OnNodeStatusChangedToFree -= Move;
                 NextNode.OnNodeStatusChangedToFree += Move;
             }
         }

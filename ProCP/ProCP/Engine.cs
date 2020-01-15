@@ -40,7 +40,12 @@ namespace ProCP
             _startStopNodes.ForEach(n => n.Start());
         }
 
-        
+        public List<IDropOff> GetDropoffs(SimulationSettings settings)
+        {
+            var dropoffs = NodeCreationService.Nodes.OfType<IDropOff>().ToList();
+            
+            return dropoffs;
+        }
 
         public Func<StatisticsData> GetStatisticsCalculator() => () => StatisticsCalculator.CalculateStatistics();
     }

@@ -47,11 +47,16 @@ namespace ProCP.Nodes
                 {
                     if (nextNode.NodeStatus == NodeStatus.Free)
                     {
-                        var tempBag = _transporterQueues[destination].Dequeue();
+                        IBaggage tempBag = null;
 
-                        if (tempBag == null)
+                        if (_transporterQueues.Count != 0)
                         {
-                            return;
+                            tempBag = _transporterQueues[destination].Dequeue();
+
+                            if (tempBag == null)
+                            {
+                                return;
+                            }
                         }
 
                         tempBag.TransportationStartTime = TimerService.GetTicksSinceSimulationStart();
@@ -76,7 +81,7 @@ namespace ProCP.Nodes
         {
             foreach (var node in _listOfNextNode)
             {
-                if (node.Value.NextNode.Destination == b.Flight.FlightNumber)
+                if (node.Value.NextNode.Destination == b.Flight.DropoffId)
                 {
                     b.Destination = node.Value.NextNode.Destination;
                 }
