@@ -28,7 +28,7 @@ namespace ProCP.Nodes
         public override void Process(IBaggage b)
         {
             System.Diagnostics.Debug.WriteLine("checkin" + b.Destination);
-            b.AddLog(TimerService.GetTimeSinceSimulationStart(), TimerService.ConvertMillisecondsToTimeSpan(1000), "Checkin processing");
+            b.AddLog(TimerService.GetTimeSinceSimulationStart(), TimerService.ConvertMillisecondsToTimeSpan(1000), $"Checkin processing");
             b.Destination = typeof(PrimarySecurity).Name;
         }
     }

@@ -1,5 +1,6 @@
 ﻿using ProCP.Contracts;
 using ProCP.Services;
+using ProCP.Services.CSVStatsExport;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,7 @@ namespace ProCP
         private SimulationSettings _settings;
         private StatisticsCalculator _calculator;
         private List<IStartStop> _startStopNodes;
+        private CSVWriteService _CSVWriteService;
         
 
         public Engine()
@@ -22,6 +24,7 @@ namespace ProCP
             _timerTracker = new TimerTracker();
             _nodeCreationService = new NodeCreationService(_timerTracker);
             _calculator = new StatisticsCalculator();
+            _CSVWriteService = new CSVWriteService();
         }
 
         public void Run(SimulationSettings settings)
@@ -40,11 +43,21 @@ namespace ProCP
             _startStopNodes.ForEach(n => n.Start());
         }
 
+        public void Stop()
+        {
+            NodeCreationService.Nodes.Clear();
+        }
+
         public List<IDropOff> GetDropoffs(SimulationSettings settings)
         {
             var dropoffs = NodeCreationService.Nodes.OfType<IDropOff>().ToList();
             
             return dropoffs;
+        }
+
+        public void WriteStatsToCsv(SimulationSettings settings, StatisticsData data)
+        {
+            _CSVWriteService.WriteToCSV(settings, data);
         }
 
         public Func<StatisticsData> GetStatisticsCalculator() => () => StatisticsCalculator.CalculateStatistics();

@@ -35,19 +35,21 @@ namespace ProCP.Nodes
             {
                 switch (_dropoffSettings.NumberOfWorker)
                 {
-                    case 1:
-                        _processingSpeed = 1200;
-                        break;
-                    case 5:
+                    case 2:
                         _processingSpeed = 1000;
                         break;
-                    case 8:
+                    case 4:
                         _processingSpeed = 800;
+                        break;
+                    case 6:
+                        _processingSpeed = 600;
                         break;
                     default:
                         _processingSpeed = 1000;
                         break;
                 }
+
+                _processingSpeed = value;
             }
         }
 
@@ -61,9 +63,9 @@ namespace ProCP.Nodes
 
         public override void PassBaggage(IBaggage b)
         {
-            b.AddLog(TimerService.GetTimeSinceSimulationStart(), TimerService.ConvertMillisecondsToTimeSpan(ProcessingSpeed), "drop off processing");
             b.Destination = Destination;
             _pickedUpBags.Add(b);
+            b.AddLog(TimerService.GetTimeSinceSimulationStart() + new TimeSpan(ProcessingSpeed), TimerService.ConvertMillisecondsToTimeSpan(ProcessingSpeed), "drop off processing");
         }
     }
 }

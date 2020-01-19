@@ -37,53 +37,12 @@ namespace ProCP
             departureTimePicker.Value = DateTime.Now;
             departureTimePicker.Format = DateTimePickerFormat.Time;
             departureTimePicker.ShowUpDown = true;
-            //create flight
-            //var flight = new Flight()
-            //{
-            //    BaggageCount = 20,
-            //    DipartureTime = new TimeSpan(5, 45, 00),
-            //    FlightNumber = "34353",
-            //};
-
-            //_simulationSettings.Flights.Add(flight);
-
-            //
-            cartesianChart1.Series.Add(new ColumnSeries() { Title = "2132", Values = new ChartValues<int> { 20 } });
-            cartesianChart1.AxisY.Add(new Axis()
-            {
-                Title = "Time elapsed per flight",
-
-            });
-            cartesianChart1.AxisX.Add(new Axis()
-            {
-                Title = "Flight"
-            });
-
-            cartesianChart1.LegendLocation = LegendLocation.Right;
-
-            //modifying any series values will also animate and update the chart
-
 
             cartesianChart1.DataClick += CartesianChart1OnDataClick;
 
-
-            PrimarySecurityChart.Series.Add(new ColumnSeries() { Title = "85", Values = new ChartValues<int> { 20 } });
-            PrimarySecurityChart.AxisY.Add(new Axis()
-            {
-                Title = "Baggage transferred per flight"
-            });
-
-            PrimarySecurityChart.AxisX.Add(new Axis()
-            {
-                Title = "Flight"
-            });
-
-            PrimarySecurityChart.LegendLocation = LegendLocation.Right;
-
-            //pie chart
+           
             pieChartBagsSecurity.Series.Add(new PieSeries() { Title = "Succeeded", Values = new ChartValues<int> { 30 }, DataLabels = true });
             pieChartBagsSecurity.Series.Add(new PieSeries() { Title = "Failed", Values = new ChartValues<int> { 20 }, DataLabels = true });
-            pieChartBagsSecurity.LegendLocation = LegendLocation.Right;
 
             //adding series will update and animate the chart automatically
             //also adding values updates and animates the chart automatically
@@ -107,6 +66,18 @@ namespace ProCP
             PopulateTable(dataStats);
         }
 
+        public void PrePopulateCharts()
+        {
+            cartesianChart1.Series.Add(new ColumnSeries() { Title = "Flight number: RA123", Values = new ChartValues<int> { 20 } });
+            PrimarySecurityChart.Series.Add(new ColumnSeries() { Title = "drop off number: 85", Values = new ChartValues<int> { 100 } });
+            cartesianChartSuccBagsPerFlight.Series.Add(new ColumnSeries() { Title = "flight number: RA123", Values = new ChartValues<int> { 100 } });
+            cartesianChartFailedBagsPerFlight.Series.Add(new ColumnSeries() { Title = "flight number: RA123", Values = new ChartValues<int> { 10 } });
+
+
+            pieChartBagsSecurity.Series.Add(new PieSeries() { Title = "Succeeded", Values = new ChartValues<int> { 30 }, DataLabels = true });
+            pieChartBagsSecurity.Series.Add(new PieSeries() { Title = "Failed", Values = new ChartValues<int> { 20 }, DataLabels = true });
+        }
+
         private void CartesianChart1OnDataClick(object sender, ChartPoint chartPoint)
         {
             MessageBox.Show("You clicked (" + chartPoint.X + "," + chartPoint.Y + ")");
@@ -116,6 +87,13 @@ namespace ProCP
         {
             _engine.Run(_simulationSettings);
             _timer.Start();
+            btnCheckin.Enabled = false;
+            btnConveyor.Enabled = false;
+            btnDropoff.Enabled = false;
+            btnSecurity.Enabled = false;
+            gbSettings.Enabled = false;
+            gbFlightInfo.Enabled = false;
+            MapImportExportgroupBox.Enabled = false;
         }
 
         private void StatisticsChartData(StatisticsData data)
@@ -124,6 +102,8 @@ namespace ProCP
             pieChartBagsSecurity.Series.Clear();
             PrimarySecurityChart.Series.Clear();
             cartesianChart1.Series.Clear();
+            cartesianChartSuccBagsPerFlight.Series.Clear();
+            cartesianChartFailedBagsPerFlight.Series.Clear();
 
             //pie chart
             pieChartBagsSecurity.Series.Add(new PieSeries() { Title = "Succeeded", Values = new ChartValues<int> { data.BagsSucceededPsc.Count }, DataLabels = true });
@@ -134,13 +114,22 @@ namespace ProCP
             foreach (var flight in data.BagsPerFlight)
             {
                 PrimarySecurityChart.Series.Add(new ColumnSeries() { Title = "DropOff number " + flight.Key, Values = new ChartValues<int> { flight.Value } });
-                pieChartBagsSecurity.LegendLocation = LegendLocation.Right;
             }
 
             //cartesian chart elapsed times per flight
             foreach (var flight in data.ElapsedTimesPerFlight)
             {
                 cartesianChart1.Series.Add(new ColumnSeries() { Title = "Flight number " + flight.Key, Values = new ChartValues<int> { int.Parse(flight.Value) } });
+            }
+
+            foreach (var flight in data.PscSucceededBagsPerFlight)
+            {
+                cartesianChartSuccBagsPerFlight.Series.Add(new ColumnSeries() { Title = "Flight number " + flight.Key, Values = new ChartValues<int> { flight.Value } });
+            }
+
+            foreach (var flight in data.PscFailedBagsPerFlight)
+            {
+                cartesianChartFailedBagsPerFlight.Series.Add(new ColumnSeries() { Title = "Flight number " + flight.Key, Values = new ChartValues<int> { flight.Value } });
             }
         }
 
@@ -335,10 +324,6 @@ namespace ProCP
             {
                 MessageBox.Show("First select a flight");
             }
-
-
-
-
         }
 
         private void cartesianChart1_ChildChanged(object sender, System.Windows.Forms.Integration.ChildChangedEventArgs e)
@@ -367,6 +352,11 @@ namespace ProCP
 
         private void buttonImport_Click(object sender, EventArgs e)
         {
+
+            btnCheckin.Enabled = true;
+            btnDropoff.Enabled = true;
+            btnConveyor.Enabled = true;
+            btnSecurity.Enabled = true;
             string filePath = "";
             if (!this.ImportExportHelper(ref filePath, ref readAndWrite))
             {
@@ -423,6 +413,56 @@ namespace ProCP
         private void buttonDeleteTile_Click(object sender, EventArgs e)
         {
             this.buildType = BuildType.Delete;
+        }
+
+        private void BtnStop_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("This action will reset everything! Do you want to save you statistics ?", "Export Statistics", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                _engine.WriteStatsToCsv(_simulationSettings, dataStats);
+            }
+
+            _timer.Stop();
+            dataStats = new StatisticsData();
+            textBoxFlightNumber.Text = "";
+            textBoxNumberOfBags.Text = "";
+            comboBoxCurrentDropOffs.SelectedItem = null;
+            _grid.gridTiles.Clear();
+            _grid = new Grid(animationBox.Width, animationBox.Height, _simulationSettings);
+            _simulationSettings.FrontNodes.Clear();
+            _engine.Stop();
+            animationBox.Invalidate();
+            btnMain.Enabled = true;
+            MapImportExportgroupBox.Enabled = true;
+            gbStartStop.Enabled = false;
+            _simulationSettings.Flights.Clear();
+            lbFlights.Items.Clear();
+        }
+
+        private void BtnSpeed1_Click(object sender, EventArgs e)
+        {
+            _simulationSettings.Cs.Speed = 1000; 
+        }
+
+        private void BtnSpeed2_Click(object sender, EventArgs e)
+        {
+            _simulationSettings.Cs.Speed = 800;
+        }
+
+        private void BtnSpeed3_Click(object sender, EventArgs e)
+        {
+            _simulationSettings.Cs.Speed = 600;
+        }
+
+        private void BtnSpeed4_Click(object sender, EventArgs e)
+        {
+            _simulationSettings.Cs.Speed = 400;
+        }
+
+        private void CmbEmployees_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            _simulationSettings.DropOffSettings.NumberOfWorker = Convert.ToInt32(cmbEmployees.SelectedItem.ToString());
         }
     }
 }

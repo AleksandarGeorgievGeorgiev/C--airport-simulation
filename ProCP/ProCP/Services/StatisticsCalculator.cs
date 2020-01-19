@@ -53,13 +53,13 @@ namespace ProCP.Services
         public static void PscFailedAndSucceededBagsPerFlight(StatisticsData data, ConcurrentBag<Baggage> baggages)
         {
             var bagsGroupedPerFlight = baggages.GroupBy(b => b.Flight.FlightNumber);
+            if (data.PscSucceededBagsPerFlight != null && data.PscSucceededBagsPerFlight.Count() > 0)
+            {
+                data.PscSucceededBagsPerFlight.Clear();
+                data.PscFailedBagsPerFlight.Clear();
+            }
             foreach (var group in bagsGroupedPerFlight)
             {
-                if (data.PscSucceededBagsPerFlight.Count() > 0 || data.PscFailedBagsPerFlight.Count() > 0)
-                {
-                    data.PscSucceededBagsPerFlight.Clear();
-                    data.PscFailedBagsPerFlight.Clear();
-                }
 
                 var succeededBagsPerFlight = group.Where(b => b.Logs.Any(log => log.Description.Contains(LoggingConstants.PrimarySecurityCheckSucceeded))).ToList();
                 var failedBagsPerFlight = group.Where(b => b.Logs.Any(log => log.Description.Contains(LoggingConstants.PrimarySecurityCheckFailed))).ToList();

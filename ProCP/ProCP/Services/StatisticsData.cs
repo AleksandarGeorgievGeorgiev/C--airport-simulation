@@ -41,6 +41,8 @@ namespace ProCP.Services
             TransportingTimePerConveyorBeforePrimarySecurity = new Dictionary<string, double>();
             BagsPerFlight = new Dictionary<string, int>();
             ElapsedTimesPerFlight = new Dictionary<string, string>();
+            PscSucceededBagsPerFlight = new Dictionary<string, int>();
+            PscFailedBagsPerFlight = new Dictionary<string, int>();
         }
 
     }

@@ -294,8 +294,14 @@ namespace ProCP.Visuals
         {
             if(!(current is EmptyTile))
             {
-                current.PreviousTile.NextTiles.Clear();
-                current.NextTiles[0].SetPreviousTile(null);
+                if (current.NextTiles.Count != 0)
+                {
+                    current.NextTiles[0].SetPreviousTile(null);
+                }
+                if (current.PreviousTile != null)
+                {
+                    current.PreviousTile.NextTiles.Clear();
+                }
                 this.gridTiles.Remove(current);
                 this.gridTiles.Add(new EmptyTile(current.Column, current.Row, tileWidth, tileHeight));
             }
