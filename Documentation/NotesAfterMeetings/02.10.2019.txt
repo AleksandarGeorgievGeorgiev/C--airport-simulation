@@ -1,0 +1,20 @@
+----------------Iteration 1-------------------
+
+- cut the part for the iteration 1 phasing 
+- and update it 
+--------------------URS-------------------------
+
+-Make it clear for the pauzing the simulation
+-We delete resume , we only keep start and stop 
+
+---------Work division document----------
+
+- status can be open and no tclosed, free to put mre tasks
+- update the the time for the minutes and agenda for the nex weeks
+
+-------------Class Diagram-------------------
+
+- Dedicate a person to explain the class diagram
+
+-----------Sequence  Diagram----------------
+- start with it and dedicate a person to explain it

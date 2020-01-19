@@ -1,0 +1,23 @@
+--------------------URS-------------------------
+
+-add version history table 
+-fix the numbering for the extensions for the use cases (delete flight, create flight)
+-fix the document colors 
+-include the change for speed, employees and carts in initialization use case
+
+-----------Week6 Work Division ---------
+ 
+- update process report 
+- update
+
+-------------Iteration 2---------------------
+
+- start concept version
+
+---------Sequence Diagram ---------------
+
+-start it 
+
+---------Proof of concept ---------------
+
+- start it (the basic funstionalities with code )

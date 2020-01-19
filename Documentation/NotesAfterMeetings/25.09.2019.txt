@@ -1,0 +1,33 @@
+------------------Proposal ---------------------  
+
+-put the references- why only departure
+
+----------------Project Plan -------------------
+
+- Project plan version URS 0, URs v1
+- put a version table of the project plan
+- chnage dates on the table overview
+- Put a name of the product(ALS)
+-  Use a planning tool
+
+----------------Iteration 1-------------------
+
+-meantion that two weeks are blocked
+-planning is ok
+-leave it like that fo rnow 
+
+--------------------URS-------------------------
+
+#4 Change name to "Resume simulation"
+- Add a manual "stop" button 
+- Make the steps by step more clear
+
+---------Work  division document----------
+
+-create one 
+-weekly 
+
+-----------What to do this week--------------
+
+-start with the design document
+- Sequence diagram

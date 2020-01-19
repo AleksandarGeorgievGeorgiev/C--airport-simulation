@@ -22,7 +22,7 @@ namespace ProCP.Services.CSVStatsExport
 
         private void CreateCsvExportMode(SimulationSettings settings)
         {
-
+            _objectsToExport.Clear();
             foreach (var flight in settings.Flights)
             {
                 _exportModel = new CSVExportModel();

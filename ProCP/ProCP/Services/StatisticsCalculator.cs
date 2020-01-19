@@ -136,10 +136,10 @@ namespace ProCP.Services
             {
                 var orderedByFirstBag = group.OrderBy(b => b.Logs.FirstOrDefault().LogCreated).ToList();
 
-                var firstBagDispached = orderedByFirstBag.FirstOrDefault().Logs.FirstOrDefault().LogCreated.TotalMinutes;
-                var lastBagCollected = orderedByFirstBag.LastOrDefault().Logs.LastOrDefault().LogCreated.TotalMinutes;
+                var firstBagDispached = orderedByFirstBag.FirstOrDefault().Logs.FirstOrDefault().LogCreated.Minutes;
+                var lastBagCollected = orderedByFirstBag.LastOrDefault().Logs.LastOrDefault().LogCreated.Minutes;
 
-                var timeElapsed = Math.Floor(lastBagCollected - firstBagDispached).ToString();
+                var timeElapsed = (lastBagCollected - firstBagDispached).ToString();
 
                 data.ElapsedTimesPerFlight.Add(group.Key, timeElapsed);
             }

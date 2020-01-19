@@ -40,13 +40,11 @@ namespace ProCP
 
             cartesianChart1.DataClick += CartesianChart1OnDataClick;
 
-           
+
             pieChartBagsSecurity.Series.Add(new PieSeries() { Title = "Succeeded", Values = new ChartValues<int> { 30 }, DataLabels = true });
             pieChartBagsSecurity.Series.Add(new PieSeries() { Title = "Failed", Values = new ChartValues<int> { 20 }, DataLabels = true });
 
-            //adding series will update and animate the chart automatically
-            //also adding values updates and animates the chart automatically
-            //primariySecurityChart.Series[1].Values.Add(12d);
+            PrePopulateCharts();
 
             SetupGeneralStatsTable();
 
@@ -68,14 +66,10 @@ namespace ProCP
 
         public void PrePopulateCharts()
         {
-            cartesianChart1.Series.Add(new ColumnSeries() { Title = "Flight number: RA123", Values = new ChartValues<int> { 20 } });
-            PrimarySecurityChart.Series.Add(new ColumnSeries() { Title = "drop off number: 85", Values = new ChartValues<int> { 100 } });
-            cartesianChartSuccBagsPerFlight.Series.Add(new ColumnSeries() { Title = "flight number: RA123", Values = new ChartValues<int> { 100 } });
-            cartesianChartFailedBagsPerFlight.Series.Add(new ColumnSeries() { Title = "flight number: RA123", Values = new ChartValues<int> { 10 } });
-
-
-            pieChartBagsSecurity.Series.Add(new PieSeries() { Title = "Succeeded", Values = new ChartValues<int> { 30 }, DataLabels = true });
-            pieChartBagsSecurity.Series.Add(new PieSeries() { Title = "Failed", Values = new ChartValues<int> { 20 }, DataLabels = true });
+            cartesianChart1.Series.Add(new ColumnSeries() { Title = "Flight number: RA123", Values = new ChartValues<int> { 20 }, DataLabels = true });
+            PrimarySecurityChart.Series.Add(new ColumnSeries() { Title = "drop off number: 85", Values = new ChartValues<int> { 100 }, DataLabels = true });
+            cartesianChartSuccBagsPerFlight.Series.Add(new ColumnSeries() { Title = "flight number: RA123", Values = new ChartValues<int> { 100 }, DataLabels = true });
+            cartesianChartFailedBagsPerFlight.Series.Add(new ColumnSeries() { Title = "flight number: RA123", Values = new ChartValues<int> { 10 }, DataLabels = true });
         }
 
         private void CartesianChart1OnDataClick(object sender, ChartPoint chartPoint)
@@ -224,7 +218,7 @@ namespace ProCP
                     comboBoxCurrentDropOffs.Items.Add(currentTile.NodeId.ToString());
                 }
             }
-            else if(this.buildType == BuildType.Delete)
+            else if (this.buildType == BuildType.Delete)
             {
                 this._grid.DeleteNode(t);
             }
@@ -423,26 +417,42 @@ namespace ProCP
                 _engine.WriteStatsToCsv(_simulationSettings, dataStats);
             }
 
+            _engine.Stop();
             _timer.Stop();
-            dataStats = new StatisticsData();
             textBoxFlightNumber.Text = "";
             textBoxNumberOfBags.Text = "";
             comboBoxCurrentDropOffs.SelectedItem = null;
+            lbFlights.Items.Clear();
             _grid.gridTiles.Clear();
             _grid = new Grid(animationBox.Width, animationBox.Height, _simulationSettings);
+            //dataStats.ElapsedTimesPerFlight.Clear();
+            //dataStats.SimulationTimeElapsed = "";
+            //dataStats.TotalBagsTransfered.Clear();
+            //dataStats.PscSucceededBagsPerFlight.Clear();
+            //dataStats.PscFailedBagsPerFlight.Clear();
+            //dataStats.BagsFailedPsc.Clear();
+            //dataStats.BagsSucceededPsc.Clear();
+            //dataStats.BagsPerFlight.Clear();
+            Baggage.AllBaggage = new System.Collections.Concurrent.ConcurrentBag<Baggage>();
             _simulationSettings.FrontNodes.Clear();
-            _engine.Stop();
-            animationBox.Invalidate();
+            _simulationSettings.Flights.Clear();
+            gbStartStop.Enabled = false;
             btnMain.Enabled = true;
             MapImportExportgroupBox.Enabled = true;
-            gbStartStop.Enabled = false;
-            _simulationSettings.Flights.Clear();
-            lbFlights.Items.Clear();
+            animationBox.Invalidate();
+
+
+            //clear stats
+            pieChartBagsSecurity.Series.Clear();
+            PrimarySecurityChart.Series.Clear();
+            cartesianChart1.Series.Clear();
+            cartesianChartSuccBagsPerFlight.Series.Clear();
+            cartesianChartFailedBagsPerFlight.Series.Clear();
         }
 
         private void BtnSpeed1_Click(object sender, EventArgs e)
         {
-            _simulationSettings.Cs.Speed = 1000; 
+            _simulationSettings.Cs.Speed = 1000;
         }
 
         private void BtnSpeed2_Click(object sender, EventArgs e)

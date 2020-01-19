@@ -1,0 +1,17 @@
+-----------Work Division ---------------------
+ 
+- update process report 
+- change the dates
+- make it clear that we will focus mainly on backend 
+
+----------Sequence Diagram ---------------
+
+-start it 
+
+---------Proof of concept ---------------
+
+- start it (the basic funstionalities with code )
+
+----------Plan for iteration 2---------------
+
+- finish the final version for iteration 2 

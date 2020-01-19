@@ -36,7 +36,11 @@ namespace ProCP.Abstractions
         {
             NodeStatus = NodeStatus.Busy;
             currentBag = b;
-
+            if (b == null)
+            {
+                NodeStatus = NodeStatus.Free;
+                return;
+            }
             if (b.TransportationStartTime != null)
             {
                 var transportationStart = b.TransportationStartTime ?? 0;
